@@ -1,0 +1,14 @@
+PAŁAC PASS — wersja pokazowa (HTML)
+
+1. Rozpakuj cały folder (ważne: pliki muszą zostać razem z folderem "assets").
+2. Otwórz plik index.html podwójnym kliknięciem — strona działa bez serwera,
+   na komputerze i w orientacji mobilnej (zmień szerokość okna lub otwórz na telefonie).
+3. Fotografie wczytują się z internetu (z obecnej strony palacpass.pl),
+   więc do pokazu potrzebne jest połączenie z siecią.
+
+Podstrony: palac.html · historia.html · park.html · wesela.html · biznes.html ·
+kultura.html · galeria.html · kontakt.html · wirtualny-spacer.html
+Wersja angielska: en.html (i pliki en-*.html)
+
+Aby pokazać stronę na telefonie najprościej przeciągnąć ten folder do
+dowolnego hostingu statycznego (np. Netlify Drop) — strona zadziała od razu.
