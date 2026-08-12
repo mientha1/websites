@@ -1,0 +1,27 @@
+EKOTRADE — nowy serwis (wersja pod zwykly hosting)
+====================================================
+
+1. Wgraj CALA zawartosc tego folderu do katalogu glownego domeny na serwerze
+   (najczesciej: public_html/ lub www/) — przez FTP/SFTP albo menedzer plikow hostingu.
+   Wazne: wgraj takze ukryty plik .htaccess (w kliencie FTP wlacz pokazywanie
+   plikow ukrytych).
+
+2. To wszystko. Serwis nie wymaga PHP, bazy danych ani zadnej konfiguracji.
+   Strona glowna: index.html. Podstrony to zwykle pliki .html w tym samym katalogu.
+
+3. Plik .htaccess zawiera: przekierowania 301 ze starych adresow
+   (np. /ochrona -> /ochrona-fizyczna.html), naglowki bezpieczenstwa,
+   kompresje i cache. Dziala na typowym hostingu z Apache (home.pl, OVH,
+   cyber_folks itp.). Jesli hosting uzywa innego serwera (np. nginx),
+   przekierowania trzeba przeniesc do jego konfiguracji.
+
+4. Po podpieciu certyfikatu SSL (Let's Encrypt w panelu hostingu) mozna
+   odkomentowac linijke Strict-Transport-Security w .htaccess.
+
+5. Formularze (kontakt, rekrutacja) sa w wersji demonstracyjnej — wysylka
+   wymaga podpiecia skryptu odbierajacego (patrz docs/WDROZENIE.md w paczce
+   projektowej). Do tego czasu klienci moga korzystac z adresow e-mail
+   i telefonow podanych na stronach.
+
+6. Edycja tresci: kazda podstrona to samodzielny plik .html — mozna edytowac
+   w dowolnym edytorze. Style: assets/css/main.css, skrypt: assets/js/main.js.
