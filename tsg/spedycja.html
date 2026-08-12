@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spedycja · Grabowski Furniture Logistic</title>
+<meta name="description" content="Spedycja meblowa z 25-letnim doświadczeniem i zdalnym nadzorem każdego załadunku.">
+<meta name="theme-color" content="#111417">
+<link rel="icon" href="https://ts-grabowski.com/wp-content/uploads/2022/09/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ts-grabowski.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;
+  --paper:#f7f7f4;
+  --paper-2:#efefeb;
+  --ink:#15181b;
+  --body:#464d53;
+  --muted:#6d747b;
+  --line:#e6e6e1;
+  --line-2:#d6d7d1;
+  --dark:#111417;
+  --on-dark:rgba(255,255,255,.72);
+  --on-dark-soft:rgba(255,255,255,.56);
+  --red:#c1121f;
+  --red-600:#a20f1a;
+  --red-700:#860c15;
+  --r:8px; --r-md:11px; --r-lg:14px;
+  --maxw:1240px;
+  --sh-1:0 1px 2px rgba(21,24,27,.05);
+  --sh-2:0 8px 30px rgba(21,24,27,.07);
+  --sh-3:0 24px 60px rgba(21,24,27,.10);
+  --ease:cubic-bezier(.4,0,.15,1);
+  --ff-body:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --ff-head:"Sora",var(--ff-body);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--ff-body);color:var(--body);background:var(--white);
+  font-size:17px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--ff-head);color:var(--ink);margin:0;font-weight:700;
+  line-height:1.08;letter-spacing:-.021em;text-wrap:balance}
+p{margin:0 0 1.1em}
+p:last-child{margin-bottom:0}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:3px}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- type utilities ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:11.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink)}
+.eyebrow::before{content:"";width:20px;height:2px;background:var(--red)}
+.eyebrow.center{justify-content:center}
+.eyebrow.on-dark{color:#fff}
+.lead{font-size:clamp(17px,1.05rem + .35vw,19.5px);line-height:1.6;color:var(--body);max-width:60ch}
+.measure{max-width:64ch}
+.fine{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  font-family:var(--ff-head);font-weight:600;font-size:14.5px;letter-spacing:.005em;
+  line-height:1;padding:15px 26px;border-radius:var(--r);border:1px solid transparent;
+  cursor:pointer;transition:background .22s var(--ease),color .22s var(--ease),
+  border-color .22s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease);
+  white-space:nowrap}
+.btn svg{width:16px;height:16px;transition:transform .25s var(--ease)}
+.btn:hover svg.ar{transform:translateX(3px)}
+.btn-accent{background:var(--red);color:#fff}
+.btn-accent:hover{background:var(--red-600);transform:translateY(-1px);box-shadow:var(--sh-2)}
+.btn-accent:active{transform:translateY(0);background:var(--red-700)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;transform:translateY(-1px)}
+.btn-line{background:var(--white);color:var(--ink);border-color:var(--line-2)}
+.btn-line:hover{border-color:var(--ink);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.7)}
+
+/* ---------- header ---------- */
+.site-header{position:fixed;inset:0 0 auto 0;z-index:60;
+  transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+.site-header::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:transparent;transition:.3s}
+.site-header .bar{display:flex;align-items:center;gap:22px;height:84px;transition:height .3s var(--ease)}
+.site-header .btn{padding:12px 22px;font-size:14px}
+.brand{display:flex;align-items:center;flex-shrink:0}
+.brand img{height:34px;width:auto}
+.brand .logo-dark{display:none}
+.nav{display:flex;align-items:center;gap:2px;margin-left:10px}
+.nav a.navlink,.nav .navitem>span{position:relative;display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--ff-head);font-weight:600;font-size:14.5px;color:rgba(255,255,255,.86);
+  padding:9px 14px;border-radius:var(--r);cursor:pointer;transition:color .2s var(--ease)}
+.nav a.navlink::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:1.5px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--ease)}
+.nav a.navlink:hover::after{transform:scaleX(1)}
+.nav a.navlink:hover,.nav .navitem:hover>span{color:#fff}
+.nav a.navlink.active{color:#fff}
+.nav a.navlink.active::after{transform:scaleX(1)}
+.nav .navitem{position:relative}
+.caret{width:9px;height:9px;opacity:.6;transition:transform .25s var(--ease)}
+.navitem:hover .caret,.navitem:focus-within .caret{transform:rotate(180deg)}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:300px;background:#fff;
+  border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-3);padding:8px;
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.navitem:hover .dropdown,.navitem:focus-within .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:block;padding:13px 15px;border-radius:var(--r);
+  transition:background .18s var(--ease)}
+.dropdown a + a{margin-top:2px}
+.dropdown .dt{display:block;font-family:var(--ff-head);font-weight:600;font-size:15px;
+  color:var(--ink);line-height:1.25;transition:color .18s var(--ease)}
+.dropdown small{display:block;font-size:13px;color:var(--muted);line-height:1.45;margin-top:3px}
+.dropdown a:hover{background:var(--paper)}
+.dropdown a:hover .dt{color:var(--red)}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:18px}
+.lang{display:flex;align-items:center;gap:1px;font-weight:600;font-size:12px;letter-spacing:.04em}
+.lang a{padding:5px 7px;border-radius:6px;color:rgba(255,255,255,.6);transition:color .2s}
+.lang a.on{color:#fff}
+.lang a:hover{color:#fff}
+.tel{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-head);font-weight:600;
+  font-size:14px;color:#fff}
+.tel svg{width:15px;height:15px;color:var(--red)}
+.burger{display:none;background:transparent;border:0;cursor:pointer;padding:6px;color:#fff}
+.burger svg{width:26px;height:26px}
+.site-header.scrolled{background:rgba(255,255,255,.9);backdrop-filter:saturate(1.3) blur(16px);
+  -webkit-backdrop-filter:saturate(1.3) blur(16px)}
+.site-header.scrolled::after{background:var(--line)}
+.site-header.scrolled .bar{height:70px}
+.site-header.scrolled .brand .logo-light{display:none}
+.site-header.scrolled .brand .logo-dark{display:block}
+.site-header.scrolled .nav a.navlink,.site-header.scrolled .nav .navitem>span{color:var(--body)}
+.site-header.scrolled .nav a.navlink:hover,.site-header.scrolled .nav .navitem:hover>span,
+.site-header.scrolled .nav a.navlink.active{color:var(--ink)}
+.site-header.scrolled .tel{color:var(--ink)}
+.site-header.scrolled .lang a{color:var(--muted)}
+.site-header.scrolled .lang a.on{color:var(--ink)}
+.site-header.scrolled .burger{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;display:flex;align-items:flex-end;color:#fff;overflow:hidden;isolation:isolate}
+.hero.home{min-height:96svh}
+.hero-media{position:absolute;inset:0;z-index:-2}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);
+  animation:heroZoom 18s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-media::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,17,20,.55) 0%,rgba(15,17,20,.28) 40%,rgba(13,15,18,.86) 100%),
+  linear-gradient(90deg,rgba(13,15,18,.72) 0%,rgba(13,15,18,0) 58%)}
+.hero-inner{position:relative;padding:158px 0 68px;width:100%;max-width:900px}
+.hero h1{font-size:clamp(2.55rem,1.7rem + 4.1vw,5.05rem);font-weight:700;letter-spacing:-.03em;
+  color:#fff;line-height:1.03;max-width:20ch}
+.hero.home h1{text-wrap:pretty}
+.hero .lead{color:rgba(255,255,255,.82);max-width:52ch;margin-top:24px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-scroll{position:absolute;left:28px;bottom:26px;color:rgba(255,255,255,.55);font-size:10.5px;
+  font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.hero-scroll span{width:34px;height:1px;background:rgba(255,255,255,.4);position:relative;overflow:hidden}
+.hero-scroll span::after{content:"";position:absolute;inset:0;background:var(--red);
+  animation:scrollLine 2.4s var(--ease) infinite}
+@keyframes scrollLine{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.phero{min-height:clamp(360px,52vh,480px)}
+.phero .hero-inner{padding:clamp(150px,20vh,190px) 0 clamp(46px,6vh,64px)}
+.phero h1{font-size:clamp(2.2rem,1.5rem + 2.6vw,3.9rem)}
+.crumbs{display:flex;gap:9px;align-items:center;font-weight:500;font-size:13px;
+  letter-spacing:.01em;color:rgba(255,255,255,.66);margin-bottom:20px}
+.crumbs a:hover{color:#fff}.crumbs .sep{opacity:.45}
+
+/* ---------- sections ---------- */
+.section{padding:clamp(64px,7vw,112px) 0}
+.section.soft{background:var(--paper)}
+.section-head{max-width:740px}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head h2{font-size:clamp(1.85rem,1.4rem + 1.7vw,2.9rem);font-weight:700;margin:18px 0 0;line-height:1.1}
+.section-head p{margin-top:18px}
+.section-head.center p{margin-inline:auto}
+.grid{display:grid;gap:22px}
+
+/* stat panel */
+.stats-band{position:relative;margin-top:-64px;z-index:20}
+.stats-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--sh-2);display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden}
+.stat{padding:30px 28px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat .num{font-family:var(--ff-head);font-weight:700;font-size:clamp(2rem,1.4rem + 1.6vw,2.7rem);
+  letter-spacing:-.03em;color:var(--ink);line-height:1;display:flex;align-items:baseline;gap:6px;
+  font-variant-numeric:tabular-nums}
+.stat .num .u{font-family:var(--ff-body);color:var(--red);font-size:.42em;font-weight:600;letter-spacing:.01em}
+.stat .lbl{margin-top:11px;font-size:13.5px;color:var(--muted);line-height:1.4;max-width:22ch}
+
+/* service pillars — editorial columns, not cards */
+.services{grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.svc{position:relative;padding:34px 36px 8px;display:flex;flex-direction:column;
+  border-left:1px solid var(--line)}
+.svc:first-child{border-left:0;padding-left:0}
+.svc:last-child{padding-right:0}
+.svc .cat{display:block;font-weight:700;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.svc h3{font-size:23px;margin-bottom:12px;letter-spacing:-.02em;transition:color .2s var(--ease)}
+.svc p{font-size:15px;color:var(--body);margin-bottom:22px;line-height:1.65;max-width:40ch}
+.svc .more{margin-top:auto;font-family:var(--ff-head);font-weight:600;font-size:14px;color:var(--ink);
+  display:inline-flex;align-items:center;gap:8px}
+.svc .more svg{width:15px;height:15px;color:var(--red);transition:transform .25s var(--ease)}
+a.svc:hover h3{color:var(--red)}
+a.svc:hover .more svg{transform:translateX(4px)}
+
+/* split feature */
+.split{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(32px,4.5vw,72px);align-items:center}
+.split.rev .split-media{order:2}
+.split-media{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-2)}
+.split-media img{width:100%;height:100%;min-height:340px;object-fit:cover}
+.tagchip{position:absolute;left:16px;bottom:16px;background:rgba(17,20,23,.86);color:#fff;
+  padding:10px 15px;border-radius:var(--r);font-size:12.5px;font-weight:500;letter-spacing:.01em;
+  display:flex;align-items:center;gap:9px}
+.tagchip b{font-weight:700}
+.tagchip svg{width:15px;height:15px;color:var(--red);flex:0 0 15px}
+.ticks{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:15px}
+.ticks li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--body);line-height:1.55}
+.ticks li b{color:var(--ink);font-weight:600}
+.ticks .tk{flex:0 0 20px;width:20px;height:20px;color:var(--red);margin-top:2px}
+.ticks .tk svg{width:16px;height:16px;stroke-width:2.4}
+
+/* coverage (dark) */
+.coverage{background:var(--dark);color:#fff;border-radius:var(--r-lg);overflow:hidden;position:relative}
+.coverage::before{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px}
+.coverage::after{content:"";position:absolute;top:-30%;right:-10%;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(193,18,31,.2),transparent 66%)}
+.cov-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:44px;
+  padding:clamp(38px,4.5vw,64px);align-items:center}
+.coverage h2{color:#fff;font-size:clamp(1.7rem,1.3rem + 1.5vw,2.7rem)}
+.coverage p{color:rgba(255,255,255,.72)}
+.countries{margin:28px 0 0;border-top:1px solid rgba(255,255,255,.12)}
+.countries .cn{display:flex;align-items:baseline;gap:18px;padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.12)}
+.countries .cn b{font-weight:700;font-size:12px;color:var(--red);letter-spacing:.1em;width:36px;flex:0 0 36px}
+.countries .cn span{font-family:var(--ff-head);font-weight:600;font-size:16px;color:#fff}
+.routemap svg{width:100%;height:auto}
+
+/* fleet gallery */
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:12px}
+.gallery a{border-radius:var(--r-md);overflow:hidden;position:relative;background:var(--paper-2)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.gallery a:hover img{transform:scale(1.05)}
+.gallery a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,17,20,.28))}
+.g-a{grid-column:span 3;grid-row:span 2}
+.g-b{grid-column:span 3}.g-c{grid-column:span 2}.g-d{grid-column:span 2}.g-e{grid-column:span 2}
+
+/* cards / listings */
+.cards{grid-template-columns:repeat(3,1fr)}
+.jcard,.pcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+  transition:border-color .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease);
+  display:flex;flex-direction:column}
+.jcard:hover,.pcard:hover{box-shadow:var(--sh-2);transform:translateY(-3px);border-color:var(--line-2)}
+.pcard .pc-media{aspect-ratio:16/10;overflow:hidden;background:var(--paper-2)}
+.pcard .pc-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease)}
+.pcard:hover .pc-media img{transform:scale(1.05)}
+.pcard .pc-body{padding:24px 26px 26px}
+.pcard h3{font-size:20px;letter-spacing:-.02em}
+.label{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:15px}
+.label::before{content:"";width:6px;height:6px;background:var(--red);border-radius:1px}
+.jcard{padding:28px 28px 26px}
+.jcard h3{font-size:20px;margin-bottom:13px;letter-spacing:-.02em}
+.jcard .meta{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 15px;font-size:13px;font-weight:500;color:var(--muted)}
+.jcard .meta span{display:inline-flex;align-items:center;gap:7px}
+.jcard .meta span::before{content:"";width:5px;height:5px;background:var(--line-2);border-radius:50%}
+.jcard p{font-size:15px;color:var(--body);margin-bottom:22px;line-height:1.6}
+
+/* principles */
+.principles{grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.principle{padding:32px 30px 30px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.principle:nth-child(3n){border-right:0}
+.principle .pk{font-weight:700;font-size:11px;color:var(--red);letter-spacing:.12em;text-transform:uppercase}
+.principle h3{font-size:19px;margin:14px 0 9px;letter-spacing:-.02em}
+.principle p{font-size:14.5px;color:var(--body);margin:0;line-height:1.6}
+
+/* timeline */
+.timeline{position:relative;padding-left:2px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1.5px;background:var(--line)}
+.tl{position:relative;padding:0 0 38px 40px}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:4px;top:5px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:2px solid var(--red)}
+.tl .yr{font-weight:700;color:var(--red);font-size:12px;letter-spacing:.12em}
+.tl h3{font-size:21px;margin:8px 0 9px;letter-spacing:-.02em}
+.tl p{font-size:15px;color:var(--body);margin:0;max-width:60ch;line-height:1.6}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,56px);align-items:start}
+.loc{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.loc:first-of-type{padding-top:0}
+.loc .lic{flex:0 0 42px;width:42px;height:42px;border:1px solid var(--line);border-radius:var(--r);
+  color:var(--ink);display:grid;place-items:center}
+.loc .lic svg{width:20px;height:20px}
+.loc h3{font-size:16px;margin-bottom:5px;letter-spacing:-.01em}
+.loc p{margin:0;font-size:14.5px;color:var(--body);line-height:1.55}
+.loc a{color:var(--ink);font-weight:600}
+.loc a:hover{color:var(--red)}
+.loc .mono{font-size:12.5px;color:var(--muted)}
+.form{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3vw,34px);
+  box-shadow:var(--sh-1)}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:600;font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;margin-bottom:8px;color:var(--ink)}
+.field input,.field textarea{width:100%;padding:13px 15px;border:1px solid var(--line-2);border-radius:var(--r);
+  font-family:var(--ff-body);font-size:15px;color:var(--ink);background:var(--paper);
+  transition:border-color .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.field input:focus,.field textarea:focus{outline:0;border-color:var(--red);background:#fff;
+  box-shadow:0 0 0 3px rgba(193,18,31,.12)}
+.field textarea{min-height:128px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* prose */
+.prose h2{font-size:clamp(1.6rem,1.3rem + 1vw,2.3rem);margin:0 0 18px;font-weight:700}
+.prose h3{font-size:20px;margin:34px 0 12px;letter-spacing:-.02em}
+.prose p{color:var(--body)}
+.prose ul{margin:0 0 20px;padding:0;list-style:none;display:grid;gap:13px}
+.prose ul li{position:relative;padding-left:28px;color:var(--body);font-size:15.5px;line-height:1.55}
+.prose ul li::before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;background:var(--red);border-radius:1px}
+
+/* cta band (dark) */
+.cta-band{position:relative;background:var(--dark);color:#fff;border-radius:var(--r-lg);
+  padding:clamp(44px,5.5vw,72px);overflow:hidden;text-align:center}
+.cta-band::before{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px}
+.cta-band>*{position:relative}
+.cta-band h2{color:#fff;font-size:clamp(1.7rem,1.3rem + 1.7vw,2.7rem);font-weight:700;max-width:20ch;margin-inline:auto;line-height:1.1}
+.cta-band p{color:rgba(255,255,255,.74);max-width:54ch;margin:18px auto 30px}
+.cta-band .hero-cta{justify-content:center}
+
+/* footer */
+.footer{background:var(--dark);color:var(--on-dark);padding:74px 0 30px}
+.footer a{transition:color .2s var(--ease)}
+.footer a:hover{color:#fff}
+.f-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.35fr;gap:44px;padding-bottom:44px;
+  border-bottom:1px solid rgba(255,255,255,.1)}
+.footer .brand img{height:32px}
+.footer .f-about{margin:22px 0 0;font-size:14.5px;max-width:32ch;color:var(--on-dark-soft);line-height:1.6}
+.f-social{display:flex;gap:10px;margin-top:24px}
+.f-social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r);
+  display:grid;place-items:center;transition:background .22s var(--ease),border-color .22s var(--ease),transform .22s var(--ease)}
+.f-social a:hover{background:var(--red);border-color:var(--red);transform:translateY(-2px)}
+.f-social svg{width:17px;height:17px;color:#fff}
+.f-col h4{color:#fff;font-family:var(--ff-body);font-weight:700;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:18px}
+.f-col a,.f-col p{display:block;font-size:14.5px;margin-bottom:11px;color:var(--on-dark-soft);line-height:1.55}
+.f-col p{margin-bottom:16px}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:24px;
+  font-size:12.5px;color:rgba(255,255,255,.45);flex-wrap:wrap}
+.f-bottom a{color:rgba(255,255,255,.6)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.07s}.reveal.d2{transition-delay:.14s}
+.reveal.d3{transition-delay:.21s}.reveal.d4{transition-delay:.28s}
+
+/* mobile menu */
+.mobile-menu{position:fixed;inset:0;z-index:80;background:var(--dark);color:#fff;padding:22px 26px 30px;
+  transform:translateX(100%);transition:transform .38s var(--ease);overflow-y:auto;display:flex;flex-direction:column}
+.mobile-menu.open{transform:none}
+.mm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;height:40px}
+.mm-head img{height:30px}
+.mm-close{background:transparent;border:0;color:#fff;cursor:pointer;padding:6px}
+.mm-close svg{width:26px;height:26px}
+.mm-lab{font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--on-dark-soft);margin:6px 0 4px}
+.mobile-menu nav a{display:block;font-family:var(--ff-head);font-weight:600;font-size:22px;letter-spacing:-.02em;
+  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.mobile-menu nav a.sub{font-size:16px;font-weight:500;color:rgba(255,255,255,.72);padding-left:14px}
+.mm-foot{margin-top:auto;padding-top:26px}
+
+/* ---------- responsive ---------- */
+@media(max-width:1080px){
+  .stats-wrap{grid-template-columns:repeat(3,1fr)}
+  .stat:nth-child(3){border-right:0}
+  .stat:nth-child(n+4){border-top:1px solid var(--line)}
+  .gallery{grid-template-columns:repeat(4,1fr)}
+  .principles{grid-template-columns:repeat(2,1fr)}
+  .principle:nth-child(3n){border-right:1px solid var(--line)}
+  .principle:nth-child(2n){border-right:0}
+}
+@media(max-width:900px){
+  .nav,.header-right .tel,.header-right .lang{display:none}
+  .burger{display:block}
+  .cards{grid-template-columns:1fr 1fr}
+  .services{grid-template-columns:1fr;border-top:0}
+  .svc{border-left:0;padding:24px 0 10px}
+  .svc + .svc{border-top:1px solid var(--line)}
+  .split,.cov-inner,.contact-grid,.f-top{grid-template-columns:1fr}
+  .split.rev .split-media{order:0}
+  .split-media img{min-height:300px}
+  .f-top{gap:34px}
+  .coverage .routemap{max-width:460px}
+}
+@media(max-width:640px){
+  body{font-size:16px}
+  .container{padding:0 20px}
+  .hero.home{min-height:88svh}
+  .hero-inner{padding:130px 0 56px}
+  .hero-scroll{display:none}
+  .stats-band{margin-top:-40px}
+  .stats-wrap{grid-template-columns:1fr 1fr}
+  .stat{padding:24px 22px}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(odd){border-right:1px solid var(--line)}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat:last-child{grid-column:1 / -1}
+  .cards,.row2{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .principle{border-right:0!important}
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:132px}
+  .g-a{grid-column:span 2;grid-row:span 1}
+  .hero-cta .btn,.cta-band .hero-cta .btn{flex:1 1 auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-media img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="btn btn-accent" style="position:absolute;left:-999px;top:-999px;z-index:200" onfocus="this.style.left='16px';this.style.top='16px'" onblur="this.style.left='-999px';this.style.top='-999px'">Przejdź do treści</a>
+<header class="site-header">
+  <div class="container">
+    <div class="bar">
+      <a class="brand" href="index.html" aria-label="Grabowski Furniture Logistic — strona główna">
+        <img class="logo-light" src="https://ts-grabowski.com/wp-content/themes/kadence-child/assets/images/logo/logo-home.png" alt="Grabowski Furniture Logistic" width="150" height="34">
+        <img class="logo-dark" src="https://ts-grabowski.com/wp-content/uploads/2022/09/logo.png" alt="Grabowski Furniture Logistic" width="150" height="34">
+      </a>
+      <nav class="nav" aria-label="Główna">
+        <div class="navitem">
+          <span tabindex="0" aria-haspopup="true">O nas <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          <div class="dropdown">
+            <a href="o-nas.html"><span class="dt">O firmie</span><small>Kim jesteśmy i jak pracujemy</small></a>
+            <a href="historia.html"><span class="dt">Historia</span><small>25 lat rozwoju firmy</small></a>
+          </div>
+        </div>
+        <div class="navitem">
+          <span tabindex="0" aria-haspopup="true">Oferta <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          <div class="dropdown">
+            <a href="transport.html"><span class="dt">Transport</span><small>Przewozy całopojazdowe i drobnicowe (FTL / LTL)</small></a>
+            <a href="logistyka.html"><span class="dt">Logistyka</span><small>Magazynowanie i cross-docking</small></a>
+            <a href="spedycja.html"><span class="dt">Spedycja</span><small>Organizacja i nadzór przewozów</small></a>
+          </div>
+        </div>
+        <a class="navlink" href="kariera.html">Kariera</a>
+        <a class="navlink" href="na-sprzedaz.html">Na sprzedaż</a>
+        <a class="navlink" href="kontakt.html">Kontakt</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang" aria-label="Język"><a href="#" class="on" aria-current="true">PL</a><a href="#">EN</a><a href="#">DE</a></div>
+        <a class="tel" href="tel:+48957881540"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>+48 95 788 15 40</span></a>
+        <a class="btn btn-accent" href="kontakt.html#zapytanie">Zapytanie ofertowe</a>
+        <button class="burger" aria-label="Otwórz menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" aria-hidden="true">
+  <div class="mm-head">
+    <img src="https://ts-grabowski.com/wp-content/themes/kadence-child/assets/images/logo/logo-home.png" alt="Grabowski Furniture Logistic" width="132" height="30">
+    <button class="mm-close" aria-label="Zamknij menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav aria-label="Mobilna">
+    <a href="o-nas.html">O nas</a>
+    <a class="sub" href="historia.html">Historia</a>
+    <a href="transport.html">Transport</a>
+    <a href="logistyka.html">Logistyka</a>
+    <a href="spedycja.html">Spedycja</a>
+    <a href="kariera.html">Kariera</a>
+    <a href="na-sprzedaz.html">Na sprzedaż</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <div class="mm-foot">
+    <p class="mm-lab">Skontaktuj się</p>
+    <a class="btn btn-accent" href="kontakt.html#zapytanie" style="width:100%">Zapytanie ofertowe</a>
+    <a class="tel" style="margin-top:18px;color:#fff" href="tel:+48957881540"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>+48 95 788 15 40</span></a>
+  </div>
+</div>
+<main id="main">
+
+<section class="hero phero">
+  <div class="hero-media"><img src="https://ts-grabowski.com/wp-content/uploads/2022/10/tabor-003.jpg" alt="" fetchpriority="high"></div>
+  <div class="container"><div class="hero-inner reveal in">
+    <nav class="crumbs" aria-label="Ścieżka"><a href="index.html">Start</a><span class="sep">/</span><span>Oferta / Spedycja</span></nav>
+    <h1>Spedycja</h1>
+    <p class="lead">Za każdą usługą transportową stoi zespół spedytorów, który zdalnie nadzoruje każdy załadunek. Od 25 lat doskonalimy obsługę producentów mebli.</p>
+  </div></div>
+</section>
+<section class="section"><div class="container">
+  <div class="split">
+    <div class="reveal">
+      <span class="eyebrow">Spedycja meblowa</span>
+      <div class="section-head"><h2>Nadzór nad każdym załadunkiem</h2></div>
+      <p class="lead" style="margin-top:18px">Grabowski Furniture Logistic należy do największych na rynku polskim firm spedycyjnych specjalizujących się w obsłudze krajowych i zagranicznych producentów mebli.</p>
+      <p>Za każdą usługą transportową kryje się praca zespołu spedytorów, którzy zdalnie nadzorują każdy załadunek. Od 25 lat udoskonalamy obsługę spedycyjną, proponując kontrahentom bardzo korzystne warunki współpracy — możliwe dzięki wykorzystaniu najnowszych rozwiązań informatycznych i telematycznych.</p>
+    </div>
+    <div class="split-media reveal d1"><img src="https://ts-grabowski.com/wp-content/uploads/2022/10/tabor-002.jpg" alt="Zespół spedycji Grabowski" loading="lazy" decoding="async">
+      <div class="tagchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>25 lat</b> doświadczenia</span></div></div>
+  </div>
+</div></section>
+
+<section class="section soft"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Dlaczego GFL</span><h2>Spedycja oparta na danych i doświadczeniu</h2></div>
+  <div class="grid principles reveal d1" style="margin-top:44px;grid-template-columns:repeat(3,1fr)">
+    <div class="principle"><div class="pk">Zdalny nadzór</div><h3>Reakcja przed problemem</h3><p>Spedytorzy monitorują każdy załadunek w czasie rzeczywistym.</p></div>
+    <div class="principle"><div class="pk">Telematyka</div><h3>Korzystne warunki</h3><p>Najnowsze rozwiązania informatyczne przekładają się na warunki współpracy.</p></div>
+    <div class="principle" style="border-right:0"><div class="pk">Specjalizacja</div><h3>Ćwierć wieku w meblach</h3><p>Znamy ładunki tej branży, jej ryzyka i wymagania.</p></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="container"><div class="cta-band reveal">
+  <h2>Zorganizujemy spedycję Twoich mebli</h2>
+  <p>Skontaktuj się z zespołem — dobierzemy rozwiązanie do kierunku, wolumenu i terminów Twojej produkcji.</p>
+  <div class="hero-cta"><a class="btn btn-accent" href="kontakt.html#zapytanie">Zapytanie ofertowe <svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg></a></div>
+</div></div></section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="f-top">
+      <div>
+        <a class="brand" href="index.html" aria-label="Grabowski Furniture Logistic"><img src="https://ts-grabowski.com/wp-content/themes/kadence-child/assets/images/logo/logo-home.png" alt="Grabowski Furniture Logistic" width="145" height="32"></a>
+        <p class="f-about">Lider logistyki meblowej. Transport całopojazdowy i drobnicowy, magazynowanie oraz cross-docking dla producentów mebli w Polsce i Europie.</p>
+        <div class="f-social">
+          <a href="https://www.facebook.com/GrabowskiFurnitureLogistic" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="https://www.instagram.com/GrabowskiFurnitureLogistic" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Firma</h4>
+        <a href="o-nas.html">O nas</a><a href="historia.html">Historia</a>
+        <a href="kariera.html">Kariera</a><a href="partnerzy.html">Partnerzy</a>
+        <a href="na-sprzedaz.html">Na sprzedaż</a>
+      </div>
+      <div class="f-col">
+        <h4>Oferta</h4>
+        <a href="transport.html">Transport</a><a href="logistyka.html">Logistyka</a>
+        <a href="spedycja.html">Spedycja</a><a href="kontakt.html#zapytanie">Zapytanie ofertowe</a>
+      </div>
+      <div class="f-col">
+        <h4>Kontakt</h4>
+        <p>ul. Słubicka 52, 69-100 Kunowice<br><a href="tel:+48957881540">+48 95 788 15 40</a></p>
+        <p>ul. Kościuszki 5, 66-008 Świdnica k/Zielonej Góry<br><a href="tel:+48683259450">+48 68 325 94 50</a></p>
+        <p><a href="mailto:kontakt@ts-grabowski.com">kontakt@ts-grabowski.com</a></p>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>Grabowski Furniture Logistic sp. z o.o. · NIP 5981638206 · © 2026</span>
+      <span><a href="polityka-prywatnosci.html">Polityka prywatności</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var h=document.querySelector('.site-header');
+  var onScroll=function(){ if(h) h.classList.toggle('scrolled', window.scrollY>32); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  var mm=document.querySelector('.mobile-menu'),
+      burger=document.querySelector('.burger'),
+      mmClose=document.querySelector('.mm-close');
+  var openMM=function(){mm.classList.add('open');document.body.style.overflow='hidden';};
+  var closeMM=function(){mm.classList.remove('open');document.body.style.overflow='';};
+  if(burger&&mm)burger.addEventListener('click',openMM);
+  if(mmClose)mmClose.addEventListener('click',closeMM);
+  if(mm)mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMM);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mm&&mm.classList.contains('open'))closeMM();});
+
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
+      {threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+
+  function animate(el){
+    var target=parseFloat(el.getAttribute('data-count')),start=null,dur=1400;
+    function step(ts){ if(!start)start=ts;
+      var p=Math.min((ts-start)/dur,1),v=target*(1-Math.pow(1-p,3));
+      el.textContent=Math.round(v).toLocaleString('pl-PL');
+      if(p<1)requestAnimationFrame(step); else el.textContent=target.toLocaleString('pl-PL'); }
+    requestAnimationFrame(step);
+  }
+  var counters=document.querySelectorAll('[data-count]');
+  if(reduce){counters.forEach(function(el){el.textContent=parseFloat(el.getAttribute('data-count')).toLocaleString('pl-PL');});}
+  else{var co=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){animate(e.target);co.unobserve(e.target);}});},{threshold:.6});
+    counters.forEach(function(el){co.observe(el);});}
+})();
+</script>
+</body>
+</html>
