@@ -76,6 +76,44 @@
       });
     });
 
+    // ROI calculators (illustrative estimates)
+    function fmt(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+    document.querySelectorAll(".calc").forEach(function(c){
+      var vol = c.querySelector('input[data-k="vol"]');
+      var min = c.querySelector('input[data-k="min"]');
+      var rate = c.querySelector('input[data-k="rate"]');
+      var oh = c.querySelector('[data-o="hours"] b');
+      var oy = c.querySelector('[data-o="annual"] b');
+      if(!vol || !min || !rate || !oh || !oy) return;
+      function recalc(){
+        var v = Math.max(0, parseFloat(vol.value) || 0);
+        var m = Math.max(0, parseFloat(min.value) || 0);
+        var r = Math.max(0, parseFloat(rate.value) || 0);
+        var hours = v * m / 60;
+        var annual = hours * r * 12;
+        oh.textContent = fmt(hours) + " h";
+        oy.textContent = "≈ " + fmt(annual) + " €";
+      }
+      [vol, min, rate].forEach(function(i){ i.addEventListener("input", recalc); });
+      recalc();
+    });
+
+    // case-study index filter
+    var fbar = document.querySelector(".fbar");
+    if(fbar){
+      var cards = document.querySelectorAll(".idxcard");
+      fbar.addEventListener("click", function(e){
+        var btn = e.target.closest("button[data-f]");
+        if(!btn) return;
+        fbar.querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", b === btn); });
+        var f = btn.getAttribute("data-f");
+        cards.forEach(function(card){
+          var tags = " " + (card.getAttribute("data-f") || "") + " ";
+          card.classList.toggle("hide", f !== "all" && tags.indexOf(" " + f + " ") === -1);
+        });
+      });
+    }
+
     // reveal on scroll
     var els = document.querySelectorAll(".reveal");
     if("IntersectionObserver" in window){

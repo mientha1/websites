@@ -185,11 +185,19 @@ p{margin:0 0 1rem;text-wrap:pretty}
 .megamenu__inner{display:grid;grid-template-columns:.85fr 2fr;gap:44px;padding-block:34px}
 .mega__feature{border-right:1px solid var(--line);padding-right:40px}
 .mega__feature .tag{margin-bottom:12px}
+.mega__feature--agent{position:relative;background:linear-gradient(160deg,#fff6f2,#ffffff 70%);border-radius:var(--radius);border:1px solid #ffd9cc;border-right:1px solid #ffd9cc;padding:24px 24px 26px;margin-right:24px}
+.mega__feature--agent .arrowlink{display:inline-flex}
 .mega__feature h4{font-size:1.3rem;margin:0 0 10px}
 .mega__feature p{color:var(--muted);font-size:.94rem;margin-bottom:18px;line-height:1.5}
 .mega__grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
 .mega__item{display:flex;gap:14px;align-items:flex-start;padding:13px 15px;border-radius:12px;transition:.16s}
 .mega__item:hover{background:var(--paper)}
+.mega__item--hot{background:linear-gradient(180deg,#fff6f2,#fff);border:1px solid #ffd9cc}
+.mega__item--hot:hover{background:#fff1ea;border-color:#fa4616}
+.mega__item--hot .mega__ico{background:#fa4616;color:#fff}
+.mega__item--hot:hover .mega__ico{background:#fa4616;color:#fff}
+.mega__new{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;background:#ffd9cc;border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+.mbadge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;background:#fff1ea;border:1px solid #ffd9cc;border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:1px}
 .mega__ico{flex:none;width:40px;height:40px;border-radius:10px;background:var(--mint-050);color:var(--mint-strong);display:grid;place-items:center;transition:.16s}
 .mega__ico svg{width:20px;height:20px}
 .mega__item:hover .mega__ico{background:var(--mint);color:#053d2c}
@@ -388,6 +396,151 @@ a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
 /* mobile menu hidden by default (shown only in mobile breakpoint) */
 .mobile-menu{display:none}
 
+/* ============================================================
+   DEEP CASE STUDY SYSTEM (executive report pages)
+   ============================================================ */
+
+/* hero hook number */
+.hook{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.hook b{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);letter-spacing:-.03em;color:var(--ink);line-height:1}
+.hook span{color:var(--muted);font-size:.95rem;max-width:44ch}
+
+/* executive summary */
+.xsum{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.xsum>div{background:var(--white);padding:22px 22px 24px}
+.xsum b{display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-strong);margin-bottom:9px}
+.xsum p{margin:0;font-size:.93rem;color:var(--ink-2);line-height:1.55}
+@media (max-width:960px){.xsum{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.xsum{grid-template-columns:1fr}}
+
+/* scenario badge */
+.scenario{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px dashed var(--line-2);border-radius:999px;font-size:.8rem;font-weight:600;color:var(--muted);background:var(--white)}
+.scenario::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted-2)}
+
+/* process flows */
+.flow{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.flow--after{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff 60%)}
+.flow ol{list-style:none;margin:0;padding:0}
+.fnode{position:relative;display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:var(--radius-xs);font-size:.9rem;line-height:1.45;color:var(--ink-2)}
+.fnode+.fnode{margin-top:22px}
+.fnode+.fnode::before{content:"";position:absolute;left:21px;top:-19px;width:2px;height:16px;background:var(--line-2)}
+.fnode i{flex:none;width:20px;height:20px;border-radius:6px;margin-top:1px}
+.fnode em{font-style:normal;display:block}
+.fnode small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px}
+.fnode--h{background:#f4f1fb}.fnode--h i{background:var(--navy)}.fnode--h small{color:var(--navy)}
+.fnode--s{background:var(--paper)}.fnode--s i{background:var(--muted-2)}.fnode--s small{color:var(--muted)}
+.fnode--w{background:#fff7ea}.fnode--w i{background:#d97706}.fnode--w small{color:#b45309}
+.fnode--r{background:#fdf1f0}.fnode--r i{background:#c2410c}.fnode--r small{color:#c2410c}
+.fnode--a{background:#eafcf5}.fnode--a i{background:var(--mint)}.fnode--a small{color:var(--mint-strong)}
+.flow__legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.flow__legend span{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:600;color:var(--muted)}
+.flow__legend i{width:11px;height:11px;border-radius:4px}
+.flow__legend i.fnode--h{background:var(--navy)}
+.flow__legend i.fnode--s{background:var(--muted-2)}
+.flow__legend i.fnode--w{background:#d97706}
+.flow__legend i.fnode--r{background:#c2410c}
+.flow__legend i.fnode--a{background:var(--mint)}
+
+/* before/after compare */
+.fx{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fx>div{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--white)}
+.fx .fx--after{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff)}
+.fx h3{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.fx .fx--after h3{color:var(--mint-strong)}
+.fxrow{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.fxrow:last-child{border-bottom:0}
+.fxrow>span{display:block;font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;hyphens:auto;overflow-wrap:anywhere}
+.fxrow b{font-family:var(--font-display);letter-spacing:-.01em;font-size:1.02rem;font-weight:600;color:var(--ink)}
+.fx .fx--after .fxrow b{color:var(--mint-strong)}
+@media (max-width:760px){.fx{grid-template-columns:1fr}}
+
+/* value model + cost of inaction */
+.model{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.model .mrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:.93rem;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.model .mrow b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.model .mrow--sum{border-bottom:0;border-top:2px solid var(--ink);margin-top:6px;padding-top:12px;font-weight:600;color:var(--ink)}
+.model .mrow--sum b{font-family:var(--font-display);font-size:1.15rem}
+.tax{display:grid;gap:12px}
+.taxrow b{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.taxrow .bar{height:10px;border-radius:6px;background:var(--paper-2);overflow:hidden}
+.taxrow .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#f59e0b,#c2410c)}
+
+/* duty split */
+.duty{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.duty>div{border-radius:var(--radius);padding:26px;border:1px solid var(--line);background:var(--white)}
+.duty .duty--a{background:var(--ink);border:0;color:#cdd5da}
+.duty--a .checklist li{color:#cdd5da}
+.duty--a .checklist li::before{background:rgba(24,207,152,.16)}
+.duty--a .checklist li::after{border-color:var(--mint)}
+.duty h3{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;color:var(--mint-strong)}
+.duty .duty--a h3{color:var(--mint)}
+.duty .duty--h h3{color:var(--navy)}
+@media (max-width:760px){.duty{grid-template-columns:1fr}}
+
+/* system map */
+.sysmap{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.sysmap>div{flex:1;min-width:180px;border:1px solid var(--line);background:var(--white);border-radius:var(--radius);padding:20px}
+.sysmap .sys--hub{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff)}
+.sysmap h4{font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.sysmap .sys--hub h4{color:var(--mint-strong)}
+.sysmap ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.88rem;color:var(--ink-2)}
+.sysmap .arr{flex:none;align-self:center;width:44px;min-width:0;border:0;background:none;display:grid;place-items:center;color:var(--muted-2);padding:0}
+.sysmap .arr svg{width:20px;height:20px}
+@media (max-width:860px){.sysmap{flex-direction:column}.sysmap .arr{transform:rotate(90deg);height:34px;width:100%}}
+
+/* ROI calculator */
+.calc{background:var(--ink);border-radius:var(--radius-lg);padding:clamp(26px,3.5vw,40px);color:#cdd5da}
+.calc h3{color:#fff;margin-bottom:6px}
+.calc .calc__note{font-size:.8rem;color:#8a949c;margin:14px 0 0}
+.calc__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:22px}
+.calc__in label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:#9fa9b0;margin:0 0 6px}
+.calc__in input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-xs);color:#fff;font-family:var(--font-text);font-size:1.05rem;font-weight:600;padding:11px 13px;min-height:46px}
+.calc__in input:focus-visible{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(24,207,152,.18)}
+.calc__in+.calc__in{margin-top:14px}
+.calc__out{display:grid;gap:14px;align-content:start}
+.calc__res{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:16px 18px}
+.calc__res b{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.02em;color:var(--mint);line-height:1.1;font-variant-numeric:tabular-nums}
+.calc__res span{font-size:.82rem;color:#9fa9b0}
+@media (max-width:760px){.calc__grid{grid-template-columns:1fr}}
+@media (max-width:560px){.model .mrow{flex-wrap:wrap}.model .mrow b{white-space:normal;text-align:right;margin-left:auto}.model .mrow>span{min-width:0;overflow-wrap:anywhere}.taxrow b span{overflow-wrap:anywhere;min-width:0}}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.roles>div{background:var(--white);padding:20px 22px}
+.roles b{display:block;font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:6px}
+.roles p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.5}
+
+/* objections Q&A */
+.qa{display:grid;gap:12px}
+.qa>div{border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;background:var(--white)}
+.qa b{display:block;font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.qa p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.6}
+
+/* when-not list */
+.notq{border-left:3px solid var(--line-2);padding:4px 0 4px 22px}
+.notq li{color:var(--muted)}
+
+/* executive question band */
+.bigq{border-block:1px solid var(--line);padding:clamp(36px,5vw,56px) 0;text-align:center}
+.bigq p{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.4;letter-spacing:-.02em;color:var(--ink);max-width:34ch;margin:0 auto}
+
+/* evidence labels */
+.evid{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-bottom:10px}
+.evid--model{background:var(--paper-2);color:var(--muted)}
+.evid--ext{background:#eef4ff;color:#1d4ed8}
+
+/* index cards + filter */
+.fbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.fbar button{font-family:var(--font-text);font-size:.85rem;font-weight:600;color:var(--muted);background:var(--white);border:1px solid var(--line-2);border-radius:999px;padding:8px 15px;min-height:38px;cursor:pointer;transition:all .16s var(--ease)}
+.fbar button:hover{color:var(--ink);border-color:var(--ink)}
+.fbar button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.idxcard .idx__kick{display:block;font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.015em;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.idxcard .idx__sub{display:block;font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--mint-strong);margin-bottom:10px}
+.idxcard p{font-size:.9rem}
+.idx__meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.idx__meta span{font-size:.7rem;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.idxcard.hide{display:none}
+
 /* ---------- Reveal on scroll ---------- */
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
 .reveal.in{opacity:1;transform:none}
@@ -483,13 +636,14 @@ a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
 <path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 219.40625 309.988281 C 220.316406 309.40625 221.535156 309.5 222.277344 310.285156 C 223.039062 311.089844 223.28125 312.226562 223.277344 313.597656 L 223.183594 352.375 C 223.277344 358.761719 218.785156 355.867188 217.699219 355.152344 C 208.03125 348.773438 198.441406 342.261719 188.851562 335.757812 C 186.4375 334.121094 186.296875 331.949219 188.621094 330.371094 C 197.644531 324.25 214.828125 312.925781 219.40625 309.988281 "/>
 <path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 153.597656 278.660156 L 125.4375 305.183594 L 149.957031 322.160156 C 154.277344 325.160156 156.589844 325.1875 161.296875 322.160156 L 185.582031 305.476562 L 157.949219 278.648438 C 156.167969 279.738281 155.222656 279.738281 153.597656 278.660156 "/></svg></a>
       <div class="nav__links"><a href="index.html" class="nav__link"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a><div class="nav__item"><a href="uslugi.html" class="nav__link nav__link--top active" aria-haspopup="true"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a><div class="megamenu" role="menu"><div class="megamenu__inner container">
-      <div class="mega__feature">
-        <span class="tag"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span></span>
-        <h4><span class="pl">Kompleksowe wsparcie</span><span class="en">End-to-end support</span><span class="de">Umfassende Unterstützung</span></h4>
-        <p><span class="pl">Od automatyzacji i outsourcingu po zespoły ekspertów IT — z gwarancją najlepszej oferty.</span><span class="en">From automation and outsourcing to IT expert teams — with a best-offer guarantee.</span><span class="de">Von Automatisierung und Outsourcing bis zu IT-Expertenteams — mit Best-Offer-Garantie.</span></p>
-        <a href="uslugi.html" class="arrowlink"><span class="pl">Wszystkie usługi</span><span class="en">All services</span><span class="de">Alle Leistungen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="mega__feature mega__feature--agent">
+        <span class="tag" style="color:#c2410c;background:#fff1ea"><span class="pl">Nowość · Agentic AI</span><span class="en">New · Agentic AI</span><span class="de">Neu · Agentic AI</span></span>
+        <h4><span class="pl">Agenci AI, z którymi rozmawiasz na Teams</span><span class="en">AI agents you talk to on Teams</span><span class="de">KI-Agenten, mit denen Sie auf Teams sprechen</span></h4>
+        <p><span class="pl">Pytasz — agent sięga do danych i uruchamia roboty UiPath. 15 case studies z modelami wartości i kalkulatorami ROI.</span><span class="en">You ask — the agent reaches the data and triggers UiPath robots. 15 case studies with value models and ROI calculators.</span><span class="de">Sie fragen — der Agent greift auf Daten zu und startet UiPath-Roboter. 15 Case Studies mit Wertmodellen und ROI-Kalkulatoren.</span></p>
+        <a href="agenty.html" class="btn btn--mint"><span class="pl">Zobacz 15 case studies</span><span class="en">See the 15 case studies</span><span class="de">15 Case Studies ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="uslugi.html" class="arrowlink" style="margin-top:14px"><span class="pl">Wszystkie usługi</span><span class="en">All services</span><span class="de">Alle Leistungen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div class="mega__grid"><a class="mega__item" href="uslugi.html#rpa"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M9 12h.01M15 12h.01M12 3v2"/><path d="M8 16h8"/></svg></span><span class="mega__tx"><b><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></b><span class="pl mega__d">Roboty i agenci AI dla powtarzalnych procesów.</span><span class="en mega__d">Robots and AI agents for repetitive processes.</span><span class="de mega__d">Roboter und KI-Agenten für wiederkehrende Prozesse.</span></span></a><a class="mega__item" href="uslugi.html#bpo"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1"/><path d="M21 4v5h-5"/><path d="M12 8v4l2.5 1.5"/></svg></span><span class="mega__tx"><b><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></b><span class="pl mega__d">Przejmujemy i optymalizujemy procesy.</span><span class="en mega__d">We take over and optimise processes.</span><span class="de mega__d">Wir übernehmen und optimieren Prozesse.</span></span></a><a class="mega__item" href="wsparcie-247.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 9l2 2 3-4 2 3 3-2"/></svg></span><span class="mega__tx"><b><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></b><span class="pl mega__d">Całodobowe wsparcie aplikacji krytycznych.</span><span class="en mega__d">24/7 support for critical applications.</span><span class="de mega__d">Rund-um-die-Uhr-Support für kritische Anwendungen.</span></span></a><a class="mega__item" href="uslugi.html#talent"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M17 8l2 2 3-3"/></svg></span><span class="mega__tx"><b><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></b><span class="pl mega__d">Zespoły i specjaliści IT oraz finansowi.</span><span class="en mega__d">IT and finance teams and specialists.</span><span class="de mega__d">IT- und Finanzteams sowie -spezialisten.</span></span></a><a class="mega__item" href="uslugi.html#custom"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></b><span class="pl mega__d">Dedykowane produkty i integracje.</span><span class="en mega__d">Dedicated products and integrations.</span><span class="de mega__d">Dedizierte Produkte und Integrationen.</span></span></a><a class="mega__item" href="agenty.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span></b><span class="pl mega__d">Asystent zarządu i agenci na Teams — case studies.</span><span class="en mega__d">Executive assistant and agents on Teams — case studies.</span><span class="de mega__d">Vorstandsassistent und Agenten auf Teams — Case Studies.</span></span></a></div>
+      <div class="mega__grid"><a class="mega__item mega__item--hot" href="agenty.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span><span class="mega__new"><span class="pl">Nowość</span><span class="en">New</span><span class="de">Neu</span></span></b><span class="pl mega__d">15 case studies agentów AI — od O2C po testy SAP.</span><span class="en mega__d">15 AI-agent case studies — from O2C to SAP testing.</span><span class="de mega__d">15 Case Studies zu KI-Agenten — von O2C bis SAP-Tests.</span></span></a><a class="mega__item" href="uslugi.html#rpa"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M9 12h.01M15 12h.01M12 3v2"/><path d="M8 16h8"/></svg></span><span class="mega__tx"><b><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></b><span class="pl mega__d">Roboty i agenci AI dla powtarzalnych procesów.</span><span class="en mega__d">Robots and AI agents for repetitive processes.</span><span class="de mega__d">Roboter und KI-Agenten für wiederkehrende Prozesse.</span></span></a><a class="mega__item" href="uslugi.html#bpo"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1"/><path d="M21 4v5h-5"/><path d="M12 8v4l2.5 1.5"/></svg></span><span class="mega__tx"><b><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></b><span class="pl mega__d">Przejmujemy i optymalizujemy procesy.</span><span class="en mega__d">We take over and optimise processes.</span><span class="de mega__d">Wir übernehmen und optimieren Prozesse.</span></span></a><a class="mega__item" href="wsparcie-247.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 9l2 2 3-4 2 3 3-2"/></svg></span><span class="mega__tx"><b><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></b><span class="pl mega__d">Całodobowe wsparcie aplikacji krytycznych.</span><span class="en mega__d">24/7 support for critical applications.</span><span class="de mega__d">Rund-um-die-Uhr-Support für kritische Anwendungen.</span></span></a><a class="mega__item" href="uslugi.html#talent"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M17 8l2 2 3-3"/></svg></span><span class="mega__tx"><b><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></b><span class="pl mega__d">Zespoły i specjaliści IT oraz finansowi.</span><span class="en mega__d">IT and finance teams and specialists.</span><span class="de mega__d">IT- und Finanzteams sowie -spezialisten.</span></span></a><a class="mega__item" href="uslugi.html#custom"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></b><span class="pl mega__d">Dedykowane produkty i integracje.</span><span class="en mega__d">Dedicated products and integrations.</span><span class="de mega__d">Dedizierte Produkte und Integrationen.</span></span></a></div>
     </div></div></div><div class="nav__item"><a href="branze.html" class="nav__link nav__link--top" aria-haspopup="true"><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a><div class="megamenu" role="menu"><div class="megamenu__inner container">
       <div class="mega__feature">
         <span class="tag"><span class="pl">Produkt flagowy</span><span class="en">Flagship</span><span class="de">Flaggschiff</span></span>
@@ -511,7 +665,7 @@ a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
         </button>
       </div>
     </nav>
-    <div class="mobile-menu"><a class="m-link" href="index.html"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="uslugi.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span></a><a href="uslugi.html#rpa"><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></a><a href="uslugi.html#bpo"><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></a><a href="wsparcie-247.html"><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></a><a href="uslugi.html#talent"><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></a><a href="uslugi.html#custom"><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></a><a href="agenty.html"><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span></a></div></div><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="branze.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span></a><a href="transport-spedycja.html"><span class="pl">Transport i spedycja</span><span class="en">Transport & logistics</span><span class="de">Transport & Spedition</span></a><a href="fmcg.html"><span class="pl">FMCG i retail</span><span class="en">FMCG & retail</span><span class="de">FMCG & Handel</span></a><a href="branze.html#produkcja"><span class="pl">Produkcja</span><span class="en">Manufacturing</span><span class="de">Produktion</span></a><a href="branze.html#finanse"><span class="pl">Finanse i BSS</span><span class="en">Finance & shared services</span><span class="de">Finanzen & Shared Services</span></a><a href="branze.html#telekomunikacja"><span class="pl">Telekomunikacja</span><span class="en">Telecom</span><span class="de">Telekommunikation</span></a><a href="branze.html#automotive"><span class="pl">Automotive</span><span class="en">Automotive</span><span class="de">Automotive</span></a></div></div><a class="m-link" href="case-studies.html"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></a><a class="m-link" href="o-nas.html"><span class="pl">O nas</span><span class="en">About</span><span class="de">Über uns</span></a><a class="m-link" href="kontakt.html"><span class="pl">Kontakt</span><span class="en">Contact</span><span class="de">Kontakt</span></a><a class="m-cta btn btn--mint" href="kontakt.html"><span class="pl">Umów rozmowę</span><span class="en">Book a call</span><span class="de">Gespräch vereinbaren</span></a></div>
+    <div class="mobile-menu"><a class="m-link" href="index.html"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="uslugi.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span></a><a href="agenty.html"><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span> <span class="mbadge"><span class="pl">Nowość</span><span class="en">New</span><span class="de">Neu</span></span></a><a href="uslugi.html#rpa"><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></a><a href="uslugi.html#bpo"><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></a><a href="wsparcie-247.html"><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></a><a href="uslugi.html#talent"><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></a><a href="uslugi.html#custom"><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></a></div></div><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="branze.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span></a><a href="transport-spedycja.html"><span class="pl">Transport i spedycja</span><span class="en">Transport & logistics</span><span class="de">Transport & Spedition</span></a><a href="fmcg.html"><span class="pl">FMCG i retail</span><span class="en">FMCG & retail</span><span class="de">FMCG & Handel</span></a><a href="branze.html#produkcja"><span class="pl">Produkcja</span><span class="en">Manufacturing</span><span class="de">Produktion</span></a><a href="branze.html#finanse"><span class="pl">Finanse i BSS</span><span class="en">Finance & shared services</span><span class="de">Finanzen & Shared Services</span></a><a href="branze.html#telekomunikacja"><span class="pl">Telekomunikacja</span><span class="en">Telecom</span><span class="de">Telekommunikation</span></a><a href="branze.html#automotive"><span class="pl">Automotive</span><span class="en">Automotive</span><span class="de">Automotive</span></a></div></div><a class="m-link" href="case-studies.html"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></a><a class="m-link" href="o-nas.html"><span class="pl">O nas</span><span class="en">About</span><span class="de">Über uns</span></a><a class="m-link" href="kontakt.html"><span class="pl">Kontakt</span><span class="en">Contact</span><span class="de">Kontakt</span></a><a class="m-cta btn btn--mint" href="kontakt.html"><span class="pl">Umów rozmowę</span><span class="en">Book a call</span><span class="de">Gespräch vereinbaren</span></a></div>
   </div>
 </header>
 <main id="main">
@@ -550,11 +704,114 @@ a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
   </div>
 </section>
 
-<section class="section bg-paper">
+<section class="section bg-paper" id="biblioteka">
+  <div class="container">
+    <div style="max-width:62ch;margin-bottom:30px" class="reveal">
+      <p class="eyebrow"><span class="pl">Biblioteka case studies</span><span class="en">The case study library</span><span class="de">Die Case-Study-Bibliothek</span></p>
+      <h2><span class="pl">15 procesów, które przestały czekać na ludzi</span><span class="en">15 processes that stopped waiting for people</span><span class="de">15 Prozesse, die nicht mehr auf Menschen warten</span></h2>
+      <p class="lead"><span class="pl">Każde studium to pełny obraz: sytuacja przed, ukryte koszty, model wartości z kalkulatorem i plan wdrożenia. Scenariusze są ilustracyjne — policzone tak, żeby dało się je sprawdzić na Waszych danych.</span><span class="en">Each study is the full picture: the before, the hidden costs, a value model with a calculator, and the rollout plan. The scenarios are illustrative — built so you can re-run them on your own numbers.</span><span class="de">Jede Studie zeigt das ganze Bild: das Vorher, die versteckten Kosten, ein Wertmodell mit Kalkulator und den Umsetzungsplan. Die Szenarien sind illustrativ — so gerechnet, dass Sie sie mit Ihren Zahlen nachprüfen können.</span></p>
+    </div>
+    <div class="fbar reveal" role="group" aria-label="Filtr case studies"><button type="button" data-f="all" class="on"><span class="pl">Wszystkie</span><span class="en">All</span><span class="de">Alle</span> · 15</button><button type="button" data-f="fin"><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span> · 7</button><button type="button" data-f="ops"><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span> · 6</button><button type="button" data-f="sales"><span class="pl">Sprzedaż i klienci</span><span class="en">Sales & customers</span><span class="de">Vertrieb & Kunden</span> · 3</button><button type="button" data-f="ppl"><span class="pl">Pracownicy (self-service)</span><span class="en">Employee self-service</span><span class="de">Mitarbeiter-Self-Service</span> · 2</button><button type="button" data-f="it"><span class="pl">IT i jakość</span><span class="en">IT & quality</span><span class="de">IT & Qualität</span> · 4</button></div>
+    <div class="grid g-3"><a class="card card--link idxcard reveal" href="case-wieza-o2c.html" data-f="fin ops">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <span class="idx__kick"><span class="pl">Gotówka nie czeka na poniedziałek</span><span class="en">Cash does not wait for Monday</span><span class="de">Cash wartet nicht auf Montag</span></span>
+      <span class="idx__sub"><span class="pl">Wieża kontrolna Order-to-Cash</span><span class="en">The Order-to-Cash control tower</span><span class="de">Der Order-to-Cash-Kontrollturm</span></span>
+      <p><span class="pl">Szybsza realizacja przychodu, niższe DSO, pełna audytowalność każdej decyzji.</span><span class="en">Faster revenue realisation, lower DSO, full auditability of every decision.</span><span class="de">Schnellere Umsatzrealisierung, niedrigere DSO, volle Prüfbarkeit jeder Entscheidung.</span></p>
+      <div class="idx__meta"><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-spor-fakturowy.html" data-f="fin">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></div>
+      <span class="idx__kick"><span class="pl">Spór zamknięty, zanim ktokolwiek go eskaluje</span><span class="en">The dispute is closed before anyone escalates it</span><span class="de">Der Streitfall ist gelöst, bevor ihn jemand eskaliert</span></span>
+      <span class="idx__sub"><span class="pl">Agent sporów fakturowych</span><span class="en">The invoice-dispute agent</span><span class="de">Der Agent für Rechnungsstreitfälle</span></span>
+      <p><span class="pl">Rozstrzygnięcia w godziny, mniej korekt „dla świętego spokoju”, lepsze relacje z dostawcami.</span><span class="en">Resolutions in hours, fewer “peace-of-mind” write-offs, better supplier relationships.</span><span class="de">Lösungen in Stunden, weniger Kulanz-Abschreibungen, bessere Lieferantenbeziehungen.</span></p>
+      <div class="idx__meta"><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-onboarding-kyc.html" data-f="sales fin">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M17 8l2 2 3-3"/></svg></div>
+      <span class="idx__kick"><span class="pl">Z 21 dni do 24 godzin</span><span class="en">From 21 days to 24 hours</span><span class="de">Von 21 Tagen auf 24 Stunden</span></span>
+      <span class="idx__sub"><span class="pl">Onboarding klienta B2B / KYC</span><span class="en">B2B client onboarding / KYC</span><span class="de">B2B-Kunden-Onboarding / KYC</span></span>
+      <p><span class="pl">Time-to-revenue z tygodni do dni; zero zgubionych wniosków; pełna zgodność.</span><span class="en">Time-to-revenue from weeks to days; zero lost applications; full compliance.</span><span class="de">Time-to-Revenue von Wochen auf Tage; keine verlorenen Anträge; volle Compliance.</span></p>
+      <div class="idx__meta"><span><span class="pl">Sprzedaż i klienci</span><span class="en">Sales & customers</span><span class="de">Vertrieb & Kunden</span></span><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-incydent-fabryka.html" data-f="ops">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l6 4V9l6 4V6l6 0v14z"/><path d="M3 20h18"/></svg></div>
+      <span class="idx__kick"><span class="pl">Alarm o 2:14. Rozwiązany o 2:31.</span><span class="en">Alarm at 2:14. Resolved by 2:31.</span><span class="de">Alarm um 2:14. Gelöst um 2:31.</span></span>
+      <span class="idx__sub"><span class="pl">Incydent produkcyjny end-to-end</span><span class="en">The production incident, end-to-end</span><span class="de">Der Produktionsvorfall, end-to-end</span></span>
+      <p><span class="pl">Krótszy MTTR, mniej przestojów, każda awaria z pełną historią.</span><span class="en">Shorter MTTR, less downtime, every failure with a complete history.</span><span class="de">Kürzere MTTR, weniger Stillstände, jeder Ausfall mit vollständiger Historie.</span></p>
+      <div class="idx__meta"><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-asystent-zarzadu-2.html" data-f="fin">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+      <span class="idx__kick"><span class="pl">Jedno pytanie. Każde narzędzie, w którym pracujesz.</span><span class="en">One question. Every tool you work in.</span><span class="de">Eine Frage. Jedes Werkzeug, in dem Sie arbeiten.</span></span>
+      <span class="idx__sub"><span class="pl">Asystent zarządu 2.0 — Teams + Microsoft 365 Copilot</span><span class="en">Executive assistant 2.0 — Teams + Microsoft 365 Copilot</span><span class="de">Vorstandsassistent 2.0 — Teams + Microsoft 365 Copilot</span></span>
+      <p><span class="pl">Sekundy zamiast dni, jedna wersja prawdy, FP&A wraca do analiz.</span><span class="en">Seconds instead of days, one version of the truth, FP&A back to analysis.</span><span class="de">Sekunden statt Tagen, eine Version der Wahrheit, FP&A zurück bei der Analyse.</span></p>
+      <div class="idx__meta"><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-agent-hr.html" data-f="ppl">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M17 8l2 2 3-3"/></svg></div>
+      <span class="idx__kick"><span class="pl">HR przestaje być call center</span><span class="en">HR stops being a call centre</span><span class="de">HR ist kein Callcenter mehr</span></span>
+      <span class="idx__sub"><span class="pl">Agent HR: samoobsługa pracownicza na Teams</span><span class="en">The HR agent: employee self-service on Teams</span><span class="de">Der HR-Agent: Mitarbeiter-Self-Service auf Teams</span></span>
+      <p><span class="pl">Odpowiedź w sekundę zamiast dni; HR odzyskuje czas na rekrutację i rozwój.</span><span class="en">A one-second answer instead of days; HR wins back time for recruiting and development.</span><span class="de">Antwort in einer Sekunde statt in Tagen; HR gewinnt Zeit für Recruiting und Entwicklung.</span></p>
+      <div class="idx__meta"><span><span class="pl">Pracownicy (self-service)</span><span class="en">Employee self-service</span><span class="de">Mitarbeiter-Self-Service</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-it-helpdesk.html" data-f="ppl it">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6M15 3v6M6 9h12v3a6 6 0 0 1-12 0z"/><path d="M12 18v3"/></svg></div>
+      <span class="idx__kick"><span class="pl">Połowa ticketów nie potrzebuje inżyniera</span><span class="en">Half your tickets do not need an engineer</span><span class="de">Die Hälfte der Tickets braucht keinen Ingenieur</span></span>
+      <span class="idx__sub"><span class="pl">Agent helpdesku IT — pierwsza linia 24/7</span><span class="en">The IT helpdesk agent — level one, 24/7</span><span class="de">Der IT-Helpdesk-Agent — First Level rund um die Uhr</span></span>
+      <p><span class="pl">Rozwiązanie w minuty zamiast godzin; inżynierowie wracają do projektów.</span><span class="en">Resolution in minutes instead of hours; engineers return to project work.</span><span class="de">Lösung in Minuten statt Stunden; Ingenieure kehren zur Projektarbeit zurück.</span></p>
+      <div class="idx__meta"><span><span class="pl">Pracownicy (self-service)</span><span class="en">Employee self-service</span><span class="de">Mitarbeiter-Self-Service</span></span><span><span class="pl">IT i jakość</span><span class="en">IT & quality</span><span class="de">IT & Qualität</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-asystent-handlowca.html" data-f="sales">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.4 12.3a1 1 0 0 0 1 .7h8.2a1 1 0 0 0 1-.8L21 8H6"/></svg></div>
+      <span class="idx__kick"><span class="pl">Kto pierwszy z ofertą, ten prowadzi rozmowę</span><span class="en">Whoever quotes first leads the conversation</span><span class="de">Wer zuerst anbietet, führt das Gespräch</span></span>
+      <span class="idx__sub"><span class="pl">Asystent handlowca: oferta i brief przed spotkaniem</span><span class="en">The sales assistant: the quote and the pre-meeting brief</span><span class="de">Der Vertriebsassistent: Angebot und Briefing vor dem Termin</span></span>
+      <p><span class="pl">Oferta u klienta tego samego dnia; ~1/3 czasu zespołu wraca do sprzedawania.</span><span class="en">The quote reaches the customer the same day; ~1/3 of team time returns to selling.</span><span class="de">Das Angebot erreicht den Kunden am selben Tag; ~1/3 der Teamzeit fließt zurück in den Verkauf.</span></p>
+      <div class="idx__meta"><span><span class="pl">Sprzedaż i klienci</span><span class="en">Sales & customers</span><span class="de">Vertrieb & Kunden</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-cmr-pod.html" data-f="ops fin">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg></div>
+      <span class="idx__kick"><span class="pl">Papier jedzie w kabinie. Dane są już w firmie.</span><span class="en">The paper rides in the cab. The data is already home.</span><span class="de">Das Papier fährt im Führerhaus. Die Daten sind längst im Büro.</span></span>
+      <span class="idx__sub"><span class="pl">Cyfrowe CMR i POD: od zdjęcia do rozliczenia</span><span class="en">Digital CMR and POD: from photo to settlement</span><span class="de">Digitale CMR und POD: vom Foto zur Abrechnung</span></span>
+      <p><span class="pl">Faktura w dniu rozładunku, niższe DSO, dowód doręczenia od ręki.</span><span class="en">Invoicing on the day of delivery, lower DSO, proof of delivery on demand.</span><span class="de">Rechnung am Tag der Zustellung, niedrigere DSO, Zustellnachweis sofort.</span></p>
+      <div class="idx__meta"><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-rejestr-umow.html" data-f="fin">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></div>
+      <span class="idx__kick"><span class="pl">Nikt nie czyta umów po podpisaniu</span><span class="en">Nobody reads contracts after signing</span><span class="de">Nach der Unterschrift liest niemand mehr den Vertrag</span></span>
+      <span class="idx__sub"><span class="pl">Inteligentny rejestr umów: terminy, klauzule, alerty</span><span class="en">The intelligent contract register: dates, clauses, alerts</span><span class="de">Das intelligente Vertragsregister: Fristen, Klauseln, Alerts</span></span>
+      <p><span class="pl">Koniec niechcianych przedłużeń; klauzule i zobowiązania widoczne od ręki.</span><span class="en">No more unwanted renewals; clauses and obligations visible at once.</span><span class="de">Schluss mit ungewollten Verlängerungen; Klauseln und Verpflichtungen sofort sichtbar.</span></p>
+      <div class="idx__meta"><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-reklamacje.html" data-f="sales ops">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+      <span class="idx__kick"><span class="pl">Klient nie pamięta ceny. Pamięta, jak długo czekał.</span><span class="en">Customers forget the price. They remember the wait.</span><span class="de">Kunden vergessen den Preis. Sie erinnern sich ans Warten.</span></span>
+      <span class="idx__sub"><span class="pl">Agent reklamacji: odpowiedź w godziny, nie dni</span><span class="en">The complaints agent: answers in hours, not days</span><span class="de">Der Reklamations-Agent: Antworten in Stunden statt Tagen</span></span>
+      <p><span class="pl">Pierwsza odpowiedź w godziny; zespół zajmuje się sprawami naprawdę spornymi.</span><span class="en">First response in hours; the team handles genuinely contested cases.</span><span class="de">Erste Antwort in Stunden; das Team kümmert sich um wirklich strittige Fälle.</span></p>
+      <div class="idx__meta"><span><span class="pl">Sprzedaż i klienci</span><span class="en">Sales & customers</span><span class="de">Vertrieb & Kunden</span></span><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-healing-ams.html" data-f="it">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <span class="idx__kick"><span class="pl">Automatyzacja, która nie dzwoni w nocy</span><span class="en">Automation that does not call you at night</span><span class="de">Automatisierung, die nachts nicht anruft</span></span>
+      <span class="idx__sub"><span class="pl">Healing Agent i AMS: stabilny portfel robotów</span><span class="en">Healing Agent and AMS: a stable robot portfolio</span><span class="de">Healing Agent und AMS: ein stabiles Roboter-Portfolio</span></span>
+      <p><span class="pl">Ciągłość procesów zamiast nocnych alarmów; przewidywalny koszt utrzymania.</span><span class="en">Process continuity instead of night alarms; a predictable maintenance cost.</span><span class="de">Prozesskontinuität statt nächtlicher Alarme; planbare Wartungskosten.</span></p>
+      <div class="idx__meta"><span><span class="pl">IT i jakość</span><span class="en">IT & quality</span><span class="de">IT & Qualität</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-ui-agent-legacy.html" data-f="it ops">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5M3 17l9 5 9-5"/></svg></div>
+      <span class="idx__kick"><span class="pl">„Tego systemu nie da się zautomatyzować”</span><span class="en">“That system cannot be automated”</span><span class="de">„Dieses System lässt sich nicht automatisieren“</span></span>
+      <span class="idx__sub"><span class="pl">UI Agent: automatyzacja bez API</span><span class="en">UI Agent: automation without APIs</span><span class="de">UI Agent: Automatisierung ohne API</span></span>
+      <p><span class="pl">1 200 awizacji miesięcznie bez klikania; ludzie tylko przy wyjątkach.</span><span class="en">1,200 bookings a month with no clicking; people handle exceptions only.</span><span class="de">1.200 Avisierungen pro Monat ohne Klicken; Menschen nur bei Ausnahmen.</span></p>
+      <div class="idx__meta"><span><span class="pl">IT i jakość</span><span class="en">IT & quality</span><span class="de">IT & Qualität</span></span><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-regresja-sap.html" data-f="it">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M8 16l3-4 3 2 4-6"/></svg></div>
+      <span class="idx__kick"><span class="pl">Testy, które nie zdążają przed wdrożeniem</span><span class="en">The tests that never finish before go-live</span><span class="de">Tests, die vor dem Go-live nie fertig werden</span></span>
+      <span class="idx__sub"><span class="pl">Agentowe testy regresyjne: SAP sprawdzony co noc</span><span class="en">Agentic regression testing: SAP checked every night</span><span class="de">Agentische Regressionstests: SAP jede Nacht geprüft</span></span>
+      <p><span class="pl">Pokrycie ×4 przy mniejszej pracy; wdrożenia przestają psuć produkcję.</span><span class="en">4× the coverage with less effort; releases stop breaking production.</span><span class="de">4× Abdeckung bei weniger Aufwand; Releases zerstören die Produktion nicht mehr.</span></p>
+      <div class="idx__meta"><span><span class="pl">IT i jakość</span><span class="en">IT & quality</span><span class="de">IT & Qualität</span></span></div>
+    </a><a class="card card--link idxcard reveal" href="case-rentgen-procesu.html" data-f="fin ops">
+      <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
+      <span class="idx__kick"><span class="pl">Zanim zautomatyzujecie cokolwiek — zmierzcie wszystko</span><span class="en">Before you automate anything — measure everything</span><span class="de">Bevor Sie irgendetwas automatisieren — messen Sie alles</span></span>
+      <span class="idx__sub"><span class="pl">Rentgen procesu: KYP.ai + Process Mining w 4 tygodnie</span><span class="en">The process X-ray: KYP.ai + Process Mining in 4 weeks</span><span class="de">Das Prozess-Röntgen: KYP.ai + Process Mining in 4 Wochen</span></span>
+      <p><span class="pl">Mapa 14 procesów z liczbami, top 5 wg zwrotu, pipeline na 12 miesięcy.</span><span class="en">A 14-process map with numbers, a top 5 by return, a 12-month pipeline.</span><span class="de">Eine Karte von 14 Prozessen mit Zahlen, Top 5 nach Rendite, eine 12-Monats-Pipeline.</span></p>
+      <div class="idx__meta"><span><span class="pl">Finanse</span><span class="en">Finance</span><span class="de">Finanzen</span></span><span><span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span></div>
+    </a></div>
+    <p class="muted" style="font-size:.82rem;margin-top:24px"><span class="pl">Wartości oznaczone jako modele ilustracyjne, nie obietnice. Odniesienia do klientów zanonimizowane.</span><span class="en">Figures are marked as illustrative models, not promises. Client references are anonymised.</span><span class="de">Werte sind als illustrative Modelle gekennzeichnet, keine Versprechen. Kundenbezüge sind anonymisiert.</span></p>
+  </div>
+</section>
+
+<section class="section">
   <div class="container">
     <div style="max-width:60ch;margin-bottom:34px" class="reveal">
-      <p class="eyebrow"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></p>
-      <h2><span class="pl">Zobacz, jak to wygląda w praktyce</span><span class="en">See what it looks like in practice</span><span class="de">Sehen Sie, wie es in der Praxis aussieht</span></h2>
+      <p class="eyebrow"><span class="pl">Agenci konwersacyjni</span><span class="en">Conversational agents</span><span class="de">Konversationsagenten</span></p>
+      <h2><span class="pl">Agenci, z którymi rozmawiasz na Teams</span><span class="en">The agents you talk to on Teams</span><span class="de">Die Agenten, mit denen Sie auf Teams sprechen</span></h2>
     </div>
     <a href="agent-asystent-zarzadu.html" class="rowcard reveal" style="border-color:#ffd9cc;background:linear-gradient(180deg,#fff6f2,#fff);margin-bottom:16px">
       <div class="rowcard__ico" style="background:#fa4616;color:#fff;border:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
@@ -718,6 +975,44 @@ a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
         btn.parentElement.classList.toggle("open");
       });
     });
+
+    // ROI calculators (illustrative estimates)
+    function fmt(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+    document.querySelectorAll(".calc").forEach(function(c){
+      var vol = c.querySelector('input[data-k="vol"]');
+      var min = c.querySelector('input[data-k="min"]');
+      var rate = c.querySelector('input[data-k="rate"]');
+      var oh = c.querySelector('[data-o="hours"] b');
+      var oy = c.querySelector('[data-o="annual"] b');
+      if(!vol || !min || !rate || !oh || !oy) return;
+      function recalc(){
+        var v = Math.max(0, parseFloat(vol.value) || 0);
+        var m = Math.max(0, parseFloat(min.value) || 0);
+        var r = Math.max(0, parseFloat(rate.value) || 0);
+        var hours = v * m / 60;
+        var annual = hours * r * 12;
+        oh.textContent = fmt(hours) + " h";
+        oy.textContent = "≈ " + fmt(annual) + " €";
+      }
+      [vol, min, rate].forEach(function(i){ i.addEventListener("input", recalc); });
+      recalc();
+    });
+
+    // case-study index filter
+    var fbar = document.querySelector(".fbar");
+    if(fbar){
+      var cards = document.querySelectorAll(".idxcard");
+      fbar.addEventListener("click", function(e){
+        var btn = e.target.closest("button[data-f]");
+        if(!btn) return;
+        fbar.querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", b === btn); });
+        var f = btn.getAttribute("data-f");
+        cards.forEach(function(card){
+          var tags = " " + (card.getAttribute("data-f") || "") + " ";
+          card.classList.toggle("hide", f !== "all" && tags.indexOf(" " + f + " ") === -1);
+        });
+      });
+    }
 
     // reveal on scroll
     var els = document.querySelectorAll(".reveal");

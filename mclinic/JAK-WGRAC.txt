@@ -1,0 +1,10 @@
+mClinic — wersja portable (.html)
+
+1. Wgraj CALA zawartosc tego katalogu na serwer (np. do public_html) przez FTP.
+2. To wszystko. Kazda podstrona to zwykly plik .html, linki sa wzgledne —
+   dziala w katalogu glownym domeny, w podkatalogu, a nawet po otwarciu
+   index.html prosto z dysku (bez serwera).
+3. Plik .htaccess (Apache) ustawia przekierowania 301 ze starych adresow
+   m-clinic.eu oraz strone bledu 404 — zadziala przy instalacji w katalogu
+   glownym domeny. W podkatalogu mozna go pominac.
+4. Formularz kontaktu i newsletter sa statyczne — do podpiecia backendu.

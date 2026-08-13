@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reklamacje w godziny, nie dni — case study — Mientha</title>
+<meta name="description" content="Mientha — Enabling Corporate Excellence. RPA, Agentic AI, BPO, AMS i eksperci IT.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   MIENTHA — Corporate site design system
+   Palette: white / off-white / greys, mint accents, navy for logo
+   Type: Sora (display) + Inter (text)
+   ============================================================ */
+
+:root{
+  --white:#ffffff;
+  --paper:#f6f7f6;      /* off-white sections */
+  --paper-2:#eef1ef;    /* slightly deeper */
+  --line:#e3e7e4;       /* hairlines / borders */
+  --line-2:#d5dad6;
+
+  --ink:#0f1720;        /* near-black text */
+  --ink-2:#28323c;
+  --muted:#5c6771;      /* secondary text */
+  --muted-2:#8a949c;
+
+  --navy:#1b006a;       /* brand granat — logo / deep accent */
+
+  --mint:#18cf98;       /* brand mint (accents) */
+  --mint-strong:#0a8161;/* mint for text/links on white (AA on white) */
+  --mint-050:#e9faf3;   /* mint tint bg */
+  --mint-100:#d2f4e7;
+
+  --shadow-sm:0 1px 2px rgba(15,23,32,.05);
+  --shadow-md:0 14px 34px -18px rgba(15,23,32,.16);
+  --shadow-lg:0 30px 72px -32px rgba(15,23,32,.22);
+
+  --radius:16px;
+  --radius-sm:12px;
+  --radius-xs:10px;
+  --radius-lg:26px;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+
+  --container:1200px;
+  --pad:clamp(20px,5vw,40px);
+
+  --font-display:"Sora","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-text:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font-text);
+  color:var(--ink);
+  background:var(--white);
+  font-size:17px;
+  line-height:1.65;
+  letter-spacing:-0.006em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  -webkit-tap-highlight-color:transparent;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--mint-100);color:var(--ink)}
+
+/* ---------- Accessibility base ---------- */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid var(--mint-strong);outline-offset:3px;border-radius:4px;
+}
+.skiplink{position:absolute;left:-9999px;top:0;z-index:120;background:var(--ink);color:#fff;
+  padding:12px 18px;border-radius:0 0 12px 0;font-weight:600;font-size:.9rem}
+.skiplink:focus{left:0}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+
+/* ---------- Bilingual toggle ---------- */
+.lang-pl .en,.lang-pl .de{display:none}
+.lang-en .pl,.lang-en .de{display:none}
+.lang-de .pl,.lang-de .en{display:none}
+
+/* ---------- Layout ---------- */
+.container{max-width:var(--container);margin-inline:auto;padding-inline:var(--pad)}
+.section{padding-block:clamp(64px,9vw,120px)}
+.section--tight{padding-block:clamp(48px,7vw,84px)}
+.bg-paper{background:var(--paper)}
+.bg-ink{background:var(--ink);color:#e8ecef}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-text);
+  font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mint-strong);
+  margin:0 0 16px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--mint);border-radius:2px;flex:none}
+.bg-ink .eyebrow{color:var(--mint)}
+.eyebrow--uipath{color:#fa4616}
+.eyebrow--uipath::before{background:#fa4616}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;color:var(--ink);margin:0 0 .5em;
+  text-wrap:balance;overflow-wrap:break-word}
+.bg-ink h1,.bg-ink h2,.bg-ink h3{color:#fff}
+h1{font-size:clamp(2.3rem,4.6vw,3.9rem);line-height:1.05;letter-spacing:-0.032em}
+h2{font-size:clamp(1.72rem,3.1vw,2.65rem);line-height:1.12;letter-spacing:-0.028em}
+h3{font-size:clamp(1.12rem,1.4vw,1.3rem);font-weight:600;line-height:1.3;letter-spacing:-0.018em}
+h4{font-size:1.05rem;font-weight:600;line-height:1.35;letter-spacing:-0.012em}
+.lead{font-size:clamp(1.05rem,1.4vw,1.22rem);color:var(--muted);line-height:1.62;max-width:58ch;text-wrap:pretty}
+.bg-ink .lead{color:#aeb8bf}
+p{margin:0 0 1rem;text-wrap:pretty}
+.muted{color:var(--muted)}
+.measure{max-width:62ch}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--font-text);font-weight:600;font-size:.95rem;
+  min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid transparent;
+  cursor:pointer;transition:transform .18s var(--ease),box-shadow .18s var(--ease),
+    background-color .18s var(--ease),border-color .18s var(--ease),color .18s var(--ease);
+  white-space:nowrap;letter-spacing:-0.01em;
+}
+.btn svg{width:16px;height:16px;flex:none}
+.btn:active{transform:translateY(0);box-shadow:none}
+.btn--primary{background:var(--ink);color:#fff}
+.btn--primary:hover{background:#06090c;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--mint{background:var(--mint);color:#053d2c}
+.btn--mint:hover{background:#14c08d;transform:translateY(-1px);box-shadow:0 14px 28px -14px rgba(24,207,152,.55)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn--ghost:hover{border-color:var(--ink);background:var(--paper)}
+.bg-ink .btn--ghost{color:#fff;border-color:rgba(255,255,255,.28)}
+.bg-ink .btn--ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.arrowlink{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;
+  color:var(--mint-strong);transition:color .18s var(--ease)}
+.arrowlink svg{width:16px;height:16px;flex:none;transition:transform .18s var(--ease)}
+.arrowlink:hover{color:var(--ink)}
+.arrowlink:hover svg{transform:translateX(3px)}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:16px;height:72px}
+.brand{display:inline-flex;align-items:center;flex:none}
+.brand__logo{height:27px;width:auto;display:block}
+.brand--footer{opacity:.98}
+.brand--footer .brand__logo{height:28px}
+.nav__links{display:flex;align-items:stretch;align-self:stretch;gap:2px;margin-left:8px;min-width:0}
+.nav__item{position:static;display:flex;align-items:center;align-self:stretch}
+.nav__link{display:inline-flex;align-items:center;gap:5px;padding:9px 12px;border-radius:var(--radius-xs);
+  font-weight:500;font-size:.94rem;color:var(--ink-2);white-space:nowrap;
+  transition:background-color .16s var(--ease),color .16s var(--ease);
+  cursor:pointer;position:relative;background:none;border:0;font-family:var(--font-text)}
+.nav__link:hover{background:var(--paper);color:var(--ink)}
+.nav__link.active{color:var(--ink);font-weight:600}
+.nav__link.active::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--mint);border-radius:2px}
+.nav__link .caret{width:11px;height:11px;opacity:.65;transition:transform .18s var(--ease)}
+.nav__item:hover .nav__link--top .caret,.nav__item:focus-within .nav__link--top .caret{transform:rotate(180deg)}
+.nav__right{margin-left:auto;display:flex;align-items:center;gap:12px;flex:none}
+.nav .cta-btn{min-height:42px;padding:10px 18px;font-size:.92rem}
+@media (max-width:1240px){
+  .nav__link{padding:9px 9px;font-size:.9rem}
+  .nav{gap:10px}
+}
+@media (max-width:1120px){
+  .nav .cta-btn{display:none}
+}
+
+/* ---------- Mega menu ---------- */
+.megamenu{position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(6px);
+  /* base state = closing: generous delay so the pointer can travel into the panel */
+  transition:opacity .18s var(--ease) .18s,transform .18s var(--ease) .18s,visibility .18s .18s;
+  pointer-events:none;z-index:70}
+/* invisible bridge over the header border so hover never drops on the seam */
+.megamenu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.nav__item:hover .megamenu,.nav__item:focus-within .megamenu{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition-delay:.05s,.05s,.05s}
+.megamenu__inner{display:grid;grid-template-columns:.85fr 2fr;gap:44px;padding-block:34px}
+.mega__feature{border-right:1px solid var(--line);padding-right:40px}
+.mega__feature .tag{margin-bottom:12px}
+.mega__feature--agent{position:relative;background:linear-gradient(160deg,#fff6f2,#ffffff 70%);border-radius:var(--radius);border:1px solid #ffd9cc;border-right:1px solid #ffd9cc;padding:24px 24px 26px;margin-right:24px}
+.mega__feature--agent .arrowlink{display:inline-flex}
+.mega__feature h4{font-size:1.3rem;margin:0 0 10px}
+.mega__feature p{color:var(--muted);font-size:.94rem;margin-bottom:18px;line-height:1.5}
+.mega__grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.mega__item{display:flex;gap:14px;align-items:flex-start;padding:13px 15px;border-radius:12px;transition:.16s}
+.mega__item:hover{background:var(--paper)}
+.mega__item--hot{background:linear-gradient(180deg,#fff6f2,#fff);border:1px solid #ffd9cc}
+.mega__item--hot:hover{background:#fff1ea;border-color:#fa4616}
+.mega__item--hot .mega__ico{background:#fa4616;color:#fff}
+.mega__item--hot:hover .mega__ico{background:#fa4616;color:#fff}
+.mega__new{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;background:#ffd9cc;border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+.mbadge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c2410c;background:#fff1ea;border:1px solid #ffd9cc;border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:1px}
+.mega__ico{flex:none;width:40px;height:40px;border-radius:10px;background:var(--mint-050);color:var(--mint-strong);display:grid;place-items:center;transition:.16s}
+.mega__ico svg{width:20px;height:20px}
+.mega__item:hover .mega__ico{background:var(--mint);color:#053d2c}
+.mega__tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mega__tx b{font-family:var(--font-display);font-size:1rem;color:var(--ink);font-weight:600;letter-spacing:-.01em}
+.mega__d{color:var(--muted);font-size:.85rem;line-height:1.4}
+.langtoggle{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;overflow:hidden;flex:none}
+.langtoggle button{background:transparent;border:0;padding:7px 11px;min-height:34px;cursor:pointer;
+  color:var(--muted);font-family:var(--font-text);font-weight:600;font-size:.78rem;letter-spacing:.02em;
+  transition:background-color .15s var(--ease),color .15s var(--ease)}
+.langtoggle button:hover{color:var(--ink)}
+.langtoggle button.on{background:var(--ink);color:#fff}
+.langtoggle button:focus-visible{outline-offset:-2px}
+.nav__toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:2px}
+.burger{display:block;width:22px;height:16px;position:relative}
+.burger span{position:absolute;left:0;right:0;height:2px;background:var(--ink);border-radius:2px;transition:.25s ease}
+.burger span:nth-child(1){top:0}
+.burger span:nth-child(2){top:7px}
+.burger span:nth-child(3){top:14px}
+.nav.open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .burger span:nth-child(2){opacity:0}
+.nav.open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:
+   radial-gradient(120% 120% at 85% -10%, var(--mint-050) 0%, rgba(233,250,243,0) 45%),
+   var(--white)}
+.hero__inner{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-block:clamp(60px,8vw,110px)}
+.hero h1{margin-bottom:22px}
+.hero .lead{margin-bottom:32px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero__panel{position:relative}
+.deco{position:absolute;pointer-events:none;opacity:.9}
+
+/* ---------- Hero notice link ---------- */
+.notice{display:inline-flex;align-items:center;gap:10px;margin:0 0 24px;padding:7px 14px 7px 8px;
+  border:1px solid var(--mint-100);border-radius:999px;
+  background:linear-gradient(90deg,var(--mint-050),rgba(233,250,243,0));
+  font-size:.85rem;font-weight:500;color:var(--ink-2);max-width:100%;
+  transition:border-color .18s var(--ease),box-shadow .18s var(--ease),transform .18s var(--ease)}
+.notice:hover{border-color:var(--mint);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.notice svg{width:14px;height:14px;flex:none;color:var(--mint-strong);transition:transform .18s var(--ease)}
+.notice:hover svg{transform:translateX(3px)}
+.notice__new{flex:none;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--mint);color:#053d2c;padding:4px 8px;border-radius:999px}
+@media (max-width:560px){.notice{white-space:normal;line-height:1.4;padding:8px 12px 8px 8px}}
+
+/* ---------- Chat mock (Teams-style conversation) ---------- */
+.chat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.chat__bar{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid var(--line);background:var(--white)}
+.chat__bar b{font-size:.85rem;font-weight:600;color:var(--ink-2);letter-spacing:-.01em;min-width:0}
+.chat__bar time{margin-left:auto;font-size:.78rem;color:var(--muted-2);font-variant-numeric:tabular-nums;flex:none}
+.chat__dot{width:8px;height:8px;border-radius:50%;background:var(--mint);flex:none}
+.chat__body{background:var(--paper);padding:20px;display:grid;gap:12px}
+.msg{max-width:88%;padding:12px 15px;border-radius:14px;font-size:.9rem;line-height:1.55;overflow-wrap:break-word;min-width:0}
+.msg--user{justify-self:end;background:var(--navy);color:#fff;border-bottom-right-radius:5px}
+.msg--agent{justify-self:start;background:var(--white);border:1px solid var(--line);color:var(--ink-2);border-bottom-left-radius:5px;box-shadow:var(--shadow-sm)}
+.msg--agent b{color:var(--ink)}
+.msg__who{display:flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;color:var(--muted);margin:2px 0 -4px}
+.msg__who::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);flex:none}
+@media (max-width:560px){.msg{max-width:94%;font-size:.88rem}.chat__body{padding:14px;gap:10px}}
+
+/* ---------- Chips / partners ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--white);font-size:.82rem;font-weight:500;color:var(--ink-2)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:var(--mint);flex:none}
+
+.partners{display:flex;flex-wrap:wrap;align-items:center;gap:16px 34px}
+.partner{display:inline-flex;align-items:center;gap:11px;font-weight:700;color:var(--ink);font-family:var(--font-display);letter-spacing:-0.01em}
+.partner small{display:block;font-family:var(--font-text);font-weight:600;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-top:2px}
+.partner__badge{width:38px;height:38px;border-radius:var(--radius-xs);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.82rem;font-family:var(--font-display);flex:none}
+
+/* ---------- Grid & cards ---------- */
+.grid{display:grid;gap:22px}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+a.card:hover,.card--link:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--line-2)}
+.card__ico{width:44px;height:44px;border-radius:var(--radius-xs);background:var(--mint-050);display:grid;place-items:center;margin-bottom:18px;color:var(--mint-strong);transition:background-color .2s var(--ease),color .2s var(--ease)}
+.card__ico svg{width:22px;height:22px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:0}
+a.card:hover .card__ico,.card--link:hover .card__ico{background:var(--mint);color:#053d2c}
+.card ul{margin:16px 0 0;padding-left:0;list-style:none}
+.card ul li{position:relative;padding-left:26px;margin-bottom:9px;color:var(--muted);font-size:.93rem;line-height:1.55}
+.card ul li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:7px;border-left:2px solid var(--mint-strong);border-bottom:2px solid var(--mint-strong);transform:rotate(-45deg)}
+
+/* quiet capability grid (hairline-divided, non-interactive) */
+.capgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.cap{background:var(--white);padding:30px 28px 32px}
+.cap h3{margin:0 0 8px}
+.cap p{color:var(--muted);font-size:.95rem;line-height:1.6;margin:0}
+.cap .card__ico{margin-bottom:18px}
+
+.tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--mint-strong);background:var(--mint-050);padding:5px 10px;border-radius:999px;margin-bottom:14px}
+
+/* ---------- Stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.stat{padding:6px 0}
+.stat b{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,3.4vw,2.85rem);letter-spacing:-0.03em;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.bg-ink .stat b{color:#fff}
+.stat b .u{color:var(--mint-strong)}
+.bg-ink .stat b .u{color:var(--mint)}
+.stat span{display:block;margin-top:9px;color:var(--muted);font-size:.92rem;line-height:1.45}
+.bg-ink .stat span{color:#9fa9b0}
+
+/* ---------- Split feature ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center}
+.split>*,.hero__inner>*,.grid>*,.capgrid>*{min-width:0}
+.step>div{min-width:0}
+.field select{min-width:0}
+a[href^="mailto:"],a[href^="tel:"]{overflow-wrap:anywhere}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(26px,3vw,40px);box-shadow:var(--shadow-md)}
+.panel--ink{background:var(--ink);color:#e8ecef;border:0}
+.panel--ink .eyebrow{color:var(--mint)}
+.panel--ink .checklist li{color:#cdd5da}
+.panel--ink .checklist li::before{background:rgba(24,207,152,.16)}
+.panel--ink .checklist li::after{border-color:var(--mint)}
+
+/* process steps */
+.steps{counter-reset:step;display:grid;gap:12px}
+.step{display:flex;gap:18px;align-items:flex-start;padding:20px 22px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+.step__n{counter-increment:step;flex:none;width:36px;height:36px;border-radius:50%;background:var(--mint-050);color:var(--mint-strong);font-family:var(--font-display);font-weight:700;font-size:.9rem;display:grid;place-items:center;margin-top:2px}
+.step__n::before{content:counter(step,decimal-leading-zero)}
+.step h4{margin:0 0 4px;font-size:1.02rem}
+.step p{margin:0;color:var(--muted);font-size:.94rem;line-height:1.55;max-width:70ch}
+
+/* feature list with checks */
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.checklist li{position:relative;padding-left:34px;color:var(--ink-2)}
+.checklist li::before{content:"";position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%;background:var(--mint-050)}
+.checklist li::after{content:"";position:absolute;left:7px;top:8px;width:9px;height:5px;border-left:2px solid var(--mint-strong);border-bottom:2px solid var(--mint-strong);transform:rotate(-45deg)}
+.bg-ink .checklist li{color:#cdd5da}
+.bg-ink .checklist li::before{background:rgba(24,207,152,.16)}
+.bg-ink .checklist li::after{border-color:var(--mint)}
+
+/* ---------- Map ---------- */
+.mapwrap{position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);background:var(--paper)}
+.mapwrap svg{width:100%;height:auto;display:block}
+
+/* ---------- CTA band ---------- */
+.cta{position:relative;overflow:hidden;border-radius:var(--radius-lg);background:var(--ink);color:#fff;padding:clamp(38px,5vw,64px);text-align:center}
+.cta .deco{opacity:.5}
+.cta h1,.cta h2,.cta h3{color:#fff}
+.cta .eyebrow{color:var(--mint)}
+.cta .arrowlink{color:var(--mint)}
+
+/* ---------- Industries list rows ---------- */
+.rowcard{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:24px 26px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+.rowcard:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.rowcard__ico{width:50px;height:50px;border-radius:var(--radius-sm);background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);flex:none}
+.rowcard__ico svg{width:24px;height:24px}
+.rowcard h3{margin:0 0 4px;font-size:1.12rem}
+.rowcard p{margin:0;color:var(--muted);font-size:.94rem;line-height:1.55;max-width:72ch}
+.rowcard .tag{margin:0}
+
+/* ---------- Breadcrumb / page hero ---------- */
+.pagehero{background:var(--paper);border-bottom:1px solid var(--line)}
+.pagehero .container{padding-block:clamp(48px,7vw,86px)}
+.crumb{font-size:.85rem;color:var(--muted);margin-bottom:16px;font-weight:500}
+.crumb a:hover{color:var(--mint-strong)}
+
+/* ---------- Contact ---------- */
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.field label{font-size:.85rem;font-weight:600;color:var(--ink-2)}
+.field input,.field textarea,.field select{
+  font-family:var(--font-text);font-size:1rem;color:var(--ink);
+  padding:12px 14px;border:1px solid var(--line-2);border-radius:var(--radius-xs);background:var(--white);
+  transition:border-color .16s var(--ease),box-shadow .16s var(--ease);width:100%;min-height:46px;
+}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible,.field select:focus-visible{outline:none;border-color:var(--mint-strong);box-shadow:0 0 0 3px var(--mint-050)}
+.contact-item{display:flex;gap:15px;align-items:flex-start;margin-bottom:22px}
+.contact-item .ci{width:44px;height:44px;flex:none;border-radius:var(--radius-xs);background:var(--mint-050);display:grid;place-items:center;color:var(--mint-strong)}
+.contact-item .ci svg{width:21px;height:21px}
+.contact-item b{display:block;font-family:var(--font-display);font-size:1rem}
+.contact-item span{color:var(--muted);font-size:.95rem}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--ink);color:#c3ccd2;padding-block:64px 28px}
+.footer a{color:#c3ccd2;transition:color .15s var(--ease)}
+.footer a:hover{color:#fff}
+.footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer .brand{color:#fff;margin-bottom:18px}
+.footer h5{font-family:var(--font-text);color:#8a949c;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin:0 0 16px;font-weight:600}
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.92rem}
+.footer__bottom{display:flex;justify-content:space-between;align-items:baseline;gap:10px 24px;flex-wrap:wrap;padding-top:22px;font-size:.82rem;color:#8a949c;line-height:1.6}
+.footer .badge-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.footer .fbadge{font-size:.7rem;font-weight:600;letter-spacing:.02em;color:#97a1a9;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 11px}
+
+/* mobile menu hidden by default (shown only in mobile breakpoint) */
+.mobile-menu{display:none}
+
+/* ============================================================
+   DEEP CASE STUDY SYSTEM (executive report pages)
+   ============================================================ */
+
+/* hero hook number */
+.hook{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.hook b{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);letter-spacing:-.03em;color:var(--ink);line-height:1}
+.hook span{color:var(--muted);font-size:.95rem;max-width:44ch}
+
+/* executive summary */
+.xsum{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.xsum>div{background:var(--white);padding:22px 22px 24px}
+.xsum b{display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mint-strong);margin-bottom:9px}
+.xsum p{margin:0;font-size:.93rem;color:var(--ink-2);line-height:1.55}
+@media (max-width:960px){.xsum{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.xsum{grid-template-columns:1fr}}
+
+/* scenario badge */
+.scenario{display:inline-flex;align-items:center;gap:9px;padding:7px 13px;border:1px dashed var(--line-2);border-radius:999px;font-size:.8rem;font-weight:600;color:var(--muted);background:var(--white)}
+.scenario::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted-2)}
+
+/* process flows */
+.flow{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.flow--after{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff 60%)}
+.flow ol{list-style:none;margin:0;padding:0}
+.fnode{position:relative;display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:var(--radius-xs);font-size:.9rem;line-height:1.45;color:var(--ink-2)}
+.fnode+.fnode{margin-top:22px}
+.fnode+.fnode::before{content:"";position:absolute;left:21px;top:-19px;width:2px;height:16px;background:var(--line-2)}
+.fnode i{flex:none;width:20px;height:20px;border-radius:6px;margin-top:1px}
+.fnode em{font-style:normal;display:block}
+.fnode small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px}
+.fnode--h{background:#f4f1fb}.fnode--h i{background:var(--navy)}.fnode--h small{color:var(--navy)}
+.fnode--s{background:var(--paper)}.fnode--s i{background:var(--muted-2)}.fnode--s small{color:var(--muted)}
+.fnode--w{background:#fff7ea}.fnode--w i{background:#d97706}.fnode--w small{color:#b45309}
+.fnode--r{background:#fdf1f0}.fnode--r i{background:#c2410c}.fnode--r small{color:#c2410c}
+.fnode--a{background:#eafcf5}.fnode--a i{background:var(--mint)}.fnode--a small{color:var(--mint-strong)}
+.flow__legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.flow__legend span{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:600;color:var(--muted)}
+.flow__legend i{width:11px;height:11px;border-radius:4px}
+.flow__legend i.fnode--h{background:var(--navy)}
+.flow__legend i.fnode--s{background:var(--muted-2)}
+.flow__legend i.fnode--w{background:#d97706}
+.flow__legend i.fnode--r{background:#c2410c}
+.flow__legend i.fnode--a{background:var(--mint)}
+
+/* before/after compare */
+.fx{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fx>div{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--white)}
+.fx .fx--after{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff)}
+.fx h3{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.fx .fx--after h3{color:var(--mint-strong)}
+.fxrow{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.fxrow:last-child{border-bottom:0}
+.fxrow>span{display:block;font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;hyphens:auto;overflow-wrap:anywhere}
+.fxrow b{font-family:var(--font-display);letter-spacing:-.01em;font-size:1.02rem;font-weight:600;color:var(--ink)}
+.fx .fx--after .fxrow b{color:var(--mint-strong)}
+@media (max-width:760px){.fx{grid-template-columns:1fr}}
+
+/* value model + cost of inaction */
+.model{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.model .mrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:.93rem;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.model .mrow b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.model .mrow--sum{border-bottom:0;border-top:2px solid var(--ink);margin-top:6px;padding-top:12px;font-weight:600;color:var(--ink)}
+.model .mrow--sum b{font-family:var(--font-display);font-size:1.15rem}
+.tax{display:grid;gap:12px}
+.taxrow b{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+.taxrow .bar{height:10px;border-radius:6px;background:var(--paper-2);overflow:hidden}
+.taxrow .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#f59e0b,#c2410c)}
+
+/* duty split */
+.duty{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.duty>div{border-radius:var(--radius);padding:26px;border:1px solid var(--line);background:var(--white)}
+.duty .duty--a{background:var(--ink);border:0;color:#cdd5da}
+.duty--a .checklist li{color:#cdd5da}
+.duty--a .checklist li::before{background:rgba(24,207,152,.16)}
+.duty--a .checklist li::after{border-color:var(--mint)}
+.duty h3{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;color:var(--mint-strong)}
+.duty .duty--a h3{color:var(--mint)}
+.duty .duty--h h3{color:var(--navy)}
+@media (max-width:760px){.duty{grid-template-columns:1fr}}
+
+/* system map */
+.sysmap{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.sysmap>div{flex:1;min-width:180px;border:1px solid var(--line);background:var(--white);border-radius:var(--radius);padding:20px}
+.sysmap .sys--hub{border-color:var(--mint-100);background:linear-gradient(180deg,var(--mint-050),#fff)}
+.sysmap h4{font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.sysmap .sys--hub h4{color:var(--mint-strong)}
+.sysmap ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.88rem;color:var(--ink-2)}
+.sysmap .arr{flex:none;align-self:center;width:44px;min-width:0;border:0;background:none;display:grid;place-items:center;color:var(--muted-2);padding:0}
+.sysmap .arr svg{width:20px;height:20px}
+@media (max-width:860px){.sysmap{flex-direction:column}.sysmap .arr{transform:rotate(90deg);height:34px;width:100%}}
+
+/* ROI calculator */
+.calc{background:var(--ink);border-radius:var(--radius-lg);padding:clamp(26px,3.5vw,40px);color:#cdd5da}
+.calc h3{color:#fff;margin-bottom:6px}
+.calc .calc__note{font-size:.8rem;color:#8a949c;margin:14px 0 0}
+.calc__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:22px}
+.calc__in label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.04em;color:#9fa9b0;margin:0 0 6px}
+.calc__in input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-xs);color:#fff;font-family:var(--font-text);font-size:1.05rem;font-weight:600;padding:11px 13px;min-height:46px}
+.calc__in input:focus-visible{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(24,207,152,.18)}
+.calc__in+.calc__in{margin-top:14px}
+.calc__out{display:grid;gap:14px;align-content:start}
+.calc__res{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:16px 18px}
+.calc__res b{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.02em;color:var(--mint);line-height:1.1;font-variant-numeric:tabular-nums}
+.calc__res span{font-size:.82rem;color:#9fa9b0}
+@media (max-width:760px){.calc__grid{grid-template-columns:1fr}}
+@media (max-width:560px){.model .mrow{flex-wrap:wrap}.model .mrow b{white-space:normal;text-align:right;margin-left:auto}.model .mrow>span{min-width:0;overflow-wrap:anywhere}.taxrow b span{overflow-wrap:anywhere;min-width:0}}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.roles>div{background:var(--white);padding:20px 22px}
+.roles b{display:block;font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:6px}
+.roles p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.5}
+
+/* objections Q&A */
+.qa{display:grid;gap:12px}
+.qa>div{border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;background:var(--white)}
+.qa b{display:block;font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.qa p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.6}
+
+/* when-not list */
+.notq{border-left:3px solid var(--line-2);padding:4px 0 4px 22px}
+.notq li{color:var(--muted)}
+
+/* executive question band */
+.bigq{border-block:1px solid var(--line);padding:clamp(36px,5vw,56px) 0;text-align:center}
+.bigq p{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.4;letter-spacing:-.02em;color:var(--ink);max-width:34ch;margin:0 auto}
+
+/* evidence labels */
+.evid{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-bottom:10px}
+.evid--model{background:var(--paper-2);color:var(--muted)}
+.evid--ext{background:#eef4ff;color:#1d4ed8}
+
+/* index cards + filter */
+.fbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.fbar button{font-family:var(--font-text);font-size:.85rem;font-weight:600;color:var(--muted);background:var(--white);border:1px solid var(--line-2);border-radius:999px;padding:8px 15px;min-height:38px;cursor:pointer;transition:all .16s var(--ease)}
+.fbar button:hover{color:var(--ink);border-color:var(--ink)}
+.fbar button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.idxcard .idx__kick{display:block;font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-.015em;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.idxcard .idx__sub{display:block;font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--mint-strong);margin-bottom:10px}
+.idxcard p{font-size:.9rem}
+.idx__meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.idx__meta span{font-size:.7rem;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.idxcard.hide{display:none}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1040px){
+  .megamenu__inner{grid-template-columns:1fr;gap:22px;padding-block:26px}
+  .mega__feature{border-right:0;border-bottom:1px solid var(--line);padding:0 0 20px;display:flex;flex-direction:column;align-items:flex-start}
+}
+@media (max-width:960px){
+  .hero__inner{grid-template-columns:1fr;gap:34px;padding-block:clamp(44px,7vw,72px)}
+  .g-4{grid-template-columns:repeat(2,1fr)}
+  .g-3{grid-template-columns:repeat(2,1fr)}
+  .capgrid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr);gap:28px}
+  .split{grid-template-columns:1fr}
+  .footer__top{grid-template-columns:1fr 1fr;gap:36px}
+}
+@media (max-width:920px){
+  .nav__links,.nav .cta-btn{display:none}
+  .nav__toggle{display:block}
+  .megamenu{display:none}
+  .mobile-menu{display:block;position:absolute;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
+    padding:8px var(--pad) 20px;box-shadow:var(--shadow-lg);max-height:calc(100dvh - 72px);overflow-y:auto;
+    opacity:0;visibility:hidden;transform:translateY(-8px);pointer-events:none;
+    transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+  .mobile-menu.show{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+  .mobile-menu .m-link{display:block;padding:14px 4px;border-bottom:1px solid var(--line);font-weight:500;color:var(--ink-2);font-size:1rem}
+  .m-group{border-bottom:1px solid var(--line)}
+  .m-group__t{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;padding:14px 4px;font-family:var(--font-text);font-size:1rem;font-weight:500;color:var(--ink-2);cursor:pointer}
+  .m-group__t .caret{width:14px;height:14px;opacity:.6;transition:transform .2s var(--ease)}
+  .m-group.open .m-group__t .caret{transform:rotate(180deg)}
+  .m-group__p{display:none;padding:0 0 10px 12px}
+  .m-group.open .m-group__p{display:block}
+  .m-group__p a{display:block;padding:11px 4px;font-size:.95rem;color:var(--muted)}
+  .m-group__p a.m-all{font-weight:600;color:var(--mint-strong)}
+  .mobile-menu .m-cta{display:flex;margin-top:16px;width:100%}
+}
+@media (max-width:760px){
+  .g-2,.g-3{grid-template-columns:1fr}
+  .rowcard{grid-template-columns:auto 1fr;gap:16px;padding:20px}
+  .rowcard .tag{grid-column:2}
+  .rowcard .btn{grid-column:2;justify-self:start}
+  .section{padding-block:clamp(52px,10vw,84px)}
+  .cta{text-align:left}
+  .cta .eyebrow{justify-content:flex-start!important}
+  .cta h1,.cta h2{margin-inline:0!important;max-width:24ch!important}
+  .cta .lead{margin-inline:0!important}
+}
+@media (max-width:640px){
+  .capgrid{grid-template-columns:1fr}
+  .cap{padding:24px 22px 26px}
+  .hero__cta .btn{flex:1 1 auto}
+}
+@media (max-width:560px){
+  .brand__logo{height:24px}
+  .nav{gap:8px;height:64px}
+  .mobile-menu{top:64px;max-height:calc(100dvh - 64px)}
+  .langtoggle button{padding:6px 8px;font-size:.72rem;min-height:32px}
+  h1,h2,h3{hyphens:auto}
+  h1{font-size:clamp(1.9rem,8.5vw,2.3rem)}
+  h2{font-size:clamp(1.55rem,7vw,1.72rem)}
+  .stat b{font-size:1.9rem}
+  .eyebrow{font-size:.7rem;letter-spacing:.12em}
+  h1,h2,h3,h4,p,li,.eyebrow span{overflow-wrap:anywhere}
+}
+@media (max-width:480px){
+  .btn{white-space:normal;text-align:center;line-height:1.3}
+}
+@media (max-width:520px){
+  .g-4{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr;gap:22px}
+  .footer__top{grid-template-columns:1fr;gap:30px}
+  .footer__bottom{flex-direction:column;align-items:flex-start;gap:6px}
+}
+
+</style>
+</head>
+<body class="lang-pl" data-title-pl="Reklamacje w godziny, nie dni — case study — Mientha" data-title-en="Complaints in hours, not days — case study — Mientha" data-title-de="Reklamationen in Stunden statt Tagen — Case Study — Mientha">
+<a class="skiplink" href="#main"><span class="pl">Przejdź do treści</span><span class="en">Skip to content</span><span class="de">Zum Inhalt springen</span></a>
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="brand" aria-label="Mientha"><svg class="brand__logo" viewBox="84 234 676 128" role="img" aria-label="Mientha" preserveAspectRatio="xMinYMid meet"><path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 366.054688 341.902344 L 346.042969 341.902344 L 346.042969 291 L 323.402344 328.144531 L 321.152344 328.144531 L 298.515625 291 L 298.515625 341.902344 L 278.503906 341.902344 L 278.503906 254.355469 L 298.515625 254.355469 L 322.277344 293.25 L 346.042969 254.355469 L 366.054688 254.355469 Z M 366.054688 341.902344 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 382.445312 279.367188 L 401.207031 279.367188 L 401.207031 341.902344 L 382.445312 341.902344 Z M 380.570312 262.609375 C 380.570312 256.480469 385.699219 251.351562 391.828125 251.351562 C 397.953125 251.351562 403.082031 256.480469 403.082031 262.609375 C 403.082031 268.738281 397.953125 273.863281 391.828125 273.863281 C 385.699219 273.863281 380.570312 268.738281 380.570312 262.609375 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 460.242188 304.132812 C 458.242188 296.878906 452.613281 294.25 446.984375 294.25 C 439.855469 294.25 435.105469 297.753906 433.351562 304.132812 Z M 448.734375 326.894531 C 453.863281 326.894531 458.242188 324.894531 460.742188 322.144531 L 475.75 330.773438 C 469.621094 339.277344 460.367188 343.65625 448.488281 343.65625 C 427.097656 343.65625 413.839844 329.273438 413.839844 310.636719 C 413.839844 292 427.347656 277.617188 447.109375 277.617188 C 465.371094 277.617188 478.878906 291.75 478.878906 310.636719 C 478.878906 313.261719 478.628906 315.765625 478.128906 318.140625 L 433.726562 318.140625 C 436.101562 324.644531 441.855469 326.894531 448.734375 326.894531 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 551.550781 303.507812 L 551.550781 341.902344 L 532.789062 341.902344 L 532.789062 306.257812 C 532.789062 298.503906 527.914062 294.878906 521.90625 294.878906 C 515.03125 294.878906 510.273438 298.878906 510.273438 307.757812 L 510.273438 341.902344 L 491.515625 341.902344 L 491.515625 279.367188 L 510.273438 279.367188 L 510.273438 285.246094 C 513.652344 280.617188 519.90625 277.617188 528.160156 277.617188 C 540.792969 277.617188 551.550781 286.621094 551.550781 303.507812 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 590.203125 297.378906 L 590.203125 319.515625 C 590.203125 324.894531 594.832031 325.394531 603.085938 324.894531 L 603.085938 341.902344 C 578.574219 344.40625 571.441406 337.027344 571.441406 319.515625 L 571.441406 297.378906 L 561.4375 297.378906 L 561.4375 279.367188 L 571.441406 279.367188 L 571.441406 267.488281 L 590.203125 261.859375 L 590.203125 279.367188 L 603.085938 279.367188 L 603.085938 297.378906 Z M 590.203125 297.378906 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 675.757812 303.507812 L 675.757812 341.902344 L 656.996094 341.902344 L 656.996094 306.257812 C 656.996094 298.503906 652.121094 294.878906 646.113281 294.878906 C 639.234375 294.878906 634.480469 298.878906 634.480469 307.757812 L 634.480469 341.902344 L 615.722656 341.902344 L 615.722656 254.355469 L 634.480469 254.355469 L 634.480469 285.246094 C 637.859375 280.617188 644.113281 277.617188 652.367188 277.617188 C 665 277.617188 675.757812 286.621094 675.757812 303.507812 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 736.046875 310.636719 C 736.046875 301.253906 729.792969 295.378906 721.164062 295.378906 C 712.53125 295.378906 706.28125 301.253906 706.28125 310.636719 C 706.28125 320.015625 712.53125 325.894531 721.164062 325.894531 C 729.792969 325.894531 736.046875 320.015625 736.046875 310.636719 M 754.804688 279.367188 L 754.804688 341.902344 L 736.046875 341.902344 L 736.046875 336.023438 C 731.917969 340.777344 725.789062 343.65625 717.410156 343.65625 C 701.027344 343.65625 687.519531 329.273438 687.519531 310.636719 C 687.519531 292 701.027344 277.617188 717.410156 277.617188 C 725.789062 277.617188 731.917969 280.492188 736.046875 285.246094 L 736.046875 279.367188 Z M 754.804688 279.367188 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 223.253906 259.746094 C 223.253906 254.5 223.203125 249.253906 223.277344 244.011719 C 223.304688 241.855469 222.714844 240.019531 220.753906 239.066406 C 218.863281 238.152344 217.019531 238.59375 215.226562 239.816406 C 206.652344 245.675781 157.386719 279.039062 157.386719 279.039062 C 156.277344 279.722656 155.1875 279.695312 154.191406 279.058594 L 125.738281 259.800781 C 115.675781 253.007812 105.664062 246.136719 95.492188 239.511719 C 94.226562 238.6875 91.816406 238.578125 90.472656 239.234375 C 89.277344 239.816406 88.179688 241.914062 88.152344 243.359375 C 87.960938 254.007812 88.0625 264.664062 88.039062 275.316406 C 88.03125 278.425781 89.425781 280.878906 91.824219 282.585938 C 96.625 285.992188 101.585938 289.171875 106.476562 292.453125 C 111.710938 295.960938 116.945312 299.464844 122.171875 302.988281 C 122.488281 303.199219 122.804688 303.410156 123.117188 303.621094 C 132.484375 309.9375 141.867188 316.230469 151.191406 322.605469 C 154.199219 324.660156 157.089844 324.703125 160.066406 322.699219 C 164.582031 319.652344 169.101562 316.605469 173.613281 313.554688 C 178.671875 310.140625 183.734375 306.726562 188.792969 303.308594 C 198.910156 296.472656 209.023438 289.636719 219.148438 282.816406 C 221.859375 280.988281 223.316406 278.578125 223.273438 275.230469 C 223.203125 270.070312 223.253906 264.90625 223.253906 259.746094 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 91.910156 356.050781 C 91.003906 356.632812 89.78125 356.542969 89.042969 355.757812 C 88.28125 354.949219 88.039062 353.816406 88.042969 352.445312 C 88.089844 339.519531 88.050781 313.695312 88.050781 313.695312 C 87.960938 307.308594 92.53125 310.171875 93.617188 310.886719 C 103.289062 317.269531 112.875 323.777344 122.464844 330.28125 C 124.878906 331.921875 125.023438 334.089844 122.699219 335.667969 C 113.671875 341.792969 96.488281 353.117188 91.910156 356.050781 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 219.40625 309.988281 C 220.316406 309.40625 221.535156 309.5 222.277344 310.285156 C 223.039062 311.089844 223.28125 312.226562 223.277344 313.597656 L 223.183594 352.375 C 223.277344 358.761719 218.785156 355.867188 217.699219 355.152344 C 208.03125 348.773438 198.441406 342.261719 188.851562 335.757812 C 186.4375 334.121094 186.296875 331.949219 188.621094 330.371094 C 197.644531 324.25 214.828125 312.925781 219.40625 309.988281 "/>
+<path fill-rule="nonzero" fill="rgb(10.598755%, 0%, 41.598511%)" fill-opacity="1" d="M 153.597656 278.660156 L 125.4375 305.183594 L 149.957031 322.160156 C 154.277344 325.160156 156.589844 325.1875 161.296875 322.160156 L 185.582031 305.476562 L 157.949219 278.648438 C 156.167969 279.738281 155.222656 279.738281 153.597656 278.660156 "/></svg></a>
+      <div class="nav__links"><a href="index.html" class="nav__link"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a><div class="nav__item"><a href="uslugi.html" class="nav__link nav__link--top active" aria-haspopup="true"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a><div class="megamenu" role="menu"><div class="megamenu__inner container">
+      <div class="mega__feature mega__feature--agent">
+        <span class="tag" style="color:#c2410c;background:#fff1ea"><span class="pl">Nowość · Agentic AI</span><span class="en">New · Agentic AI</span><span class="de">Neu · Agentic AI</span></span>
+        <h4><span class="pl">Agenci AI, z którymi rozmawiasz na Teams</span><span class="en">AI agents you talk to on Teams</span><span class="de">KI-Agenten, mit denen Sie auf Teams sprechen</span></h4>
+        <p><span class="pl">Pytasz — agent sięga do danych i uruchamia roboty UiPath. 15 case studies z modelami wartości i kalkulatorami ROI.</span><span class="en">You ask — the agent reaches the data and triggers UiPath robots. 15 case studies with value models and ROI calculators.</span><span class="de">Sie fragen — der Agent greift auf Daten zu und startet UiPath-Roboter. 15 Case Studies mit Wertmodellen und ROI-Kalkulatoren.</span></p>
+        <a href="agenty.html" class="btn btn--mint"><span class="pl">Zobacz 15 case studies</span><span class="en">See the 15 case studies</span><span class="de">15 Case Studies ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="uslugi.html" class="arrowlink" style="margin-top:14px"><span class="pl">Wszystkie usługi</span><span class="en">All services</span><span class="de">Alle Leistungen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="mega__grid"><a class="mega__item mega__item--hot" href="agenty.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span><span class="mega__new"><span class="pl">Nowość</span><span class="en">New</span><span class="de">Neu</span></span></b><span class="pl mega__d">15 case studies agentów AI — od O2C po testy SAP.</span><span class="en mega__d">15 AI-agent case studies — from O2C to SAP testing.</span><span class="de mega__d">15 Case Studies zu KI-Agenten — von O2C bis SAP-Tests.</span></span></a><a class="mega__item" href="uslugi.html#rpa"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M9 12h.01M15 12h.01M12 3v2"/><path d="M8 16h8"/></svg></span><span class="mega__tx"><b><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></b><span class="pl mega__d">Roboty i agenci AI dla powtarzalnych procesów.</span><span class="en mega__d">Robots and AI agents for repetitive processes.</span><span class="de mega__d">Roboter und KI-Agenten für wiederkehrende Prozesse.</span></span></a><a class="mega__item" href="uslugi.html#bpo"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1"/><path d="M21 4v5h-5"/><path d="M12 8v4l2.5 1.5"/></svg></span><span class="mega__tx"><b><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></b><span class="pl mega__d">Przejmujemy i optymalizujemy procesy.</span><span class="en mega__d">We take over and optimise processes.</span><span class="de mega__d">Wir übernehmen und optimieren Prozesse.</span></span></a><a class="mega__item" href="wsparcie-247.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M7 9l2 2 3-4 2 3 3-2"/></svg></span><span class="mega__tx"><b><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></b><span class="pl mega__d">Całodobowe wsparcie aplikacji krytycznych.</span><span class="en mega__d">24/7 support for critical applications.</span><span class="de mega__d">Rund-um-die-Uhr-Support für kritische Anwendungen.</span></span></a><a class="mega__item" href="uslugi.html#talent"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><path d="M17 8l2 2 3-3"/></svg></span><span class="mega__tx"><b><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></b><span class="pl mega__d">Zespoły i specjaliści IT oraz finansowi.</span><span class="en mega__d">IT and finance teams and specialists.</span><span class="de mega__d">IT- und Finanzteams sowie -spezialisten.</span></span></a><a class="mega__item" href="uslugi.html#custom"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></span><span class="mega__tx"><b><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></b><span class="pl mega__d">Dedykowane produkty i integracje.</span><span class="en mega__d">Dedicated products and integrations.</span><span class="de mega__d">Dedizierte Produkte und Integrationen.</span></span></a></div>
+    </div></div></div><div class="nav__item"><a href="branze.html" class="nav__link nav__link--top" aria-haspopup="true"><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a><div class="megamenu" role="menu"><div class="megamenu__inner container">
+      <div class="mega__feature">
+        <span class="tag"><span class="pl">Produkt flagowy</span><span class="en">Flagship</span><span class="de">Flaggschiff</span></span>
+        <h4><span class="pl">Rozliczanie kierowców</span><span class="en">Driver settlement</span><span class="de">Fahrerabrechnung</span></h4>
+        <p><span class="pl">Automatyczne rozliczanie kierowców dla transportu i spedycji — od danych po listy płac.</span><span class="en">Automated driver settlement for transport & logistics — from data to payroll.</span><span class="de">Automatische Fahrerabrechnung für Transport & Spedition — von Daten bis zur Lohnabrechnung.</span></p>
+        <a href="transport-spedycja.html" class="btn btn--mint"><span class="pl">Zobacz rozwiązanie</span><span class="en">View solution</span><span class="de">Lösung ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="mega__grid"><a class="mega__item" href="transport-spedycja.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg></span><span class="mega__tx"><b><span class="pl">Transport i spedycja</span><span class="en">Transport & logistics</span><span class="de">Transport & Spedition</span></b><span class="pl mega__d">Rozliczanie kierowców, integracja z TMS/ERP.</span><span class="en mega__d">Driver settlement, TMS/ERP integration.</span><span class="de mega__d">Fahrerabrechnung, TMS/ERP-Integration.</span></span></a><a class="mega__item" href="fmcg.html"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.4 12.3a1 1 0 0 0 1 .7h8.2a1 1 0 0 0 1-.8L21 8H6"/></svg></span><span class="mega__tx"><b><span class="pl">FMCG i retail</span><span class="en">FMCG & retail</span><span class="de">FMCG & Handel</span></b><span class="pl mega__d">10+ wdrożonych automatyzacji — zobacz case studies.</span><span class="en mega__d">10+ automations delivered — see case studies.</span><span class="de mega__d">10+ umgesetzte Automatisierungen — Case Studies ansehen.</span></span></a><a class="mega__item" href="branze.html#produkcja"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V9l6 4V9l6 4V6l6 0v14z"/><path d="M3 20h18"/></svg></span><span class="mega__tx"><b><span class="pl">Produkcja</span><span class="en">Manufacturing</span><span class="de">Produktion</span></b><span class="pl mega__d">Procesy operacyjne i zakupowe, AMS.</span><span class="en mega__d">Operations, procurement, AMS.</span><span class="de mega__d">Betriebs- und Einkaufsprozesse, AMS.</span></span></a><a class="mega__item" href="branze.html#finanse"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/></svg></span><span class="mega__tx"><b><span class="pl">Finanse i BSS</span><span class="en">Finance & shared services</span><span class="de">Finanzen & Shared Services</span></b><span class="pl mega__d">P2P/O2C, zgodność, raporty KPI.</span><span class="en mega__d">P2P/O2C, compliance, KPI reporting.</span><span class="de mega__d">P2P/O2C, Compliance, KPI-Reporting.</span></span></a><a class="mega__item" href="branze.html#telekomunikacja"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18h.01"/><path d="M8.5 14.5a5 5 0 0 1 7 0M5.5 11.5a9 9 0 0 1 13 0"/></svg></span><span class="mega__tx"><b><span class="pl">Telekomunikacja</span><span class="en">Telecom</span><span class="de">Telekommunikation</span></b><span class="pl mega__d">Back-office, wsparcie aplikacji, zespoły IT.</span><span class="en mega__d">Back-office, app support, IT teams.</span><span class="de mega__d">Back-Office, Anwendungssupport, IT-Teams.</span></span></a><a class="mega__item" href="branze.html#automotive"><span class="mega__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16l1.5-5A2 2 0 0 1 8.4 9.6h7.2a2 2 0 0 1 1.9 1.4L19 16"/><path d="M4 16h16v3h-3v-2H7v2H4z"/><circle cx="7.5" cy="16" r="0.5"/><circle cx="16.5" cy="16" r="0.5"/></svg></span><span class="mega__tx"><b><span class="pl">Automotive</span><span class="en">Automotive</span><span class="de">Automotive</span></b><span class="pl mega__d">Łańcuch dostaw, finanse, eksperci IT.</span><span class="en mega__d">Supply chain, finance, IT experts.</span><span class="de mega__d">Lieferkette, Finanzen, IT-Experten.</span></span></a></div>
+    </div></div></div><a href="case-studies.html" class="nav__link"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></a><a href="o-nas.html" class="nav__link"><span class="pl">O nas</span><span class="en">About</span><span class="de">Über uns</span></a><a href="kontakt.html" class="nav__link"><span class="pl">Kontakt</span><span class="en">Contact</span><span class="de">Kontakt</span></a></div>
+      <div class="nav__right">
+        <div class="langtoggle" role="group" aria-label="Language">
+          <button data-lang="pl" type="button">PL</button>
+          <button data-lang="en" type="button">EN</button>
+          <button data-lang="de" type="button">DE</button>
+        </div>
+        <a href="kontakt.html" class="btn btn--mint cta-btn"><span class="pl">Umów rozmowę</span><span class="en">Book a call</span><span class="de">Gespräch vereinbaren</span></a>
+        <button class="nav__toggle" aria-label="Menu" aria-expanded="false" type="button">
+          <span class="burger"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu"><a class="m-link" href="index.html"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="uslugi.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span></a><a href="agenty.html"><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span> <span class="mbadge"><span class="pl">Nowość</span><span class="en">New</span><span class="de">Neu</span></span></a><a href="uslugi.html#rpa"><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI</span><span class="de">RPA & Agentic AI</span></a><a href="uslugi.html#bpo"><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></a><a href="wsparcie-247.html"><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></a><a href="uslugi.html#talent"><span class="pl">Eksperci i rekrutacja IT</span><span class="en">IT experts & talent</span><span class="de">IT-Experten & Recruiting</span></a><a href="uslugi.html#custom"><span class="pl">Rozwiązania szyte na miarę</span><span class="en">Custom solutions</span><span class="de">Maßgeschneiderte Lösungen</span></a></div></div><div class="m-group"><button class="m-group__t" type="button"><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span><svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button><div class="m-group__p"><a class="m-all" href="branze.html"><span class="pl">Wszystkie</span><span class="en">View all</span><span class="de">Alle ansehen</span> · <span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span></a><a href="transport-spedycja.html"><span class="pl">Transport i spedycja</span><span class="en">Transport & logistics</span><span class="de">Transport & Spedition</span></a><a href="fmcg.html"><span class="pl">FMCG i retail</span><span class="en">FMCG & retail</span><span class="de">FMCG & Handel</span></a><a href="branze.html#produkcja"><span class="pl">Produkcja</span><span class="en">Manufacturing</span><span class="de">Produktion</span></a><a href="branze.html#finanse"><span class="pl">Finanse i BSS</span><span class="en">Finance & shared services</span><span class="de">Finanzen & Shared Services</span></a><a href="branze.html#telekomunikacja"><span class="pl">Telekomunikacja</span><span class="en">Telecom</span><span class="de">Telekommunikation</span></a><a href="branze.html#automotive"><span class="pl">Automotive</span><span class="en">Automotive</span><span class="de">Automotive</span></a></div></div><a class="m-link" href="case-studies.html"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></a><a class="m-link" href="o-nas.html"><span class="pl">O nas</span><span class="en">About</span><span class="de">Über uns</span></a><a class="m-link" href="kontakt.html"><span class="pl">Kontakt</span><span class="en">Contact</span><span class="de">Kontakt</span></a><a class="m-cta btn btn--mint" href="kontakt.html"><span class="pl">Umów rozmowę</span><span class="en">Book a call</span><span class="de">Gespräch vereinbaren</span></a></div>
+  </div>
+</header>
+<main id="main">
+<section class="pagehero" style="background:linear-gradient(180deg,#fff6f2,#fff)">
+  <div class="container">
+    <p class="crumb"><a href="index.html"><span class="pl">Start</span><span class="en">Home</span><span class="de">Start</span></a> &middot; <a href="agenty.html"><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span></a> &middot; <span class="pl">Agent reklamacji: odpowiedź w godziny, nie dni</span><span class="en">The complaints agent: answers in hours, not days</span><span class="de">Der Reklamations-Agent: Antworten in Stunden statt Tagen</span></p>
+    <span class="tag" style="color:#c2410c;background:#fff1ea"><span class="pl">Case study</span><span class="en">Case study</span><span class="de">Case Study</span> · <span class="pl">Sprzedaż i klienci</span><span class="en">Sales & customers</span><span class="de">Vertrieb & Kunden</span> · <span class="pl">Operacje</span><span class="en">Operations</span><span class="de">Operations</span></span>
+    <h1 style="max-width:22ch"><span class="pl">Klient nie pamięta ceny. Pamięta, jak długo czekał.</span><span class="en">Customers forget the price. They remember the wait.</span><span class="de">Kunden vergessen den Preis. Sie erinnern sich ans Warten.</span></h1>
+    <p class="eyebrow" style="margin-top:6px"><span class="pl">Agent reklamacji: odpowiedź w godziny, nie dni</span><span class="en">The complaints agent: answers in hours, not days</span><span class="de">Der Reklamations-Agent: Antworten in Stunden statt Tagen</span></p>
+    <p class="lead"><span class="pl">Agent czyta każdą reklamację z maila i formularza, kompletuje dowody z ERP i TMS, a proste sprawy rozstrzyga według Waszych reguł. Trudne trafiają do człowieka — z gotową rekomendacją.</span><span class="en">The agent reads every complaint from email and forms, gathers evidence from the ERP and TMS, and settles simple cases by your rules. Hard ones reach a human — with a ready recommendation.</span><span class="de">Der Agent liest jede Reklamation aus Mail und Formular, sammelt Belege aus ERP und TMS und entscheidet einfache Fälle nach Ihren Regeln. Schwierige erreichen einen Menschen — mit fertiger Empfehlung.</span></p>
+    <div class="hero__cta" style="margin-top:24px">
+      <a href="kontakt.html" class="btn btn--mint"><span class="pl">Prześlij przykładową reklamację</span><span class="en">Send us a sample complaint</span><span class="de">Senden Sie uns eine Beispiel-Reklamation</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="agenty.html" class="btn btn--ghost"><span class="pl">Wszystkie case studies</span><span class="en">All case studies</span><span class="de">Alle Case Studies</span></a>
+    </div>
+    <div class="hook"><b><span class="pl">3,2 dnia</span><span class="en">3.2 days</span><span class="de">3,2 Tage</span></b><span><span class="pl">średnio czeka klient tej przykładowej firmy na pierwszą merytoryczną odpowiedź w sprawie reklamacji. Konkurencja odpowiada w godziny.</span><span class="en">is the average wait for a first substantive complaint response at this example company. Competitors answer in hours.</span><span class="de">wartet ein Kunde dieses Beispielunternehmens im Schnitt auf die erste inhaltliche Antwort zur Reklamation. Der Wettbewerb antwortet in Stunden.</span></span></div>
+  </div>
+</section>
+
+<section class="section--tight">
+  <div class="container">
+    <p class="eyebrow"><span class="pl">Streszczenie dla zarządu</span><span class="en">Executive summary</span><span class="de">Zusammenfassung für den Vorstand</span></p>
+    <div class="xsum reveal">
+      <div><b><span class="pl">Wyzwanie</span><span class="en">The challenge</span><span class="de">Die Herausforderung</span></b><p><span class="pl">2 400 reklamacji miesięcznie w skrzynkach; każda wymaga danych z 3 systemów.</span><span class="en">2,400 complaints a month in inboxes; each needs data from 3 systems.</span><span class="de">2.400 Reklamationen pro Monat in Postfächern; jede braucht Daten aus 3 Systemen.</span></p></div>
+      <div><b><span class="pl">Co się zmienia</span><span class="en">What changes</span><span class="de">Was sich ändert</span></b><p><span class="pl">Agent klasyfikuje, kompletuje dowody i rozstrzyga proste sprawy według reguł.</span><span class="en">The agent classifies, gathers evidence and settles simple cases by rule.</span><span class="de">Der Agent klassifiziert, sammelt Belege und entscheidet einfache Fälle nach Regeln.</span></p></div>
+      <div><b><span class="pl">Wartość biznesowa</span><span class="en">Business value</span><span class="de">Geschäftswert</span></b><p><span class="pl">Pierwsza odpowiedź w godziny; zespół zajmuje się sprawami naprawdę spornymi.</span><span class="en">First response in hours; the team handles genuinely contested cases.</span><span class="de">Erste Antwort in Stunden; das Team kümmert sich um wirklich strittige Fälle.</span></p></div>
+      <div><b><span class="pl">Systemy i zakres</span><span class="en">Systems & scope</span><span class="de">Systeme & Umfang</span></b><p><span class="pl">ERP, TMS, skrzynka reklamacji, Teams; agent + roboty UiPath.</span><span class="en">The ERP, the TMS, the complaints inbox, Teams; UiPath agent + robots.</span><span class="de">ERP, TMS, Reklamations-Postfach, Teams; UiPath-Agent + Roboter.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split" style="align-items:flex-start">
+    <div class="reveal">
+      <span class="scenario"><span class="pl">Scenariusz ilustracyjny</span><span class="en">Illustrative scenario</span><span class="de">Illustratives Szenario</span></span>
+      <h2 style="margin-top:18px"><span class="pl">Dystrybutor B2B, 2 400 reklamacji miesięcznie</span><span class="en">A B2B distributor, 2,400 complaints a month</span><span class="de">Ein B2B-Distributor, 2.400 Reklamationen pro Monat</span></h2>
+      <p class="lead measure" style="margin-bottom:16px"><span class="pl">Brakujące sztuki, uszkodzenia w transporcie, błędne ceny, zwroty. 65% spraw — 1 560 miesięcznie — to przypadki proste, rozstrzygalne według cennika, dokumentu dostawy i zdjęcia.</span><span class="en">Missing items, transport damage, wrong prices, returns. 65% of cases — 1,560 a month — are simple, decidable from the price list, the delivery note and a photo.</span><span class="de">Fehlmengen, Transportschäden, falsche Preise, Retouren. 65 % der Fälle — 1.560 pro Monat — sind einfach und anhand von Preisliste, Lieferschein und Foto entscheidbar.</span></p>
+      <p class="measure" style="color:var(--muted)"><span class="pl">Mimo to każda sprawa czeka na człowieka, który otworzy trzy systemy i sklei historię zamówienia. Średnio 3,2 dnia do pierwszej odpowiedzi — a klient przez ten czas rozmawia z konkurencją.</span><span class="en">Yet every case waits for a person to open three systems and stitch the order history together. On average 3.2 days to a first answer — while the customer talks to competitors.</span><span class="de">Trotzdem wartet jeder Fall auf einen Menschen, der drei Systeme öffnet und die Bestellhistorie zusammensetzt. Im Schnitt 3,2 Tage bis zur ersten Antwort — während der Kunde mit dem Wettbewerb spricht.</span></p>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow"><span class="pl">Stan obecny</span><span class="en">The current reality</span><span class="de">Der heutige Zustand</span></p>
+      <div class="flow"><ol><li class="fnode fnode--h"><i></i><div style="min-width:0"><small><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></small><em><span class="pl">Klient pisze maila; sprawa ląduje we wspólnej skrzynce</span><span class="en">The customer emails; the case lands in a shared inbox</span><span class="de">Der Kunde schreibt eine Mail; der Fall landet im Sammelpostfach</span></em></div></li><li class="fnode fnode--w"><i></i><div style="min-width:0"><small><span class="pl">Oczekiwanie</span><span class="en">Waiting</span><span class="de">Warten</span></small><em><span class="pl">Czeka na przydzielenie — dzień, czasem dwa</span><span class="en">Waits to be assigned — a day, sometimes two</span><span class="de">Wartet auf Zuweisung — einen Tag, manchmal zwei</span></em></div></li><li class="fnode fnode--h"><i></i><div style="min-width:0"><small><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></small><em><span class="pl">Pracownik zbiera dane z ERP, TMS i korespondencji</span><span class="en">An agent collects data from the ERP, TMS and email threads</span><span class="de">Ein Mitarbeiter sammelt Daten aus ERP, TMS und Schriftverkehr</span></em></div></li><li class="fnode fnode--h"><i></i><div style="min-width:0"><small><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></small><em><span class="pl">Pyta magazyn i przewoźnika o wersję zdarzeń</span><span class="en">Asks the warehouse and the carrier what happened</span><span class="de">Fragt Lager und Frachtführer nach ihrer Version</span></em></div></li><li class="fnode fnode--r"><i></i><div style="min-width:0"><small><span class="pl">Ryzyko błędu</span><span class="en">Error risk</span><span class="de">Fehlerrisiko</span></small><em><span class="pl">Rozstrzygnięcia różnią się między pracownikami</span><span class="en">Outcomes differ from one employee to the next</span><span class="de">Entscheidungen fallen je nach Mitarbeiter unterschiedlich aus</span></em></div></li><li class="fnode fnode--w"><i></i><div style="min-width:0"><small><span class="pl">Oczekiwanie</span><span class="en">Waiting</span><span class="de">Warten</span></small><em><span class="pl">Klient dostaje odpowiedź po 3 dniach — i pamięta to</span><span class="en">The customer hears back after 3 days — and remembers it</span><span class="de">Der Kunde bekommt nach 3 Tagen Antwort — und merkt sich das</span></em></div></li></ol><div class="flow__legend"><span><i class="fnode--h" style="padding:0"></i><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></span><span><i class="fnode--w" style="padding:0"></i><span class="pl">Oczekiwanie</span><span class="en">Waiting</span><span class="de">Warten</span></span><span><i class="fnode--r" style="padding:0"></i><span class="pl">Ryzyko błędu</span><span class="en">Error risk</span><span class="de">Fehlerrisiko</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-paper">
+  <div class="container">
+    <div class="split" style="align-items:flex-start">
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Ukryte koszty obecnego procesu</span><span class="en">The hidden cost of the current process</span><span class="de">Die versteckten Kosten des heutigen Prozesses</span></p>
+        <h2 style="margin-bottom:22px"><span class="pl">Reklamacja to moment prawdy — a moment prawdy trwa u Was 3 dni.</span><span class="en">A complaint is the moment of truth — and yours lasts 3 days.</span><span class="de">Die Reklamation ist der Moment der Wahrheit — und Ihrer dauert 3 Tage.</span></h2>
+        <ul class="checklist"><li><span class="pl">468 godzin miesięcznie pracy zespołu przy sprawach rozstrzygalnych regułami.</span><span class="en">468 hours a month of team time on cases a rule could settle.</span><span class="de">468 Teamstunden pro Monat für Fälle, die eine Regel entscheiden könnte.</span></li><li><span class="pl">Niespójne rozstrzygnięcia uczą klientów, że warto się odwoływać — spraw przybywa.</span><span class="en">Inconsistent outcomes teach customers that appealing pays — case volume grows.</span><span class="de">Uneinheitliche Entscheidungen lehren Kunden, dass sich Einspruch lohnt — die Fälle nehmen zu.</span></li><li><span class="pl">Utracone ponowne zamówienia po złym doświadczeniu nie pojawiają się w żadnym raporcie.</span><span class="en">Reorders lost to a bad experience never show up in any report.</span><span class="de">Nach schlechten Erfahrungen ausgebliebene Folgeaufträge tauchen in keinem Report auf.</span></li></ul>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Koszt zaniechania</span><span class="en">The cost of doing nothing</span><span class="de">Die Kosten des Nichtstuns</span></p>
+        <div class="model"><div class="tax"><div class="taxrow"><b><span><span class="pl">Rok ręcznej obsługi prostych spraw</span><span class="en">A year of handling simple cases by hand</span><span class="de">Ein Jahr manueller Bearbeitung einfacher Fälle</span></span><span>≈ 140 400 €</span></b><div class="bar"><i style="width:33%"></i></div></div><div class="taxrow"><b><span><span class="pl">3 lata — ta sama skrzynka</span><span class="en">3 years — the same inbox</span><span class="de">3 Jahre — dasselbe Postfach</span></span><span>≈ 421 200 €</span></b><div class="bar"><i style="width:100%"></i></div></div><div class="taxrow"><b><span><span class="pl">Utrata 2% klientów po złych doświadczeniach</span><span class="en">Losing 2% of customers to bad experiences</span><span class="de">Verlust von 2 % der Kunden nach schlechten Erfahrungen</span></span><span><span class="pl">niepoliczalne w tym modelu</span><span class="en">not priced in this model</span><span class="de">in diesem Modell nicht beziffert</span></span></b><div class="bar"><i style="width:55%"></i></div></div></div>
+          <p class="muted" style="font-size:.85rem;margin:18px 0 0"><span class="pl">Praca ręczna to podatek operacyjny: inwestycja w automatyzację jest skończona, koszt ręcznego procesu płacisz co miesiąc od nowa.</span><span class="en">Manual work is an operational tax: the automation investment is finite, the manual cost is paid again every month.</span><span class="de">Handarbeit ist eine Betriebssteuer: Die Investition in Automatisierung ist endlich, die manuellen Kosten zahlen Sie jeden Monat aufs Neue.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split" style="align-items:flex-start">
+    <div class="reveal">
+      <p class="eyebrow"><span class="pl">Proces po automatyzacji</span><span class="en">The process after automation</span><span class="de">Der Prozess nach der Automatisierung</span></p>
+      <div class="flow flow--after"><ol><li class="fnode fnode--a"><i></i><div style="min-width:0"><small><span class="pl">Automatyzacja</span><span class="en">Automation</span><span class="de">Automatisierung</span></small><em><span class="pl">Agent czyta zgłoszenie i klasyfikuje sprawę w minutę</span><span class="en">The agent reads and classifies the case within a minute</span><span class="de">Der Agent liest und klassifiziert den Fall binnen einer Minute</span></em></div></li><li class="fnode fnode--a"><i></i><div style="min-width:0"><small><span class="pl">Automatyzacja</span><span class="en">Automation</span><span class="de">Automatisierung</span></small><em><span class="pl">Kompletuje dowody: zamówienie, dostawa, zdjęcia, historia klienta</span><span class="en">Gathers evidence: order, delivery, photos, client history</span><span class="de">Sammelt Belege: Auftrag, Lieferung, Fotos, Kundenhistorie</span></em></div></li><li class="fnode fnode--a"><i></i><div style="min-width:0"><small><span class="pl">Automatyzacja</span><span class="en">Automation</span><span class="de">Automatisierung</span></small><em><span class="pl">Proste sprawy rozstrzyga według Waszych reguł — korekta, zwrot, odmowa z uzasadnieniem</span><span class="en">Settles simple cases by your rules — credit, return or a reasoned refusal</span><span class="de">Entscheidet einfache Fälle nach Ihren Regeln — Gutschrift, Retoure oder begründete Ablehnung</span></em></div></li><li class="fnode fnode--h"><i></i><div style="min-width:0"><small><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></small><em><span class="pl">Sprawy sporne i wysokie kwoty: człowiek z gotową rekomendacją</span><span class="en">Contested or high-value cases: a human with a ready recommendation</span><span class="de">Strittige oder hohe Fälle: ein Mensch mit fertiger Empfehlung</span></em></div></li><li class="fnode fnode--a"><i></i><div style="min-width:0"><small><span class="pl">Automatyzacja</span><span class="en">Automation</span><span class="de">Automatisierung</span></small><em><span class="pl">Klient dostaje odpowiedź w godziny; status widoczny cały czas</span><span class="en">The customer hears back in hours; the status stays visible</span><span class="de">Der Kunde erhält in Stunden Antwort; der Status bleibt sichtbar</span></em></div></li></ol><div class="flow__legend"><span><i class="fnode--h" style="padding:0"></i><span class="pl">Człowiek</span><span class="en">Human</span><span class="de">Mensch</span></span><span><i class="fnode--a" style="padding:0"></i><span class="pl">Automatyzacja</span><span class="en">Automation</span><span class="de">Automatisierung</span></span></div></div>
+    </div>
+    <div class="reveal">
+      <div class="duty">
+        <div class="duty--a"><h3><span class="pl">Co przejmuje automatyzacja</span><span class="en">What the automation handles</span><span class="de">Was die Automatisierung übernimmt</span></h3><ul class="checklist"><li><span class="pl">Klasyfikacja i kompletowanie dowodów w każdej sprawie</span><span class="en">Classifying and evidencing every case</span><span class="de">Klassifizierung und Belegsammlung in jedem Fall</span></li><li><span class="pl">Rozstrzyganie prostych spraw według reguł i progów</span><span class="en">Settling simple cases by rules and thresholds</span><span class="de">Entscheidung einfacher Fälle nach Regeln und Schwellen</span></li><li><span class="pl">Korekty i zwroty wykonywane w ERP przez roboty</span><span class="en">Credits and returns executed in the ERP by robots</span><span class="de">Gutschriften und Retouren im ERP durch Roboter ausgeführt</span></li></ul></div>
+        <div class="duty--h"><h3><span class="pl">Kiedy decyduje człowiek</span><span class="en">When a human decides</span><span class="de">Wann ein Mensch entscheidet</span></h3><ul class="checklist"><li><span class="pl">Sprawy sporne, nietypowe i powyżej progu kwoty</span><span class="en">Contested, unusual and above-threshold cases</span><span class="de">Strittige, ungewöhnliche und über der Schwelle liegende Fälle</span></li><li><span class="pl">Klienci strategiczni — decyzja zawsze po stronie opiekuna</span><span class="en">Strategic clients — the account owner always decides</span><span class="de">Strategische Kunden — der Betreuer entscheidet immer</span></li><li><span class="pl">Zmiany polityki reklamacyjnej</span><span class="en">Changes to the complaints policy</span><span class="de">Änderungen der Reklamationsrichtlinie</span></li></ul></div>
+      </div>
+      <div style="margin-top:22px"><div class="fx"><div><h3><span class="pl">Przed</span><span class="en">Before</span><span class="de">Vorher</span></h3><div class="fxrow"><span><span class="pl">Pierwsza merytoryczna odpowiedź</span><span class="en">First substantive response</span><span class="de">Erste inhaltliche Antwort</span></span><b><span class="pl">~3,2 dnia</span><span class="en">~3.2 days</span><span class="de">~3,2 Tage</span></b></div><div class="fxrow"><span><span class="pl">Praca ręczna / mies.</span><span class="en">Manual work / month</span><span class="de">Handarbeit / Monat</span></span><b><span class="pl">~468 h</span><span class="en">~468 h</span><span class="de">~468 h</span></b></div><div class="fxrow"><span><span class="pl">Spójność rozstrzygnięć</span><span class="en">Consistency of outcomes</span><span class="de">Konsistenz der Entscheidungen</span></span><b><span class="pl">zależy od osoby</span><span class="en">depends on the person</span><span class="de">personenabhängig</span></b></div><div class="fxrow"><span><span class="pl">Widoczność statusu dla klienta</span><span class="en">Status visibility for the customer</span><span class="de">Status-Sichtbarkeit für den Kunden</span></span><b><span class="pl">brak</span><span class="en">none</span><span class="de">keine</span></b></div></div><div class="fx--after"><h3><span class="pl">Po</span><span class="en">After</span><span class="de">Nachher</span></h3><div class="fxrow"><span><span class="pl">Pierwsza merytoryczna odpowiedź</span><span class="en">First substantive response</span><span class="de">Erste inhaltliche Antwort</span></span><b><span class="pl">~4 godziny</span><span class="en">~4 hours</span><span class="de">~4 Stunden</span></b></div><div class="fxrow"><span><span class="pl">Praca ręczna / mies.</span><span class="en">Manual work / month</span><span class="de">Handarbeit / Monat</span></span><b><span class="pl">tylko sprawy sporne</span><span class="en">contested cases only</span><span class="de">nur strittige Fälle</span></b></div><div class="fxrow"><span><span class="pl">Spójność rozstrzygnięć</span><span class="en">Consistency of outcomes</span><span class="de">Konsistenz der Entscheidungen</span></span><b><span class="pl">jedne reguły</span><span class="en">one rulebook</span><span class="de">ein Regelwerk</span></b></div><div class="fxrow"><span><span class="pl">Widoczność statusu dla klienta</span><span class="en">Status visibility for the customer</span><span class="de">Status-Sichtbarkeit für den Kunden</span></span><b><span class="pl">na bieżąco</span><span class="en">live</span><span class="de">laufend</span></b></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-paper">
+  <div class="container">
+    <div class="split" style="align-items:flex-start">
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Model wartości — przykładowe założenia</span><span class="en">Value model — example assumptions</span><span class="de">Wertmodell — Beispielannahmen</span></p>
+        <div class="model"><span class="evid evid--model"><span class="pl">Model ilustracyjny</span><span class="en">Illustrative model</span><span class="de">Illustratives Modell</span></span><div class="mrow"><span><span class="pl">1 560 prostych spraw × 18 min</span><span class="en">1,560 simple cases × 18 min</span><span class="de">1.560 einfache Fälle × 18 Min.</span></span><b><span class="pl">= 468 h / mies.</span><span class="en">= 468 h / month</span><span class="de">= 468 h / Monat</span></b></div><div class="mrow"><span><span class="pl">468 h × 25 € pełnego kosztu godziny</span><span class="en">468 h × €25 fully loaded hourly cost</span><span class="de">468 h × 25 € Vollkosten pro Stunde</span></span><b><span class="pl">= 11 700 € / mies.</span><span class="en">= €11,700 / month</span><span class="de">= 11.700 € / Monat</span></b></div><div class="mrow"><span><span class="pl">12 miesięcy</span><span class="en">12 months</span><span class="de">12 Monate</span></span><b><span class="pl">× 12</span><span class="en">× 12</span><span class="de">× 12</span></b></div><div class="mrow mrow--sum"><span><span class="pl">Roczna uwolniona przepustowość</span><span class="en">Annual capacity released</span><span class="de">Jährlich freigesetzte Kapazität</span></span><b>≈ 140 400 €</b></div></div>
+        
+      </div>
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Efekty biznesowe</span><span class="en">Business benefits</span><span class="de">Geschäftlicher Nutzen</span></p>
+        <ul class="checklist"><li><span class="pl">Odpowiedź w godziny odbudowuje zaufanie w najgorszym momencie relacji</span><span class="en">An answer in hours rebuilds trust at the worst moment of the relationship</span><span class="de">Eine Antwort in Stunden stellt Vertrauen im schlechtesten Moment der Beziehung wieder her</span></li><li><span class="pl">Jedne reguły dla wszystkich — mniej odwołań i eskalacji</span><span class="en">One rulebook for everyone — fewer appeals and escalations</span><span class="de">Ein Regelwerk für alle — weniger Einsprüche und Eskalationen</span></li><li><span class="pl">Zespół reklamacji zajmuje się sporami, nie kopiowaniem numerów zamówień</span><span class="en">The complaints team handles disputes, not copying order numbers</span><span class="de">Das Reklamationsteam bearbeitet Streitfälle, statt Auftragsnummern zu kopieren</span></li><li><span class="pl">Dane z reklamacji pokazują, co poprawić u źródła: produkt, przewoźnik, magazyn</span><span class="en">Complaint data shows what to fix at the source: product, carrier, warehouse</span><span class="de">Reklamationsdaten zeigen, was an der Quelle zu verbessern ist: Produkt, Frachtführer, Lager</span></li></ul>
+        <p class="eyebrow" style="margin-top:26px"><span class="pl">Wpływ na KPI zarządu</span><span class="en">Board-level KPIs affected</span><span class="de">Betroffene Vorstands-KPIs</span></p>
+        <div class="chips"><span class="chip"><span class="dot"></span>Time to resolution</span><span class="chip"><span class="dot"></span>Customer retention</span><span class="chip"><span class="dot"></span>Cost per case</span><span class="chip"><span class="dot"></span>Repeat complaint rate</span></div>
+        <p class="eyebrow" style="margin-top:26px"><span class="pl">Co zyskuje kadra zarządzająca</span><span class="en">What management gains</span><span class="de">Was die Unternehmensführung gewinnt</span></p>
+        <ul class="checklist"><li><span class="pl">Pulpit przyczyn: co generuje reklamacje i ile to kosztuje</span><span class="en">A causes dashboard: what drives complaints and what it costs</span><span class="de">Ein Ursachen-Dashboard: Was Reklamationen auslöst und was es kostet</span></li><li><span class="pl">SLA odpowiedzi mierzone, nie deklarowane</span><span class="en">Response SLAs measured, not declared</span><span class="de">Antwort-SLAs gemessen statt behauptet</span></li><li><span class="pl">Wczesne sygnały problemów z partią, produktem albo przewoźnikiem</span><span class="en">Early signals of batch, product or carrier problems</span><span class="de">Frühsignale bei Chargen-, Produkt- oder Frachtführerproblemen</span></li></ul>
+      </div>
+    </div>
+    <div class="calc" style="margin-top:26px">
+      <h3><span class="pl">Policz dla swojej organizacji</span><span class="en">Estimate it for your organisation</span><span class="de">Rechnen Sie es für Ihre Organisation</span></h3>
+      <div class="calc__grid">
+        <div>
+          <div class="calc__in"><label><span class="pl">Wolumen miesięcznie</span><span class="en">Volume per month</span><span class="de">Volumen pro Monat</span></label><input type="number" data-k="vol" value="1560" min="0" step="10"></div>
+          <div class="calc__in"><label><span class="pl">Minut pracy ręcznej na sprawę</span><span class="en">Manual minutes per item</span><span class="de">Manuelle Minuten pro Vorgang</span></label><input type="number" data-k="min" value="18" min="0" step="1"></div>
+          <div class="calc__in"><label><span class="pl">Pełny koszt godziny pracy (€)</span><span class="en">Fully loaded hourly cost (€)</span><span class="de">Vollkosten pro Stunde (€)</span></label><input type="number" data-k="rate" value="25" min="0" step="1"></div>
+        </div>
+        <div class="calc__out">
+          <div class="calc__res" data-o="hours"><b></b><span><span class="pl">godzin do odzyskania miesięcznie</span><span class="en">hours released per month</span><span class="de">freigesetzte Stunden pro Monat</span></span></div>
+          <div class="calc__res" data-o="annual"><b></b><span><span class="pl">rocznej przepustowości do odzyskania</span><span class="en">annual capacity released</span><span class="de">jährlich freigesetzte Kapazität</span></span></div>
+        </div>
+      </div>
+      <p class="calc__note"><span class="pl">Szacunek ilustracyjny na podstawie Twoich danych. To model uwolnionej przepustowości — nie obietnica oszczędności.</span><span class="en">An illustrative estimate based on your inputs. A model of released capacity — not a savings promise.</span><span class="de">Eine illustrative Schätzung auf Basis Ihrer Eingaben. Ein Modell freigesetzter Kapazität — kein Einsparversprechen.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow"><span class="pl">Systemy w tym scenariuszu</span><span class="en">Systems in this scenario</span><span class="de">Systeme in diesem Szenario</span></p>
+    <div class="sysmap">
+      <div><h4><span class="pl">Wejście</span><span class="en">Inputs</span><span class="de">Eingänge</span></h4><ul><li>Skrzynka reklamacji / formularz</li><li>ERP (zamówienia, faktury)</li><li>TMS / dokumenty dostaw</li></ul></div><div class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="sys--hub"><h4><span class="pl">Warstwa agentowa Mienthy</span><span class="en">Mientha agentic layer</span><span class="de">Agentische Schicht von Mientha</span></h4><ul><li>UiPath Agent Builder</li><li><span class="pl">Roboty UiPath</span><span class="en">UiPath robots</span><span class="de">UiPath-Roboter</span></li><li>Maestro™ &middot; Action Center</li></ul></div><div class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div><h4><span class="pl">Systemy docelowe</span><span class="en">Core systems</span><span class="de">Zielsysteme</span></h4><ul><li>ERP (korekty, zwroty)</li><li>CRM</li><li>Teams (decyzje i eskalacje)</li></ul></div>
+    </div>
+    <p class="muted" style="font-size:.85rem;margin-top:14px"><span class="pl">Akceptacja człowieka: Teams / Action Center</span><span class="en">Human approval: Teams / Action Center</span><span class="de">Menschliche Freigabe: Teams / Action Center</span></p>
+    <div class="split" style="margin-top:44px;align-items:flex-start">
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Co dostarczamy</span><span class="en">What we deliver</span><span class="de">Was wir liefern</span></p>
+        <ul class="checklist"><li><span class="pl">Analiza 2–3 miesięcy reklamacji: kategorie, kwoty, czasy</span><span class="en">A 2–3 month complaints analysis: categories, values, times</span><span class="de">Eine Analyse von 2–3 Monaten Reklamationen: Kategorien, Beträge, Zeiten</span></li><li><span class="pl">Polityka reklamacyjna przełożona na reguły i progi</span><span class="en">The complaints policy translated into rules and thresholds</span><span class="de">Die Reklamationsrichtlinie übersetzt in Regeln und Schwellen</span></li><li><span class="pl">Agent + roboty wykonujące korekty i zwroty w ERP</span><span class="en">An agent + robots executing credits and returns in the ERP</span><span class="de">Agent + Roboter, die Gutschriften und Retouren im ERP ausführen</span></li><li><span class="pl">Ścieżka spraw spornych z rekomendacją dla człowieka</span><span class="en">A contested-case route with a recommendation for the human</span><span class="de">Eine Route für strittige Fälle mit Empfehlung für den Menschen</span></li><li><span class="pl">Pilotaż na 2 najczęstszych kategoriach</span><span class="en">A pilot on the 2 most frequent categories</span><span class="de">Pilot mit den 2 häufigsten Kategorien</span></li><li><span class="pl">Raport przyczyn źródłowych co miesiąc</span><span class="en">A monthly root-cause report</span><span class="de">Ein monatlicher Ursachenbericht</span></li></ul>
+        <p class="eyebrow" style="margin-top:26px"><span class="pl">Czego potrzebujemy na start</span><span class="en">What we need to start</span><span class="de">Was wir zum Start brauchen</span></p>
+        <ul class="checklist"><li><span class="pl">Eksport reklamacji z 2–3 miesięcy</span><span class="en">A 2–3 month complaints export</span><span class="de">Ein Reklamations-Export aus 2–3 Monaten</span></li><li><span class="pl">Obowiązująca polityka reklamacyjna i progi kwot</span><span class="en">The current complaints policy and value thresholds</span><span class="de">Die geltende Reklamationsrichtlinie und Betragsschwellen</span></li><li><span class="pl">Dostęp testowy do ERP i skrzynki reklamacji</span><span class="en">Test access to the ERP and the complaints inbox</span><span class="de">Testzugang zu ERP und Reklamations-Postfach</span></li><li><span class="pl">Właściciel procesu po stronie obsługi klienta</span><span class="en">A process owner on the customer-service side</span><span class="de">Ein Prozessverantwortlicher im Kundenservice</span></li></ul>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Harmonogram wdrożenia</span><span class="en">Implementation roadmap</span><span class="de">Umsetzungsfahrplan</span></p>
+        <div class="steps"><div class="step"><div class="step__n"></div><div><h4>Discovery</h4><p><span class="pl">Mapujemy proces, dane i wyjątki z właścicielami procesu.</span><span class="en">We map the process, data and exceptions with process owners.</span><span class="de">Wir kartieren Prozess, Daten und Ausnahmen mit den Prozessverantwortlichen.</span></p></div></div><div class="step"><div class="step__n"></div><div><h4><span class="pl">Projekt</span><span class="en">Design</span><span class="de">Design</span></h4><p><span class="pl">Docelowy przepływ, reguły biznesowe, progi akceptacji.</span><span class="en">Target flow, business rules, approval thresholds.</span><span class="de">Zielablauf, Geschäftsregeln, Freigabeschwellen.</span></p></div></div><div class="step"><div class="step__n"></div><div><h4><span class="pl">Budowa</span><span class="en">Build</span><span class="de">Umsetzung</span></h4><p><span class="pl">Agenci, roboty i integracje w Twoim środowisku.</span><span class="en">Agents, robots and integrations in your environment.</span><span class="de">Agenten, Roboter und Integrationen in Ihrer Umgebung.</span></p></div></div><div class="step"><div class="step__n"></div><div><h4><span class="pl">Walidacja</span><span class="en">Validate</span><span class="de">Validierung</span></h4><p><span class="pl">Testy na rzeczywistych przypadkach, obsługa wyjątków.</span><span class="en">Tests on real cases, exception handling.</span><span class="de">Tests an realen Fällen, Ausnahmebehandlung.</span></p></div></div><div class="step"><div class="step__n"></div><div><h4>Go-live</h4><p><span class="pl">Kontrolowane uruchomienie z nadzorem człowieka.</span><span class="en">Controlled rollout with human oversight.</span><span class="de">Kontrollierter Rollout mit menschlicher Aufsicht.</span></p></div></div><div class="step"><div class="step__n"></div><div><h4><span class="pl">Optymalizacja</span><span class="en">Optimise</span><span class="de">Optimierung</span></h4><p><span class="pl">Monitoring, raporty i ciągłe doskonalenie.</span><span class="en">Monitoring, reporting and continuous improvement.</span><span class="de">Monitoring, Reporting und kontinuierliche Verbesserung.</span></p></div></div></div>
+        <p class="muted" style="font-size:.85rem;margin-top:12px"><span class="pl">Typowy czas zależy od liczby systemów i reguł — pojedynczy proces to zwykle tygodnie, nie kwartały.</span><span class="en">Typical duration depends on systems and rules — a single process is usually weeks, not quarters.</span><span class="de">Die typische Dauer hängt von Systemen und Regeln ab — ein einzelner Prozess dauert meist Wochen, nicht Quartale.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-ink">
+  <div class="container split" style="align-items:flex-start">
+    <div class="reveal">
+      <p class="eyebrow"><span class="pl">Ryzyko i kontrola</span><span class="en">Risk and controls</span><span class="de">Risiko und Kontrollen</span></p>
+      <h2><span class="pl">Autonomia pod kontrolą</span><span class="en">Autonomy under control</span><span class="de">Autonomie unter Kontrolle</span></h2>
+      <ul class="checklist"><li><span class="pl">Automatyczne rozstrzygnięcia tylko do progu kwoty ustalonego przez Was</span><span class="en">Automatic settlements only up to the value threshold you set</span><span class="de">Automatische Entscheidungen nur bis zu der von Ihnen gesetzten Betragsschwelle</span></li><li><span class="pl">Klienci strategiczni zawsze obsługiwani przez człowieka</span><span class="en">Strategic clients always handled by a human</span><span class="de">Strategische Kunden immer durch einen Menschen betreut</span></li><li><span class="pl">Każde rozstrzygnięcie z uzasadnieniem i pełnym śladem</span><span class="en">Every settlement reasoned and fully traceable</span><span class="de">Jede Entscheidung begründet und lückenlos nachvollziehbar</span></li><li><span class="pl">Wyłącznik awaryjny — powrót do skrzynki w minutę</span><span class="en">A kill switch — back to the inbox in a minute</span><span class="de">Not-Aus — zurück zum Postfach in einer Minute</span></li></ul>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow"><span class="pl">Dlaczego teraz</span><span class="en">Why now</span><span class="de">Warum jetzt</span></p>
+      <ul class="checklist"><li><span class="pl">Każdy miesiąc to ~11 700 € pracy przy sprawach rozstrzygalnych regułami</span><span class="en">Every month is ~€11,700 of work on rule-decidable cases</span><span class="de">Jeder Monat bedeutet ~11.700 € Arbeit an regelentscheidbaren Fällen</span></li><li><span class="pl">Klienci B2B przenoszą przyzwyczajenia z B2C: liczą czas odpowiedzi w godzinach</span><span class="en">B2B customers bring B2C habits: they count response time in hours</span><span class="de">B2B-Kunden übertragen B2C-Gewohnheiten: Sie messen Antwortzeiten in Stunden</span></li><li><span class="pl">Dane z reklamacji to darmowa mapa problemów operacyjnych — dziś nikt ich nie czyta</span><span class="en">Complaint data is a free map of operational problems — today nobody reads it</span><span class="de">Reklamationsdaten sind eine kostenlose Karte operativer Probleme — heute liest sie niemand</span></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow"><span class="pl">Dlaczego to ważne dla:</span><span class="en">Why this matters to:</span><span class="de">Warum das wichtig ist für:</span></p>
+    <div class="roles"><div><b>Dyrektor sprzedaży</b><p><span class="pl">Moment prawdy przestaje kosztować klientów.</span><span class="en">The moment of truth stops costing you customers.</span><span class="de">Der Moment der Wahrheit kostet keine Kunden mehr.</span></p></div><div><b>COO</b><p><span class="pl">Przyczyny źródłowe widoczne co miesiąc: partia, przewoźnik, magazyn.</span><span class="en">Root causes surface monthly: batch, carrier, warehouse.</span><span class="de">Ursachen werden monatlich sichtbar: Charge, Frachtführer, Lager.</span></p></div><div><b>CFO</b><p><span class="pl">Korekty i zwroty pod kontrolą progów i reguł — koniec uznaniowości.</span><span class="en">Credits and returns under threshold control — discretion ends.</span><span class="de">Gutschriften und Retouren unter Schwellenkontrolle — Schluss mit Ermessen.</span></p></div></div>
+    <div class="split" style="margin-top:44px;align-items:flex-start">
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Pytania, które zwykle słyszymy</span><span class="en">Questions we usually hear</span><span class="de">Fragen, die wir oft hören</span></p>
+        <div class="qa"><div><b><span class="pl">„Klienci chcą rozmawiać z człowiekiem.”</span><span class="en">“Our customers want to talk to a person.”</span><span class="de">„Unsere Kunden wollen mit einem Menschen sprechen.“</span></b><p><span class="pl">W sprawach spornych — tak, i tak zostaje. Ale klient z brakującą paletą nie chce rozmowy. Chce korekty dziś. Agent mu ją daje.</span><span class="en">In contested cases — yes, and that stays. But a customer with a missing pallet does not want a chat. They want the credit today. The agent delivers it.</span><span class="de">In strittigen Fällen — ja, und das bleibt so. Aber ein Kunde mit fehlender Palette will kein Gespräch. Er will heute die Gutschrift. Der Agent liefert sie.</span></p></div><div><b><span class="pl">„Automat będzie uznawał wszystko.”</span><span class="en">“The machine will approve everything.”</span><span class="de">„Der Automat wird alles anerkennen.“</span></b><p><span class="pl">Agent stosuje Wasze reguły — te same, które dziś stosują ludzie, tylko konsekwentnie. Odmawia równie sprawnie, jak uznaje — zawsze z uzasadnieniem.</span><span class="en">The agent applies your rules — the same ones your people apply today, just consistently. It refuses as efficiently as it approves — always with reasons.</span><span class="de">Der Agent wendet Ihre Regeln an — dieselben wie Ihre Mitarbeiter heute, nur konsequent. Er lehnt genauso effizient ab, wie er anerkennt — immer mit Begründung.</span></p></div><div><b><span class="pl">„Nasze reklamacje wymagają zdjęć i oględzin.”</span><span class="en">“Our complaints need photos and inspection.”</span><span class="de">„Unsere Reklamationen brauchen Fotos und Begutachtung.“</span></b><p><span class="pl">Zdjęcia agent przyjmuje i porównuje z dokumentacją dostawy. Oględziny fizyczne zostają u ludzi — ale to mniejszość spraw, nie 100%.</span><span class="en">Photos the agent accepts and checks against delivery records. Physical inspection stays human — but that is a minority of cases, not 100%.</span><span class="de">Fotos nimmt der Agent an und gleicht sie mit den Lieferunterlagen ab. Die physische Begutachtung bleibt beim Menschen — aber das ist die Minderheit der Fälle, nicht 100 %.</span></p></div></div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow"><span class="pl">Kiedy to nie jest właściwe rozwiązanie</span><span class="en">When this may not be the right solution</span><span class="de">Wann das nicht die richtige Lösung ist</span></p>
+        <ul class="checklist notq" style="border-left:3px solid var(--line-2)"><li><span class="pl">Kilkadziesiąt reklamacji miesięcznie — wystarczy dobra skrzynka i szablony</span><span class="en">A few dozen complaints a month — a tidy inbox and templates will do</span><span class="de">Ein paar Dutzend Reklamationen pro Monat — Postfach und Vorlagen genügen</span></li><li><span class="pl">Brak spisanej polityki reklamacyjnej — najpierw reguły, potem agent</span><span class="en">No written complaints policy — rules first, agent second</span><span class="de">Keine dokumentierte Reklamationsrichtlinie — erst Regeln, dann Agent</span></li><li><span class="pl">Każda sprawa wymaga fizycznych oględzin — automatyzacja obejmie tylko obieg</span><span class="en">Every case needs physical inspection — automation would cover only the workflow</span><span class="de">Jeder Fall erfordert physische Begutachtung — Automatisierung deckt nur den Ablauf ab</span></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="bigq reveal"><p class="eyebrow" style="justify-content:center"><span class="pl">Pytanie na najbliższe posiedzenie</span><span class="en">A question for your next board meeting</span><span class="de">Eine Frage für Ihre nächste Vorstandssitzung</span></p><p><span class="pl">Ilu klientów złożyło w zeszłym roku ostatnie zamówienie tuż po reklamacji — i kto to policzył?</span><span class="en">How many customers placed their last order right after a complaint last year — and who counted?</span><span class="de">Wie viele Kunden gaben letztes Jahr ihre letzte Bestellung direkt nach einer Reklamation auf — und wer hat das gezählt?</span></p></div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="cta reveal">
+      <h2 style="max-width:26ch;margin-inline:auto"><span class="pl">Ile kosztuje Was klient, który po reklamacji zamawia gdzie indziej?</span><span class="en">What does a customer cost you when they reorder somewhere else after a complaint?</span><span class="de">Was kostet Sie ein Kunde, der nach einer Reklamation woanders bestellt?</span></h2>
+      <p class="lead" style="margin-inline:auto;color:#aeb8bf;margin-bottom:30px"><span class="pl">Prześlij jedną prawdziwą reklamację (zanonimizowaną) — pokażemy, jak agent by ją poprowadził.</span><span class="en">Send one real (anonymised) complaint — we will show how the agent would run it.</span><span class="de">Senden Sie eine echte (anonymisierte) Reklamation — wir zeigen, wie der Agent sie führen würde.</span></p>
+      <a href="kontakt.html" class="btn btn--mint"><span class="pl">Prześlij przykładową reklamację</span><span class="en">Send us a sample complaint</span><span class="de">Senden Sie uns eine Beispiel-Reklamation</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div style="margin-top:44px">
+      <p class="eyebrow"><span class="pl">Powiązane automatyzacje</span><span class="en">Related automations</span><span class="de">Verwandte Automatisierungen</span></p>
+      <div class="grid g-3"><a class="card card--link reveal" href="cs-zapytania-p2p.html"><h3 style="font-size:1.02rem"><span class="pl">Zapytania P2P bez kolejki</span><span class="en">P2P queries without the queue</span><span class="de">P2P-Anfragen ohne Warteschlange</span></h3><div style="margin-top:12px"><span class="arrowlink"><span class="pl">Zobacz</span><span class="en">View</span><span class="de">Ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="card card--link reveal" href="case-wieza-o2c.html"><h3 style="font-size:1.02rem"><span class="pl">Wieża kontrolna Order-to-Cash</span><span class="en">The Order-to-Cash control tower</span><span class="de">Der Order-to-Cash-Kontrollturm</span></h3><div style="margin-top:12px"><span class="arrowlink"><span class="pl">Zobacz</span><span class="en">View</span><span class="de">Ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="card card--link reveal" href="agent-naleznosci.html"><h3 style="font-size:1.02rem"><span class="pl">Agent należności: gotówka wraca szybciej</span><span class="en">The receivables agent: cash back sooner</span><span class="de">Der Forderungs-Agent: Geld schneller zurück</span></h3><div style="margin-top:12px"><span class="arrowlink"><span class="pl">Zobacz</span><span class="en">View</span><span class="de">Ansehen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a href="index.html" class="brand brand--footer" aria-label="Mientha"><svg class="brand__logo" viewBox="84 234 676 128" role="img" aria-label="Mientha" preserveAspectRatio="xMinYMid meet"><path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 366.054688 341.902344 L 346.042969 341.902344 L 346.042969 291 L 323.402344 328.144531 L 321.152344 328.144531 L 298.515625 291 L 298.515625 341.902344 L 278.503906 341.902344 L 278.503906 254.355469 L 298.515625 254.355469 L 322.277344 293.25 L 346.042969 254.355469 L 366.054688 254.355469 Z M 366.054688 341.902344 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 382.445312 279.367188 L 401.207031 279.367188 L 401.207031 341.902344 L 382.445312 341.902344 Z M 380.570312 262.609375 C 380.570312 256.480469 385.699219 251.351562 391.828125 251.351562 C 397.953125 251.351562 403.082031 256.480469 403.082031 262.609375 C 403.082031 268.738281 397.953125 273.863281 391.828125 273.863281 C 385.699219 273.863281 380.570312 268.738281 380.570312 262.609375 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 460.242188 304.132812 C 458.242188 296.878906 452.613281 294.25 446.984375 294.25 C 439.855469 294.25 435.105469 297.753906 433.351562 304.132812 Z M 448.734375 326.894531 C 453.863281 326.894531 458.242188 324.894531 460.742188 322.144531 L 475.75 330.773438 C 469.621094 339.277344 460.367188 343.65625 448.488281 343.65625 C 427.097656 343.65625 413.839844 329.273438 413.839844 310.636719 C 413.839844 292 427.347656 277.617188 447.109375 277.617188 C 465.371094 277.617188 478.878906 291.75 478.878906 310.636719 C 478.878906 313.261719 478.628906 315.765625 478.128906 318.140625 L 433.726562 318.140625 C 436.101562 324.644531 441.855469 326.894531 448.734375 326.894531 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 551.550781 303.507812 L 551.550781 341.902344 L 532.789062 341.902344 L 532.789062 306.257812 C 532.789062 298.503906 527.914062 294.878906 521.90625 294.878906 C 515.03125 294.878906 510.273438 298.878906 510.273438 307.757812 L 510.273438 341.902344 L 491.515625 341.902344 L 491.515625 279.367188 L 510.273438 279.367188 L 510.273438 285.246094 C 513.652344 280.617188 519.90625 277.617188 528.160156 277.617188 C 540.792969 277.617188 551.550781 286.621094 551.550781 303.507812 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 590.203125 297.378906 L 590.203125 319.515625 C 590.203125 324.894531 594.832031 325.394531 603.085938 324.894531 L 603.085938 341.902344 C 578.574219 344.40625 571.441406 337.027344 571.441406 319.515625 L 571.441406 297.378906 L 561.4375 297.378906 L 561.4375 279.367188 L 571.441406 279.367188 L 571.441406 267.488281 L 590.203125 261.859375 L 590.203125 279.367188 L 603.085938 279.367188 L 603.085938 297.378906 Z M 590.203125 297.378906 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 675.757812 303.507812 L 675.757812 341.902344 L 656.996094 341.902344 L 656.996094 306.257812 C 656.996094 298.503906 652.121094 294.878906 646.113281 294.878906 C 639.234375 294.878906 634.480469 298.878906 634.480469 307.757812 L 634.480469 341.902344 L 615.722656 341.902344 L 615.722656 254.355469 L 634.480469 254.355469 L 634.480469 285.246094 C 637.859375 280.617188 644.113281 277.617188 652.367188 277.617188 C 665 277.617188 675.757812 286.621094 675.757812 303.507812 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 736.046875 310.636719 C 736.046875 301.253906 729.792969 295.378906 721.164062 295.378906 C 712.53125 295.378906 706.28125 301.253906 706.28125 310.636719 C 706.28125 320.015625 712.53125 325.894531 721.164062 325.894531 C 729.792969 325.894531 736.046875 320.015625 736.046875 310.636719 M 754.804688 279.367188 L 754.804688 341.902344 L 736.046875 341.902344 L 736.046875 336.023438 C 731.917969 340.777344 725.789062 343.65625 717.410156 343.65625 C 701.027344 343.65625 687.519531 329.273438 687.519531 310.636719 C 687.519531 292 701.027344 277.617188 717.410156 277.617188 C 725.789062 277.617188 731.917969 280.492188 736.046875 285.246094 L 736.046875 279.367188 Z M 754.804688 279.367188 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 223.253906 259.746094 C 223.253906 254.5 223.203125 249.253906 223.277344 244.011719 C 223.304688 241.855469 222.714844 240.019531 220.753906 239.066406 C 218.863281 238.152344 217.019531 238.59375 215.226562 239.816406 C 206.652344 245.675781 157.386719 279.039062 157.386719 279.039062 C 156.277344 279.722656 155.1875 279.695312 154.191406 279.058594 L 125.738281 259.800781 C 115.675781 253.007812 105.664062 246.136719 95.492188 239.511719 C 94.226562 238.6875 91.816406 238.578125 90.472656 239.234375 C 89.277344 239.816406 88.179688 241.914062 88.152344 243.359375 C 87.960938 254.007812 88.0625 264.664062 88.039062 275.316406 C 88.03125 278.425781 89.425781 280.878906 91.824219 282.585938 C 96.625 285.992188 101.585938 289.171875 106.476562 292.453125 C 111.710938 295.960938 116.945312 299.464844 122.171875 302.988281 C 122.488281 303.199219 122.804688 303.410156 123.117188 303.621094 C 132.484375 309.9375 141.867188 316.230469 151.191406 322.605469 C 154.199219 324.660156 157.089844 324.703125 160.066406 322.699219 C 164.582031 319.652344 169.101562 316.605469 173.613281 313.554688 C 178.671875 310.140625 183.734375 306.726562 188.792969 303.308594 C 198.910156 296.472656 209.023438 289.636719 219.148438 282.816406 C 221.859375 280.988281 223.316406 278.578125 223.273438 275.230469 C 223.203125 270.070312 223.253906 264.90625 223.253906 259.746094 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 91.910156 356.050781 C 91.003906 356.632812 89.78125 356.542969 89.042969 355.757812 C 88.28125 354.949219 88.039062 353.816406 88.042969 352.445312 C 88.089844 339.519531 88.050781 313.695312 88.050781 313.695312 C 87.960938 307.308594 92.53125 310.171875 93.617188 310.886719 C 103.289062 317.269531 112.875 323.777344 122.464844 330.28125 C 124.878906 331.921875 125.023438 334.089844 122.699219 335.667969 C 113.671875 341.792969 96.488281 353.117188 91.910156 356.050781 "/>
+<path fill-rule="nonzero" fill="rgb(0%, 96.499634%, 73.298645%)" fill-opacity="1" d="M 219.40625 309.988281 C 220.316406 309.40625 221.535156 309.5 222.277344 310.285156 C 223.039062 311.089844 223.28125 312.226562 223.277344 313.597656 L 223.183594 352.375 C 223.277344 358.761719 218.785156 355.867188 217.699219 355.152344 C 208.03125 348.773438 198.441406 342.261719 188.851562 335.757812 C 186.4375 334.121094 186.296875 331.949219 188.621094 330.371094 C 197.644531 324.25 214.828125 312.925781 219.40625 309.988281 "/>
+<path fill-rule="nonzero" fill="rgb(255,255,255)" fill-opacity="1" d="M 153.597656 278.660156 L 125.4375 305.183594 L 149.957031 322.160156 C 154.277344 325.160156 156.589844 325.1875 161.296875 322.160156 L 185.582031 305.476562 L 157.949219 278.648438 C 156.167969 279.738281 155.222656 279.738281 153.597656 278.660156 "/></svg></a>
+        <p style="max-width:34ch;color:#aeb8bf;font-size:.95rem"><span class="pl">Międzynarodowy partner w automatyzacji procesów, outsourcingu i dostarczaniu ekspertów IT.</span><span class="en">An international partner in process automation, outsourcing and IT talent delivery.</span><span class="de">Internationaler Partner für Prozessautomatisierung, Outsourcing und die Bereitstellung von IT-Experten.</span></p>
+        <img src="data:image/png;base64,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" alt="UiPath Authorized Partner" style="height:28px;width:auto;margin:6px 0 2px;display:block" width="640" height="121" loading="lazy" decoding="async">
+        <div class="badge-row">
+          <span class="fbadge">SAP Partner &middot; Open Ecosystem</span>
+          <span class="fbadge">KYP.ai Partner</span>
+          <span class="fbadge">Pipedrive Partner</span>
+        </div>
+      </div>
+      <div><h5><span class="pl">Usługi</span><span class="en">Services</span><span class="de">Leistungen</span></h5><ul><li><a href="agenty.html"><span class="pl">Rozwiązania agentyczne</span><span class="en">Agentic solutions</span><span class="de">Agentische Lösungen</span></a></li><li><a href="uslugi.html"><span class="pl">Automatyzacja RPA i Agentic AI</span><span class="en">RPA & Agentic AI automation</span><span class="de">RPA- & Agentic-AI-Automatisierung</span></a></li><li><a href="uslugi.html"><span class="pl">Business Process Outsourcing</span><span class="en">Business Process Outsourcing</span><span class="de">Business Process Outsourcing</span></a></li><li><a href="wsparcie-247.html"><span class="pl">Wsparcie 24/7 i AMS</span><span class="en">24/7 support & AMS</span><span class="de">24/7-Support & AMS</span></a></li><li><a href="uslugi.html"><span class="pl">Rekrutacja i eksperci IT</span><span class="en">Talent & IT experts</span><span class="de">Recruiting & IT-Experten</span></a></li></ul></div>
+      <div><h5><span class="pl">Branże</span><span class="en">Industries</span><span class="de">Branchen</span></h5><ul><li><a href="branze.html"><span class="pl">Transport i spedycja</span><span class="en">Transport & logistics</span><span class="de">Transport & Spedition</span></a></li><li><a href="branze.html"><span class="pl">FMCG i retail</span><span class="en">FMCG & retail</span><span class="de">FMCG & Handel</span></a></li><li><a href="branze.html"><span class="pl">Produkcja</span><span class="en">Manufacturing</span><span class="de">Produktion</span></a></li><li><a href="branze.html"><span class="pl">Finanse i BSS</span><span class="en">Finance & shared services</span><span class="de">Finanzen & Shared Services</span></a></li></ul></div>
+      <div><h5><span class="pl">Firma</span><span class="en">Company</span><span class="de">Unternehmen</span></h5><ul><li><a href="o-nas.html"><span class="pl">O nas</span><span class="en">About us</span><span class="de">Über uns</span></a></li><li><a href="case-studies.html"><span class="pl">Case studies</span><span class="en">Case studies</span><span class="de">Case Studies</span></a></li><li><a href="kontakt.html"><span class="pl">Kontakt</span><span class="en">Contact</span><span class="de">Kontakt</span></a></li></ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Mientha. <span class="pl">Wszelkie prawa zastrzeżone.</span><span class="en">All rights reserved.</span><span class="de">Alle Rechte vorbehalten.</span> &middot; <span class="pl">Enabling Corporate Excellence</span><span class="en">Enabling Corporate Excellence</span><span class="de">Enabling Corporate Excellence</span></span>
+      <span>ul. Puławska 39/40, 02-508 Warszawa &middot; contact@mientha.com &middot; +48 22 290 27 27</span>
+    </div>
+  </div>
+</footer>
+<script>
+/* Mientha site — language toggle, nav, reveal */
+(function(){
+  var VALID = ["pl","en","de"];
+
+  function getLang(){
+    var p = new URLSearchParams(location.search).get("lang");
+    if(VALID.indexOf(p) > -1) return p;
+    return "pl";
+  }
+
+  function applyLang(lang){
+    document.body.classList.remove("lang-pl","lang-en","lang-de");
+    document.body.classList.add("lang-"+lang);
+    document.documentElement.setAttribute("lang", lang);
+    // toggle buttons
+    document.querySelectorAll(".langtoggle button").forEach(function(b){
+      b.classList.toggle("on", b.dataset.lang === lang);
+    });
+    // rewrite internal links to carry ?lang
+    document.querySelectorAll('a[href]').forEach(function(a){
+      var href = a.getAttribute("href");
+      if(!href || href.charAt(0)==="#" || /^(https?:|mailto:|tel:)/i.test(href)) return;
+      var base = href.split("#")[0].split("?")[0];
+      var hash = href.indexOf("#") > -1 ? href.slice(href.indexOf("#")) : "";
+      if(base.indexOf(".html") > -1 || base === "" ){
+        a.setAttribute("href", base + "?lang=" + lang + hash);
+      }
+    });
+    // swap document title if data provided
+    var t = document.body.getAttribute("data-title-"+lang);
+    if(t) document.title = t;
+  }
+
+  function setLang(lang){
+    if(VALID.indexOf(lang) < 0) lang = "pl";
+    var url = new URL(location.href);
+    url.searchParams.set("lang", lang);
+    history.replaceState(null,"",url);
+    applyLang(lang);
+  }
+
+  document.addEventListener("DOMContentLoaded", function(){
+    applyLang(getLang());
+
+    document.querySelectorAll(".langtoggle button").forEach(function(b){
+      b.addEventListener("click", function(){ setLang(b.dataset.lang); });
+    });
+
+    // mobile menu
+    var nav = document.querySelector(".nav");
+    var toggle = document.querySelector(".nav__toggle");
+    var menu = document.querySelector(".mobile-menu");
+    function closeMenu(){
+      if(!menu) return;
+      menu.classList.remove("show");
+      if(nav) nav.classList.remove("open");
+      if(toggle) toggle.setAttribute("aria-expanded","false");
+    }
+    if(toggle && menu && nav){
+      toggle.addEventListener("click", function(){
+        var open = menu.classList.toggle("show");
+        nav.classList.toggle("open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      menu.addEventListener("click", function(e){
+        if(e.target.closest("a")) closeMenu();
+      });
+      document.addEventListener("keydown", function(e){
+        if(e.key === "Escape" && menu.classList.contains("show")){ closeMenu(); toggle.focus(); }
+      });
+    }
+    // mobile accordion groups
+    document.querySelectorAll(".m-group__t").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        btn.parentElement.classList.toggle("open");
+      });
+    });
+
+    // ROI calculators (illustrative estimates)
+    function fmt(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+    document.querySelectorAll(".calc").forEach(function(c){
+      var vol = c.querySelector('input[data-k="vol"]');
+      var min = c.querySelector('input[data-k="min"]');
+      var rate = c.querySelector('input[data-k="rate"]');
+      var oh = c.querySelector('[data-o="hours"] b');
+      var oy = c.querySelector('[data-o="annual"] b');
+      if(!vol || !min || !rate || !oh || !oy) return;
+      function recalc(){
+        var v = Math.max(0, parseFloat(vol.value) || 0);
+        var m = Math.max(0, parseFloat(min.value) || 0);
+        var r = Math.max(0, parseFloat(rate.value) || 0);
+        var hours = v * m / 60;
+        var annual = hours * r * 12;
+        oh.textContent = fmt(hours) + " h";
+        oy.textContent = "≈ " + fmt(annual) + " €";
+      }
+      [vol, min, rate].forEach(function(i){ i.addEventListener("input", recalc); });
+      recalc();
+    });
+
+    // case-study index filter
+    var fbar = document.querySelector(".fbar");
+    if(fbar){
+      var cards = document.querySelectorAll(".idxcard");
+      fbar.addEventListener("click", function(e){
+        var btn = e.target.closest("button[data-f]");
+        if(!btn) return;
+        fbar.querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", b === btn); });
+        var f = btn.getAttribute("data-f");
+        cards.forEach(function(card){
+          var tags = " " + (card.getAttribute("data-f") || "") + " ";
+          card.classList.toggle("hide", f !== "all" && tags.indexOf(" " + f + " ") === -1);
+        });
+      });
+    }
+
+    // reveal on scroll
+    var els = document.querySelectorAll(".reveal");
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      },{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+      els.forEach(function(el){ io.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add("in"); });
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
