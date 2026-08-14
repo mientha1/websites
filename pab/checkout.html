@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kasa — pic à bec</title>
+<meta name="description" content="pic à bec — odzież inspirowana światem golfa.">
+<meta name="theme-color" content="#1E2A21">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-checkout">
+<a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+<div class="checkout-head">
+  <div class="container">
+    <div class="checkout-head__inner">
+      <a class="checkout-head__back" href="cart.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M16.5 10h-13M8.5 5l-5 5 5 5"/></svg><span>Wróć do koszyka</span></a>
+      <a class="checkout-head__logo" href="index.html">pic à bec</a>
+      <span class="checkout-head__secure"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="4" y="8.5" width="12" height="8.5"/><path d="M7 8.5V6a3 3 0 0 1 6 0v2.5"/></svg><span>Bezpieczne zamówienie</span></span>
+    </div>
+  </div>
+</div>
+
+<main id="main-content" class="wrapper">
+  <div class="container">
+    <h1 class="visually-hidden">Kasa — dokończ zamówienie</h1>
+    <div class="checkout-grid">
+      <div>
+        <nav class="checkout-steps" aria-label="Kroki zamówienia">
+          <span class="checkout-steps__step checkout-steps__step--current" data-step="1"><span class="checkout-steps__number">1</span><span>Dane</span></span>
+          <span class="checkout-steps__sep" aria-hidden="true"></span>
+          <span class="checkout-steps__step" data-step="2"><span class="checkout-steps__number">2</span><span>Adres</span></span>
+          <span class="checkout-steps__sep" aria-hidden="true"></span>
+          <span class="checkout-steps__step" data-step="3"><span class="checkout-steps__number">3</span><span>Dostawa</span></span>
+          <span class="checkout-steps__sep" aria-hidden="true"></span>
+          <span class="checkout-steps__step" data-step="4"><span class="checkout-steps__number">4</span><span>Płatność</span></span>
+        </nav>
+
+        <section class="checkout-block" id="step-1">
+          <div class="checkout-block__head">
+            <span><span class="checkout-block__num">01</span><span class="checkout-block__title">Dane kontaktowe</span></span>
+            <button type="button" class="checkout-block__edit js-checkout-edit">Zmień</button>
+          </div>
+          <p class="checkout-block__recap" data-live="1">Uzupełnione</p>
+          <div class="checkout-block__body">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="fn">Imię <span class="req">*</span></label><input class="form-control" id="fn" type="text" autocomplete="given-name"></div>
+              <div class="form-group"><label class="form-label" for="ln">Nazwisko <span class="req">*</span></label><input class="form-control" id="ln" type="text" autocomplete="family-name"></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="em">Adres e-mail <span class="req">*</span></label><input class="form-control" id="em" type="email" autocomplete="email"><p class="form-hint">Na ten adres wyślemy potwierdzenie zamówienia.</p></div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="acc"><label class="form-check-label" for="acc">Załóż konto, aby szybciej składać kolejne zamówienia</label></div>
+            <button type="button" class="btn btn--primary u-mt-md js-checkout-next" data-next="step-2" data-step="2">Dalej — adres dostawy</button>
+          </div>
+        </section>
+
+        <section class="checkout-block checkout-block--pending" id="step-2">
+          <div class="checkout-block__head">
+            <span><span class="checkout-block__num">02</span><span class="checkout-block__title">Adres dostawy</span></span>
+            <button type="button" class="checkout-block__edit js-checkout-edit">Zmień</button>
+          </div>
+          <p class="checkout-block__recap" data-live="1">Uzupełnione</p>
+          <div class="checkout-block__body">
+            <div class="form-group"><label class="form-label" for="st">Ulica i numer <span class="req">*</span></label><input class="form-control" id="st" type="text" autocomplete="street-address"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="zp">Kod pocztowy <span class="req">*</span></label><input class="form-control" id="zp" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="00-000"></div>
+              <div class="form-group"><label class="form-label" for="ct">Miasto <span class="req">*</span></label><input class="form-control" id="ct" type="text" autocomplete="address-level2"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="cn">Kraj</label><select class="form-select" id="cn"><option>Polska</option><option>Niemcy</option><option>Czechy</option></select></div>
+              <div class="form-group"><label class="form-label" for="ph">Telefon <span class="opt">(opcjonalne)</span></label><input class="form-control" id="ph" type="tel" autocomplete="tel"></div>
+            </div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="inv"><label class="form-check-label" for="inv">Chcę fakturę VAT</label></div>
+            <button type="button" class="btn btn--primary u-mt-md js-checkout-next" data-next="step-3" data-step="3">Dalej — dostawa</button>
+          </div>
+        </section>
+
+        <section class="checkout-block checkout-block--pending" id="step-3">
+          <div class="checkout-block__head">
+            <span><span class="checkout-block__num">03</span><span class="checkout-block__title">Sposób dostawy</span></span>
+            <button type="button" class="checkout-block__edit js-checkout-edit">Zmień</button>
+          </div>
+          <p class="checkout-block__recap" data-live="1">Wybrano</p>
+          <div class="checkout-block__body">
+            <label class="delivery-option__item">
+              <input class="form-check-input" type="radio" name="ship" data-label="Kurier" checked>
+              <span class="delivery-option__label">
+                <span><span class="delivery-option__name">Przesyłka kurierska</span><span class="delivery-option__desc">Czas realizacji 2–7 dni roboczych</span></span>
+                <span class="delivery-option__price num">18,00 zł</span>
+              </span>
+            </label>
+            <label class="delivery-option__item">
+              <input class="form-check-input" type="radio" name="ship" data-label="Punkt odbioru">
+              <span class="delivery-option__label">
+                <span><span class="delivery-option__name">Punkt odbioru / automat paczkowy</span><span class="delivery-option__desc">Czas realizacji 2–7 dni roboczych</span></span>
+                <span class="delivery-option__price num">18,50 zł</span>
+              </span>
+            </label>
+            <label class="delivery-option__item">
+              <input class="form-check-input" type="radio" name="ship" data-label="UE">
+              <span class="delivery-option__label">
+                <span><span class="delivery-option__name">Wysyłka na terenie Unii Europejskiej</span><span class="delivery-option__desc">Czas realizacji do 14 dni roboczych</span></span>
+                <span class="delivery-option__price num">—</span>
+              </span>
+            </label>
+            <div class="form-group u-mt-md"><label class="form-label" for="note">Uwagi do zamówienia <span class="opt">(opcjonalne)</span></label><textarea class="form-control" id="note" rows="3"></textarea></div>
+            <button type="button" class="btn btn--primary js-checkout-next" data-next="step-4" data-step="4">Dalej — płatność</button>
+          </div>
+        </section>
+
+        <section class="checkout-block checkout-block--pending" id="step-4">
+          <div class="checkout-block__head">
+            <span><span class="checkout-block__num">04</span><span class="checkout-block__title">Płatność</span></span>
+            <button type="button" class="checkout-block__edit js-checkout-edit">Zmień</button>
+          </div>
+          <div class="checkout-block__body">
+            <label class="payment-option"><input class="form-check-input" type="radio" name="pay" checked><span>Szybki przelew online</span><span class="payment-option__logo"><i>Przelewy24</i><i>BLIK</i></span></label>
+            <label class="payment-option"><input class="form-check-input" type="radio" name="pay"><span>Karta płatnicza</span><span class="payment-option__logo"><i>Visa</i><i>Mastercard</i></span></label>
+            <label class="payment-option"><input class="form-check-input" type="radio" name="pay"><span>Płatność przy odbiorze</span><span class="payment-option__logo"><i>+ 5,00 zł</i></span></label>
+
+            <div class="form-check u-mt-md"><input class="form-check-input" type="checkbox" id="terms"><label class="form-check-label" for="terms">Akceptuję <a href="regulamin.html">regulamin sklepu</a> i politykę prywatności <span class="req">*</span></label></div>
+            <button type="button" class="btn btn--primary btn--lg btn--full u-mt-md" id="place-order">Zamawiam i płacę</button>
+            <p class="form-hint" style="text-align:center">Prototyp — żadne dane nie są wysyłane ani zapisywane.</p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="checkout-aside">
+        <button type="button" class="checkout-aside__toggle" data-toggle aria-expanded="false">
+          <span class="eyebrow">Podsumowanie zamówienia (<span id="checkout-count">0</span>)</span>
+          <span id="checkout-total-mini" class="num" style="font-size:var(--fs-body)"></span>
+        </button>
+        <div class="checkout-aside__panel"><div>
+          <div class="cart-summary">
+            <div id="checkout-lines"></div>
+            <div id="checkout-empty" class="blockcart-drawer__empty" style="padding-top:0" hidden>
+              <p class="text-muted" style="font-size:var(--fs-sm)">Twój koszyk jest pusty — dodaj produkty, aby dokończyć zamówienie.</p>
+              <a class="btn btn--outline btn--sm" href="nowa-kolekcja.html">Zobacz kolekcję</a>
+            </div>
+            <div class="cart-summary__line" style="margin-top:var(--space-sm)"><span>Wartość produktów</span><span id="checkout-subtotal">0,00 zł</span></div>
+            <div class="cart-summary__line"><span>Dostawa</span><span id="checkout-shipping">Gratis</span></div>
+            <div class="cart-summary__total"><span>Razem</span><strong id="checkout-total">0,00 zł</strong></div>
+            <ul class="trust-row">
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="4" y="8.5" width="12" height="8.5"/><path d="M7 8.5V6a3 3 0 0 1 6 0v2.5"/></svg>Płatność szyfrowana SSL</li>
+              <li><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4 13a9 9 0 1 1 2.8 6.5"/><path d="M4 8.4V13h4.6"/></svg>14 dni na zwrot</li>
+            </ul>
+          </div>
+        </div></div>
+      </aside>
+    </div>
+  </div>
+</main>
+<footer class="footer-min">
+  <div class="container">
+    <div class="footer-min__inner">
+      <span>© 2026 — pic à bec · Peyote Sp. z o.o.</span>
+      <nav class="footer-min__links" aria-label="Informacje">
+        <a href="regulamin.html">Regulamin</a><a href="regulamin.html">Polityka prywatności</a>
+        <a href="wysylka.html">Wysyłka</a><a href="zwroty-i-wymiany.html">Zwroty</a><a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<div id="overlay" class="overlay"></div><div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span id="toast-text"></span></div><script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Logowanie — pic à bec</title>
+<meta name="description" content="pic à bec — odzież inspirowana światem golfa.">
+<meta name="theme-color" content="#1E2A21">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="page-authentication">
+<a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+<div class="header-banner">
+  <div class="container header-banner__inner">
+    <span class="header-banner__text"><span class="long">Darmowa wysyłka przy zamówieniach powyżej 125 USD</span><span class="short">Darmowa wysyłka · 30 dni na zwrot</span></span>
+    <span class="header-banner__sep" aria-hidden="true"></span>
+    <span class="header-banner__text header-banner__item--secondary">30-dniowa gwarancja satysfakcji</span>
+    <span class="header-banner__sep" aria-hidden="true"></span>
+    <span class="header-banner__text header-banner__item--secondary">Bezpłatne zwroty i wymiany</span>
+  </div>
+</div>
+
+<header id="header" class="header js-sticky-header" data-ps-ref="header">
+  <div class="container">
+    <div class="header-pic__inner">
+      <div class="header-pic__left">
+        <button type="button" class="btn-icon header-pic__menu-btn" data-open="header-menu-panel" aria-label="Otwórz menu" aria-controls="header-menu-panel">
+          <span class="bars" aria-hidden="true"></span>
+        </button>
+        <nav class="pic-menu" aria-label="Menu główne"><ul class="pic-menu" style="display:contents"><li class="pic-menu__item"><a class="pic-menu__link" href="category.html">Kobieta</a><div class="pic-menu__sub"><p class="pic-menu__sub-title">Kategorie</p><ul><li><a class="pic-menu__sub-link" href="category-sukienki.html">Sukienki i spódnice</a></li><li><a class="pic-menu__sub-link" href="category-kobieta-polo.html">Koszulki polo i topy</a></li><li><a class="pic-menu__sub-link" href="category-kobieta-spodnie.html">Spodnie</a></li></ul><a class="pic-menu__sub-link pic-menu__sub-link--all" href="category.html">Zobacz wszystko</a></div></li><li class="pic-menu__item"><a class="pic-menu__link" href="category-mezczyzna.html">Mężczyzna</a><div class="pic-menu__sub"><p class="pic-menu__sub-title">Kategorie</p><ul><li><a class="pic-menu__sub-link" href="category-mezczyzna-polo.html">Koszulki polo i topy</a></li><li><a class="pic-menu__sub-link" href="category-mezczyzna-spodnie.html">Spodnie</a></li></ul><a class="pic-menu__sub-link pic-menu__sub-link--all" href="category-mezczyzna.html">Zobacz wszystko</a></div></li><li class="pic-menu__item"><a class="pic-menu__link" href="category-dodatki.html">Dodatki</a><div class="pic-menu__sub"><p class="pic-menu__sub-title">Kategorie</p><ul><li><a class="pic-menu__sub-link" href="category-czapki.html">Czapki</a></li><li><a class="pic-menu__sub-link" href="category-skarpetki.html">Skarpetki</a></li><li><a class="pic-menu__sub-link" href="category-paski.html">Paski</a></li><li><a class="pic-menu__sub-link" href="category-buty.html">Buty</a></li></ul><a class="pic-menu__sub-link pic-menu__sub-link--all" href="category-dodatki.html">Zobacz wszystko</a></div></li><li class="pic-menu__item"><a class="pic-menu__link" href="nowa-kolekcja.html">Nowa kolekcja</a></li></ul></nav>
+      </div>
+
+      <a class="header-pic__logo" href="index.html">pic <em>à</em> bec</a>
+
+      <div class="header-pic__right">
+        <button type="button" class="btn-icon header-pic__action-btn" data-search-toggle aria-expanded="false" aria-controls="header-search" aria-label="Szukaj"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 18 18"/></svg></button>
+        <a class="btn-icon header-pic__action-btn" href="login.html" aria-label="Moje konto"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="10" cy="6.6" r="3.4"/><path d="M3.6 17.4c.7-3.5 3.3-5.4 6.4-5.4s5.7 1.9 6.4 5.4"/></svg></a>
+        <button type="button" class="btn-icon header-pic__action-btn" data-open="blockcart-drawer" aria-label="Koszyk">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4.4 6.3h11.2l.9 11.1H3.5z"/><path d="M7.3 8.4V5.6a2.7 2.7 0 0 1 5.4 0v2.8"/></svg><span class="header-pic__cart-badge" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-pic__search-bar" id="header-search">
+    <div class="container">
+      <form class="ps-searchbar__form js-search-form" role="search">
+        <span class="ps-searchbar__magnifier" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 18 18"/></svg></span>
+        <label class="visually-hidden" for="search-input">Szukaj w sklepie</label>
+        <input class="ps-searchbar__input" id="search-input" type="search" name="s" placeholder="Czego szukasz?" autocomplete="off">
+        <button type="button" class="ps-searchbar__clear" data-search-toggle>Zamknij</button>
+      </form>
+      <div class="ps-searchbar__suggest">
+        <span class="eyebrow">Popularne</span>
+        <a class="chip" href="search.html?q=polo">polo</a>
+        <a class="chip" href="search.html?q=czapka">czapka</a>
+        <a class="chip" href="search.html?q=spodnie">spodnie</a>
+        <a class="chip" href="search.html?q=skarpetki">skarpetki</a>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="breadcrumb__wrapper"><div class="container"><nav aria-label="Ścieżka nawigacji"><ol class="breadcrumb"><li class="breadcrumb-item"><a class="breadcrumb-link" href="index.html">Strona główna</a></li><li class="breadcrumb-item" aria-current="page">Logowanie</li></ol></nav></div></div>
+<main id="main-content" class="wrapper">
+  <div class="container">
+    <div class="auth-grid login">
+      <div class="auth-card">
+        <span class="eyebrow">Klienci powracający</span>
+        <h1 class="auth-card__title" style="margin-top:var(--space-2xs)">Zaloguj się</h1>
+        <p class="auth-card__intro">Zaloguj się, aby zobaczyć historię zamówień, adresy i zapisane produkty.</p>
+        <form onsubmit="return false">
+          <div class="form-group">
+            <label class="form-label" for="login-mail">Adres e-mail</label>
+            <input class="form-control" id="login-mail" type="email" autocomplete="email" placeholder="jan.kowalski@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-pass">Hasło</label>
+            <span class="password-field">
+              <input class="form-control" id="login-pass" type="password" autocomplete="current-password">
+              <button type="button" class="toggle-pw" onclick="var i=document.getElementById('login-pass');i.type=i.type==='password'?'text':'password';this.textContent=i.type==='password'?'Pokaż':'Ukryj'">Pokaż</button>
+            </span>
+          </div>
+          <div class="auth-card__row">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="remember"><label class="form-check-label" for="remember">Zapamiętaj mnie</label></div>
+            <a class="auth-card__forgot" href="#">Nie pamiętasz hasła?</a>
+          </div>
+          <a class="btn btn--primary btn--full btn--lg" href="account.html" id="submit-login">Zaloguj się</a>
+        </form>
+      </div>
+
+      <div class="auth-card login__register-prompt">
+        <span class="eyebrow">Nowy klient</span>
+        <h2 style="margin-top:var(--space-2xs)">Załóż konto</h2>
+        <p class="auth-card__intro">Szybsze zakupy, historia zamówień i zapisane adresy dostawy. Rejestracja zajmuje minutę.</p>
+        <ul class="editorial__list" style="margin-top:0">
+          <li><span>01</span><span>Historia i status zamówień</span></li>
+          <li><span>02</span><span>Zapisane adresy dostawy</span></li>
+          <li><span>03</span><span>Szybsza kasa przy kolejnych zakupach</span></li>
+        </ul>
+        <a class="btn btn--outline btn--lg u-mt-lg" href="account.html">Utwórz konto</a>
+        <p class="form-hint u-mt-md">Kontynuując, akceptujesz <a href="regulamin.html" style="text-decoration:underline">regulamin sklepu</a>.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer-pic">
+  <div class="container">
+    <div class="footer-news">
+      <div class="footer-news__grid">
+        <div>
+          <p class="footer-news__title">Zapisz się na listę pic à bec</p>
+          <p class="footer-news__text">Informacje o nowych kolekcjach, dostawach rozmiarów i wydarzeniach na polu golfowym. Bez hałasu.</p>
+        </div>
+        <div>
+          <form class="footer-news__form" onsubmit="return false">
+            <label class="visually-hidden" for="news-mail">Adres e-mail</label>
+            <input id="news-mail" type="email" placeholder="Adres e-mail" autocomplete="email">
+            <button type="submit">Zapisz się</button>
+          </form>
+          <div class="form-check footer-news__consent">
+            <input class="form-check-input" type="checkbox" id="news-consent">
+            <label class="form-check-label" for="news-consent">Wyrażam zgodę na otrzymywanie informacji handlowych zgodnie z <a href="regulamin.html">polityką prywatności</a>.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-pic__top">
+      <div class="footer-pic__grid">
+        <div class="footer-pic__brand">
+          <a class="footer-pic__logo" href="index.html">pic à bec</a>
+          <p class="footer-pic__tagline">Marka odzieżowa inspirowana światem golfa, łącząca elegancję, funkcjonalność i nowoczesny minimalizm.</p>
+          <div class="footer-pic__social-icons">
+            <a class="footer-pic__social-icon" href="https://www.instagram.com/picabec/" aria-label="Instagram"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="4"/><circle cx="10" cy="10" r="3.4"/><circle cx="14.2" cy="5.9" r=".9" fill="currentColor" stroke="none"/></svg></a>
+            <a class="footer-pic__social-icon" href="https://www.facebook.com/profile.php?id=61590259266431" aria-label="Facebook"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="4"/><path d="M12.6 6.6h-1.1c-.9 0-1.6.7-1.6 1.6v1.4m-1.9 0h3.8m-1.9 0V17"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-pic__col">
+  <button type="button" class="footer-pic__toggle" data-toggle aria-expanded="false"><span class="footer-pic__heading">Kobiety</span><span class="footer-pic__chevron" aria-hidden="true"></span></button>
+  <div class="footer-pic__body"><div><ul class="footer-pic__nav-list"><li><a href="category-sukienki.html">Sukienki i spódnice</a></li><li><a href="category-kobieta-polo.html">Koszulki polo i topy</a></li><li><a href="category-kobieta-spodnie.html">Spodnie</a></li><li><a href="category.html">Zobacz wszystko</a></li></ul></div></div>
+</div><div class="footer-pic__col">
+  <button type="button" class="footer-pic__toggle" data-toggle aria-expanded="false"><span class="footer-pic__heading">Mężczyźni</span><span class="footer-pic__chevron" aria-hidden="true"></span></button>
+  <div class="footer-pic__body"><div><ul class="footer-pic__nav-list"><li><a href="category-mezczyzna-polo.html">Koszulki polo i topy</a></li><li><a href="category-mezczyzna-spodnie.html">Spodnie</a></li><li><a href="category-mezczyzna.html">Zobacz wszystko</a></li></ul></div></div>
+</div><div class="footer-pic__col">
+  <button type="button" class="footer-pic__toggle" data-toggle aria-expanded="false"><span class="footer-pic__heading">Dodatki</span><span class="footer-pic__chevron" aria-hidden="true"></span></button>
+  <div class="footer-pic__body"><div><ul class="footer-pic__nav-list"><li><a href="category-czapki.html">Czapki</a></li><li><a href="category-paski.html">Paski</a></li><li><a href="category-skarpetki.html">Skarpetki</a></li><li><a href="category-buty.html">Buty</a></li></ul></div></div>
+</div><div class="footer-pic__col">
+  <button type="button" class="footer-pic__toggle" data-toggle aria-expanded="false"><span class="footer-pic__heading">O Pic à bec</span><span class="footer-pic__chevron" aria-hidden="true"></span></button>
+  <div class="footer-pic__body"><div><ul class="footer-pic__nav-list"><li><a href="o-nas.html">O nas</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="wysylka.html">Wysyłka</a></li><li><a href="zwroty-i-wymiany.html">Zwroty i wymiany</a></li><li><a href="regulamin.html">Regulamin</a></li><li><a href="regulamin.html">Polityka prywatności</a></li><li><a href="regulamin.html">Polityka cookies</a></li></ul></div></div>
+</div><div class="footer-pic__col">
+  <button type="button" class="footer-pic__toggle" data-toggle aria-expanded="false"><span class="footer-pic__heading">Konto</span><span class="footer-pic__chevron" aria-hidden="true"></span></button>
+  <div class="footer-pic__body"><div><ul class="footer-pic__nav-list"><li><a href="login.html">Logowanie</a></li><li><a href="account.html">Moje konto</a></li><li><a href="cart.html">Koszyk</a></li></ul></div></div>
+</div>
+      </div>
+    </div>
+
+    <div class="footer-pic__bottom">
+      <span>© 2026 — Copyright All Right Reserved. Projekt i wykonanie: Design Partners</span>
+      <div class="footer-pic__bottom-right">
+        <span class="footer-pic__pay"><i>Visa</i><i>Mastercard</i><i>BLIK</i><i>Przelewy24</i></span>
+        <a class="footer-pic__scroll-btn" href="#header">Do góry <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M10 16.5v-13M5 8.5l5-5 5 5"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="overlay" class="overlay"></div>
+
+<div id="header-menu-panel" class="js-panel" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="header-menu-panel__head">
+    <span class="eyebrow">Menu</span>
+    <button type="button" class="btn-icon" data-close aria-label="Zamknij menu"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+  </div>
+  <div class="header-menu-panel__body">
+    <form class="ps-searchbar__form js-search-form" role="search" style="padding-top:0;border-bottom:1px solid var(--color-line);padding-bottom:var(--space-xs)">
+      <span class="ps-searchbar__magnifier" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 18 18"/></svg></span>
+      <label class="visually-hidden" for="m-search">Szukaj</label>
+      <input class="ps-searchbar__input" id="m-search" type="search" placeholder="Szukaj" style="font-size:1.125rem;height:34px">
+    </form>
+    <ul data-toggle-group style="margin-top:var(--space-sm)"><li class="pic-menu-m__item">
+  <button type="button" class="pic-menu-m__toggle" data-toggle data-toggle-exclusive aria-expanded="false">Kobieta<span class="chev" aria-hidden="true"></span></button>
+  <div class="pic-menu-m__sub"><div><div class="pic-menu-m__sub-inner"><a class="pic-menu-m__sub-link" href="category-sukienki.html">Sukienki i spódnice</a><a class="pic-menu-m__sub-link" href="category-kobieta-polo.html">Koszulki polo i topy</a><a class="pic-menu-m__sub-link" href="category-kobieta-spodnie.html">Spodnie</a><a class="pic-menu-m__sub-link" href="category.html">Zobacz wszystko</a></div></div></div>
+</li><li class="pic-menu-m__item">
+  <button type="button" class="pic-menu-m__toggle" data-toggle data-toggle-exclusive aria-expanded="false">Mężczyzna<span class="chev" aria-hidden="true"></span></button>
+  <div class="pic-menu-m__sub"><div><div class="pic-menu-m__sub-inner"><a class="pic-menu-m__sub-link" href="category-mezczyzna-polo.html">Koszulki polo i topy</a><a class="pic-menu-m__sub-link" href="category-mezczyzna-spodnie.html">Spodnie</a><a class="pic-menu-m__sub-link" href="category-mezczyzna.html">Zobacz wszystko</a></div></div></div>
+</li><li class="pic-menu-m__item">
+  <button type="button" class="pic-menu-m__toggle" data-toggle data-toggle-exclusive aria-expanded="false">Dodatki<span class="chev" aria-hidden="true"></span></button>
+  <div class="pic-menu-m__sub"><div><div class="pic-menu-m__sub-inner"><a class="pic-menu-m__sub-link" href="category-czapki.html">Czapki</a><a class="pic-menu-m__sub-link" href="category-skarpetki.html">Skarpetki</a><a class="pic-menu-m__sub-link" href="category-paski.html">Paski</a><a class="pic-menu-m__sub-link" href="category-buty.html">Buty</a><a class="pic-menu-m__sub-link" href="category-dodatki.html">Zobacz wszystko</a></div></div></div>
+</li><li class="pic-menu-m__item"><a class="pic-menu-m__link" href="nowa-kolekcja.html">Nowa kolekcja</a></li></ul>
+    <nav class="panel-links" aria-label="Konto i obsługa klienta">
+      <a href="login.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><circle cx="10" cy="6.6" r="3.4"/><path d="M3.6 17.4c.7-3.5 3.3-5.4 6.4-5.4s5.7 1.9 6.4 5.4"/></svg> Zaloguj się</a>
+      <a href="cart.html"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4.4 6.3h11.2l.9 11.1H3.5z"/><path d="M7.3 8.4V5.6a2.7 2.7 0 0 1 5.4 0v2.8"/></svg> Koszyk</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="wysylka.html">Wysyłka</a>
+      <a href="zwroty-i-wymiany.html">Zwroty i wymiany</a>
+      <a href="o-nas.html">O nas</a>
+    </nav>
+  </div>
+  <div class="header-menu-panel__foot">
+    <div class="panel-selectors">
+      <label class="visually-hidden" for="m-lang">Język</label>
+      <select class="form-select" id="m-lang"><option>Polski</option><option>English</option></select>
+      <label class="visually-hidden" for="m-cur">Waluta</label>
+      <select class="form-select" id="m-cur"><option>PLN zł</option><option>EUR €</option></select>
+    </div>
+  </div>
+</div>
+
+<div id="blockcart-drawer" class="blockcart-drawer js-panel" role="dialog" aria-modal="true" aria-label="Koszyk">
+  <div class="blockcart-drawer__head">
+    <span class="blockcart-drawer__title">Twój koszyk</span>
+    <button type="button" class="btn-icon" data-close aria-label="Zamknij koszyk"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+  </div>
+  <div class="blockcart-drawer__body" id="blockcart-body"></div>
+  <div class="blockcart-drawer__foot" id="blockcart-foot">
+    <p class="blockcart-drawer__ship"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M2 6.5h13v10H2z"/><path d="M15 9.5h4.5l3 3.5v3.5H15z"/><circle cx="7" cy="19" r="2.2"/><circle cx="18.5" cy="19" r="2.2"/></svg><span id="blockcart-ship"></span></p>
+    <div class="blockcart-drawer__total"><span>Razem</span><strong id="blockcart-total">0,00 zł</strong></div>
+    <a class="btn btn--primary btn--full" href="checkout.html">Przejdź do kasy</a>
+    <a class="btn btn--outline btn--full" href="cart.html">Zobacz koszyk</a>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span id="toast-text"></span></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
